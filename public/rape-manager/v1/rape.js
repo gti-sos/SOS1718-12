@@ -1,5 +1,5 @@
 var DataStore = require("nedb");
-
+var exports = module.exports = {};
 var dbFileName = __dirname + "/rape-stats.db";
 
 var db = new DataStore({
