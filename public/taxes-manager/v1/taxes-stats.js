@@ -3,14 +3,14 @@ var express = require("express");
 
 //Body Parser 
 var bodyParser =require("body-parser");
-var dataStore = require("nedb");
+//var dataStore = require("nedb");
 //var port = (process.env.PORT || 1607);
 
 var app = express();
 
 //Url Base 
 var BASE_API_PATH_TAXES_STATS = "/api/v1/taxes-stats";
-var dbtaxes= __dirname+"/taxes-stats.db";
+//var dbtaxes= __dirname+"/taxes-stats.db";
 app.use(bodyParser.json()); // cualquier objeto que vea en json lo convierte en Js y viceversa
 
 
@@ -18,7 +18,7 @@ app.use("/", express.static(__dirname+"public"));
 
 app.listen(process.env.PORT);
 
-//Arrays
+/********************Arrays***************************/
 
 var countries = [{ "country" : "spain",
       "year": "2016"
@@ -33,14 +33,14 @@ var countries = [{ "country" : "spain",
     }];
     
 
-var datosIniciales = [];
-
+/*
 var dbcountries = new dataStore({
     
     filename: dbtaxes,
     autoload: true
     
 });  
+*/
 /*
 dbcountries.find({},(err,countries)=>{
     if(err){
@@ -59,61 +59,33 @@ dbcountries.find({},(err,countries)=>{
 
 */
 
-//Load
+/*******************************LoadInitialData***************************/
 
-app.get(BASE_API_PATH_TAXES_STATS +"/loadInitialData", (req, res) => {
-
-    console.log(Date() + " - GET /loadInitialData");
-
-  if (dbcountries != null || dbcountries.length != 0) {
-        //recorremos la base de datos
-        dbcountries.find({}, function(error, countries) {
-            if (error) {
-                console.error(' Error from DB');
-                res.sendStatus(500); //Internal server error 
-            }
-            else {
-
-
-                /*Comprobamos que el conjunto no esté vacío*/
-                if (datosIniciales.length !== 0) {
-
-                    console.log("la base de datos ya está creada");
-                    res.sendStatus(409); //Conflicto,la base de datos ya estaba inicializada
-
-                }
-                else {
-                    dbcountries.insert([{ "country" : "spain",
-                                              "year": "2016"
+app.get(BASE_API_PATH_TAXES_STATS + "/loadInitialData", function (req, res){
+     var inicializacion = [
+    { "country" : "spain",
+      "year": "2016"
         
-                                         },
-                                          {"country" : "germany",
-                                           "year": "2016"
+    },
+    {"country" : "germany",
+      "year": "2016"
         
-                                         },
-                                         {"country" : "england",
-                                          "year": "2016"
-                                          }]);
-
-                    console.log("La base de datos se ha creado correctamente");
-                    res.sendStatus(201);
-                }
-            }
-        });
-    }
-    else {
-        //TODO: Otro control más para manejar los erroes, section 2
-        console.log("No se ha inicialiazado la base de datos correctamente, SECTION 2 ERROR");
-        res.sendStatus(500);
-
-    }
+    },
+    {"country" : "england",
+      "year": "2016"
+    }];
     
-});
+    countries=inicializacion;
+        console.log("INFO: Initializing data.");
+      res.sendStatus(201); //created!
+       res.send(countries);
+     console.log("INFO: Data initialized.");
+                 
+});  
 
 
-//raiz 
 
-//GET LISTA DE RECURSOS
+/*******************GET***********************/
 app.get(BASE_API_PATH_TAXES_STATS,(req,res)=>{
     /*
     dbcountries.find({},(err,countries)=>{
@@ -125,39 +97,6 @@ app.get(BASE_API_PATH_TAXES_STATS,(req,res)=>{
     */
     res.send(countries);
 });
-
-
-//POST LISTA DE RECURSOS
-app.post(BASE_API_PATH_TAXES_STATS,(req,res)=>{
-    
-    console.log(Date() + "- POST /taxes-stats");
-    var country = req.body;
-    countries.push(country);
-    res.sendStatus(201);
-    
-});
-
-
-//PUT LISTA DE RECURSOS
-
-
-app.put(BASE_API_PATH_TAXES_STATS,(req,res)=>{
-    console.log(Date() + "- PUT /taxes-stats");
-    res.sendStatus(405);
-    
-});
-
-//DELETE LISTA DE RECURSOS
-
-app.delete(BASE_API_PATH_TAXES_STATS,(req,res)=>{
-    
-    //dbcountries.remove({});
-    console.log(Date() + "- DELETE /taxes-stats");
-    countries=[];
-    res.sendStatus(200);
-    
-});
-
 
 //GET A UN RECURSO
 //Country
@@ -221,6 +160,16 @@ app.get(BASE_API_PATH_TAXES_STATS + "/:country/:year",(req,res)=>{
 }));
 });
 
+/*************************POST***********************/
+app.post(BASE_API_PATH_TAXES_STATS,(req,res)=>{
+    
+    console.log(Date() + "- POST /taxes-stats");
+    var country = req.body;
+    countries.push(country);
+    res.sendStatus(201);
+    
+});
+
 //POST A UN RECURSO 
 
 //country
@@ -247,48 +196,14 @@ app.post(BASE_API_PATH_TAXES_STATS + "/:country/:year", (req, res) => {
     res.sendStatus(405);
 });
 
-//DELETE A UN RECURSO
+/***************PUT****************/
 
-//Country 
 
-app.delete(BASE_API_PATH_TAXES_STATS+"/:country",(req,res)=>{
-   var country = req.params.country;
-   console.log(Date() + "- DELETE /taxes-stats/"+country);
-countries = countries.filter((c)=>{
-    return(c.country != country);
-    
+app.put(BASE_API_PATH_TAXES_STATS,(req,res)=>{
+    console.log(Date() + "- PUT /taxes-stats");
+    res.sendStatus(405);
     
 });
-res.sendStatus(200);
-});
-
-//year
-app.delete(BASE_API_PATH_TAXES_STATS+"/:year",(req,res)=>{
-   var year = req.params.year;
-   console.log(Date() + "- DELETE /taxes-stats/"+year);
-countries = countries.filter((c)=>{
-    return(c.year != year);
-    
-    
-});
-res.sendStatus(200);
-});
-
-//Country & year
-
-app.delete(BASE_API_PATH_TAXES_STATS+"/:country/:year",(req,res)=>{
-   var country = req.params.country;
-   var year = req.params.year;
-   console.log(Date() + "- DELETE /taxes-stats/"+ country + "/" + year);
-countries = countries.filter((c)=>{
-    return(c.country != country && c.year != year);
-
-    
-});
-res.sendStatus(200);
-});
-
-
 //PUT A UN RECURSO
 
 //Country
@@ -366,15 +281,55 @@ app.put(BASE_API_PATH_TAXES_STATS + "/:country/:year",(req,res)=>{
    });
     res.sendStatus(200);
 });
+/*************************DELETE************************/
 
-/*
-app.get(BASE_API_PATH_TAXES_STATS + "/loadInitialData", (req, res) => {
-
-     console.log(Date() + "- GET /taxes-stats/loadInitialData");
-
-    if (countries.length == 0) {
-        countries.push(countries1);
-    }
+app.delete(BASE_API_PATH_TAXES_STATS,(req,res)=>{
+    
+    //dbcountries.remove({});
+    console.log(Date() + "- DELETE /taxes-stats");
+    countries=[];
     res.sendStatus(200);
+    
 });
-*/
+
+//DELETE A UN RECURSO
+
+//Country 
+
+app.delete(BASE_API_PATH_TAXES_STATS+"/:country",(req,res)=>{
+   var country = req.params.country;
+   console.log(Date() + "- DELETE /taxes-stats/"+country);
+countries = countries.filter((c)=>{
+    return(c.country != country);
+    
+    
+});
+res.sendStatus(200);
+});
+
+//year
+app.delete(BASE_API_PATH_TAXES_STATS+"/:year",(req,res)=>{
+   var year = req.params.year;
+   console.log(Date() + "- DELETE /taxes-stats/"+year);
+countries = countries.filter((c)=>{
+    return(c.year != year);
+    
+    
+});
+res.sendStatus(200);
+});
+
+//Country & year
+
+app.delete(BASE_API_PATH_TAXES_STATS+"/:country/:year",(req,res)=>{
+   var country = req.params.country;
+   var year = req.params.year;
+   console.log(Date() + "- DELETE /taxes-stats/"+ country + "/" + year);
+countries = countries.filter((c)=>{
+    return(c.country != country && c.year != year);
+
+    
+});
+res.sendStatus(200);
+});
+
