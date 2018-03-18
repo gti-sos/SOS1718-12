@@ -46,19 +46,26 @@ app.delete("/api/v1/rape-stats/:name/:year", rape.deleteData);
 
 var h = "/api/v1/hospital-stats";
 var hospital = require("./public/hospital-manager/v1/hospital.js");
+<<<<<<< HEAD
 /****Gets***/
 app.get(h + "/:loadInitialData",hospital.getInitialData);
 app.get(h,hospital.getCollection);
+=======
+
+app.get(h + "/loadInitialData", hospital.getInitialData);
+app.get(h, hospital.getCollection);
+>>>>>>> 828ef29e3702411ae32d3b9429f87eaafcc96322
 app.get(h + "/:country", hospital.getRecurso);
 app.get(h + "/:country/:year", hospital.getRecursoConcreto);
 
-app.post(h,hospital.postCollection);
-app.post(h +"/:country",hospital.postRecurso);
+app.post(h, hospital.postCollection);
+app.post(h + "/:country", hospital.postRecurso);
 
-app.put(h,hospital.putCollection);
-app.put(h +"/:country",hospital.putRecurso);
-app.put(h +"/:country/:year" ,hospital.putRecursoConcreto);
+app.put(h, hospital.putCollection);
+app.put(h + "/:country", hospital.putRecurso);
+app.put(h + "/:country/:year", hospital.putRecursoConcreto);
 
+<<<<<<< HEAD
 app.delete(h,hospital.deleteCollection);
 app.delete(h+"/:country",hospital.deleteRecurso);
 app.delete(h+"/:country/:year",hospital.deleteRecursoConcreto);
@@ -84,3 +91,8 @@ app.delete(dir,tax.deleteCollection);
 app.delete(dir+"/:country",tax.deleteRecurso);
 app.delete(dir+"/:country/:year",tax.deleteRecursoConcreto);
 
+=======
+app.delete(h, hospital.deleteCollection);
+app.delete(h + "/:country", hospital.deleteRecurso);
+app.delete(h + "/:country/:year", hospital.deleteRecursoConcreto);
+>>>>>>> 828ef29e3702411ae32d3b9429f87eaafcc96322
