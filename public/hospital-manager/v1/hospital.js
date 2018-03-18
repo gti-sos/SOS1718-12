@@ -8,7 +8,7 @@ var db = new DataStore({
 });
 
 module.exports.getInitialData = (request, response) => {
-    db.find({}).toArray(function(error, stats) {
+    db.find({}, function(error, stats) {
         if (error) {
             console.error('WARNING: Error getting data from DB');
             response.sendStatus(500); // internal server error
@@ -60,7 +60,7 @@ module.exports.getCollection = (request, response) => {
         response.sendStatus(404);
     }
     else {
-        db.find({}).toArray(function(error, stats) {
+        db.find({}, function(error, stats) {
             if (error) {
                 console.error('WARNING: Error getting data from DB');
                 response.sendStatus(500); // internal server error
@@ -91,7 +91,7 @@ module.exports.getRecurso = (request, response) => {
         response.sendStatus(404);
     }
     else {
-        db.find({}).toArray(function(error, stats) {
+        db.find({}, function(error, stats) {
             if (stats.length === 0) {
                 console.log("WARNING: Error getting data from DB");
                 response.sendStatus(404);
@@ -131,7 +131,7 @@ module.exports.getRecursoConcreto = (request, response) => {
         response.sendStatus(404);
     }
     else {
-        db.find({}).toArray(function(error, stats) {
+        db.find({}, function(error, stats) {
             if (stats.length === 0) {
                 console.log("WARNING: Error getting data from DB");
                 response.sendStatus(404);
@@ -168,7 +168,7 @@ module.exports.postCollection = (request, response) => {
             response.sendStatus(400); //incorrecto ¿Duda? Preguntar
         }
         else {
-            db.find({}).toArray(function(error, stats) {
+            db.find({}, function(error, stats) {
                 if (error) {
                     console.error('WARNING: Error getting data from DB');
                     response.sendStatus(500); // internal server error
@@ -308,9 +308,7 @@ module.exports.deleteRecurso = (request, response) => {
     }
     else {
         console.log("INFO: New DELETE");
-        db.remove({
-            country: country
-        }, {}, function(error, stats) {
+        db.remove({ country: country }, {}, function(error, stats) {
             if (error) {
                 console.error('WARNING: Error removing data from DB');
                 response.sendStatus(500); // internal server error
