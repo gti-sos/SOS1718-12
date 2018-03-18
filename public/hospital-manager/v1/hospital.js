@@ -74,7 +74,6 @@ module.exports.getCollection = (request, response) => {
                     response.send(stats);
                 }
             }
-
         });
     }
 };
