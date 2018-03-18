@@ -45,6 +45,7 @@ module.exports.getInitialData = (request, response) => {
 
             }
             else {
+                console.log("Aquí error si hago get a un recurso")
                 response.sendStatus(409);
             }
 
