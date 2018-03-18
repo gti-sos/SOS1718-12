@@ -46,15 +46,12 @@ app.delete("/api/v1/rape-stats/:name/:year", rape.deleteData);
 
 var h = "/api/v1/hospital-stats";
 var hospital = require("./public/hospital-manager/v1/hospital.js");
-<<<<<<< HEAD
-/****Gets***/
-app.get(h + "/:loadInitialData",hospital.getInitialData);
-app.get(h,hospital.getCollection);
-=======
 
 app.get(h + "/loadInitialData", hospital.getInitialData);
 app.get(h, hospital.getCollection);
->>>>>>> 828ef29e3702411ae32d3b9429f87eaafcc96322
+/****Gets***/
+app.get(h + "/:loadInitialData",hospital.getInitialData);
+app.get(h,hospital.getCollection);
 app.get(h + "/:country", hospital.getRecurso);
 app.get(h + "/:country/:year", hospital.getRecursoConcreto);
 
@@ -70,3 +67,4 @@ app.delete(h+"/:country",hospital.deleteRecurso);
 app.delete(h+"/:country/:year",hospital.deleteRecursoConcreto);
 /*********API JOSE*********/
 
+var BASE_API_PATH_TAXES_STATS = "/api/v1/taxes-stats";
