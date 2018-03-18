@@ -1,6 +1,6 @@
 //Servidor Express
 var express = require("express");
-
+var exports = module.exports = {};
 //Body Parser 
 var bodyParser =require("body-parser");
 //var dataStore = require("nedb");
@@ -9,7 +9,9 @@ var bodyParser =require("body-parser");
 var app = express();
 
 //Url Base 
+
 var BASE_API_PATH_TAXES_STATS = "/api/v1/taxes-stats";
+
 //var dbtaxes= __dirname+"/taxes-stats.db";
 app.use(bodyParser.json()); // cualquier objeto que vea en json lo convierte en Js y viceversa
 
@@ -86,6 +88,7 @@ app.get(BASE_API_PATH_TAXES_STATS + "/loadInitialData", function (req, res){
 
 
 /*******************GET***********************/
+
 app.get(BASE_API_PATH_TAXES_STATS,(req,res)=>{
     /*
     dbcountries.find({},(err,countries)=>{
@@ -100,6 +103,7 @@ app.get(BASE_API_PATH_TAXES_STATS,(req,res)=>{
 
 //GET A UN RECURSO
 //Country
+
 app.get(BASE_API_PATH_TAXES_STATS + "/:country", (req, res) => {
    var country = req.params.country;
    /* dbcountries.find({country:country}, function(err, countries){
@@ -115,6 +119,7 @@ app.get(BASE_API_PATH_TAXES_STATS + "/:country", (req, res) => {
 
 
 //Country
+
 app.get(BASE_API_PATH_TAXES_STATS+"/:country",(req,res)=>{
     
     var country = req.params.country;
@@ -129,7 +134,9 @@ app.get(BASE_API_PATH_TAXES_STATS+"/:country",(req,res)=>{
 
 });
 
+
 //Year
+
 app.get(BASE_API_PATH_TAXES_STATS + "/:year",(req,res)=>{
     
     var year = req.params.year;
@@ -142,6 +149,7 @@ app.get(BASE_API_PATH_TAXES_STATS + "/:year",(req,res)=>{
     
 }));
 });
+
 
 app.get(BASE_API_PATH_TAXES_STATS + "/:country/:year",(req,res)=>{
     var country = req.params.country;
@@ -169,7 +177,6 @@ app.post(BASE_API_PATH_TAXES_STATS,(req,res)=>{
     res.sendStatus(201);
     
 });
-
 //POST A UN RECURSO 
 
 //country
