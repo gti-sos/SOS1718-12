@@ -65,34 +65,8 @@ app.put(h, hospital.putCollection);
 app.put(h + "/:country", hospital.putRecurso);
 app.put(h + "/:country/:year", hospital.putRecursoConcreto);
 
-<<<<<<< HEAD
 app.delete(h,hospital.deleteCollection);
 app.delete(h+"/:country",hospital.deleteRecurso);
 app.delete(h+"/:country/:year",hospital.deleteRecursoConcreto);
 /*********API JOSE*********/
-var dir = "/api/v1/taxes-stats";
-var tax = require("./public/taxes-manager/v1/taxes-stats.js");
 
-app.get(dir);
-app.get(dir,tax.getCollection);
-app.get(dir);
-app.get(dir + "/:country/:year", tax.getRecursoConcreto);
-
-/**Post**/
-app.post(dir);
-app.post(dir +"/:country",tax.postRecurso);
-
-/***Put****/
-app.put(dir,tax.putCollection);
-app.put(dir +"/:country",tax.putRecurso);
-app.put(dir +"/:country/:year" ,tax.putRecursoConcreto);
-/***Delete**/
-app.delete(dir,tax.deleteCollection);
-app.delete(dir+"/:country",tax.deleteRecurso);
-app.delete(dir+"/:country/:year",tax.deleteRecursoConcreto);
-
-=======
-app.delete(h, hospital.deleteCollection);
-app.delete(h + "/:country", hospital.deleteRecurso);
-app.delete(h + "/:country/:year", hospital.deleteRecursoConcreto);
->>>>>>> 828ef29e3702411ae32d3b9429f87eaafcc96322
