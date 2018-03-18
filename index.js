@@ -67,4 +67,7 @@ app.delete(h+"/:country",hospital.deleteRecurso);
 app.delete(h+"/:country/:year",hospital.deleteRecursoConcreto);
 /*********API JOSE*********/
 
-var BASE_API_PATH_TAXES_STATS = "/api/v1/taxes-stats";
+var direccion = require("./public/taxes-manager/v1/taxes-stats.js");
+
+
+
