@@ -46,7 +46,7 @@ app.delete("/api/v1/rape-stats/:name/:year", rape.deleteData);
 
 var h = "/api/v1/hospital-stats";
 var hospital = require("./public/hospital-manager/v1/hospital.js");
-
+/****Gets***/
 app.get(h + "/:loadInitialData",hospital.getInitialData);
 app.get(h,hospital.getCollection);
 app.get(h + "/:country", hospital.getRecurso);
@@ -62,3 +62,25 @@ app.put(h +"/:country/:year" ,hospital.putRecursoConcreto);
 app.delete(h,hospital.deleteCollection);
 app.delete(h+"/:country",hospital.deleteRecurso);
 app.delete(h+"/:country/:year",hospital.deleteRecursoConcreto);
+/*********API JOSE*********/
+var dir = "/api/v1/taxes-stats";
+var tax = require("./public/taxes-manager/v1/taxes-stats.js");
+
+app.get(dir);
+app.get(dir,tax.getCollection);
+app.get(dir);
+app.get(dir + "/:country/:year", tax.getRecursoConcreto);
+
+/**Post**/
+app.post(dir);
+app.post(dir +"/:country",tax.postRecurso);
+
+/***Put****/
+app.put(dir,tax.putCollection);
+app.put(dir +"/:country",tax.putRecurso);
+app.put(dir +"/:country/:year" ,tax.putRecursoConcreto);
+/***Delete**/
+app.delete(dir,tax.deleteCollection);
+app.delete(dir+"/:country",tax.deleteRecurso);
+app.delete(dir+"/:country/:year",tax.deleteRecursoConcreto);
+
