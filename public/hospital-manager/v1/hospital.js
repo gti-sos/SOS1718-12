@@ -18,27 +18,27 @@ module.exports.getInitialData = (request, response) => {
                 db.insert([{
                     "country": "belgium",
                     "year": 2013,
-                    "hospital-expense": 6.9,
-                    "hospital-bed": 7,
-                    "heart-attack": 7
+                    "expense": 6.9,
+                    "bed": 7,
+                    "attack": 7
                 }, {
                     "country": "cyprus",
                     "year": 2013,
-                    "hospital-expense": 7.3,
-                    "hospital-bed": 3.4,
-                    "heart-attack": 2.2
+                    "expense": 7.3,
+                    "bed": 3.4,
+                    "attack": 2.2
                 }, {
                     "country": "france",
                     "year": 2013,
-                    "hospital-expense": 11.6,
-                    "hospital-bed": 6.4,
-                    "heart-attack": 6.2
+                    "expense": 11.6,
+                    "bed": 6.4,
+                    "attack": 6.2
                 }, {
                     "country": "greece",
                     "year": 2013,
-                    "hospital-expense": 9.3,
-                    "hospital-bed": 4.9,
-                    "heart-attack": 2.3
+                    "expense": 9.3,
+                    "bed": 4.9,
+                    "attack": 2.3
                 }]);
                 console.log("OK");
                 response.sendStatus(201);
@@ -163,7 +163,6 @@ var checkdb = function(database) {
     else {
         return true;
     }
-
 };
 
 //GET a un recurso en concreto
