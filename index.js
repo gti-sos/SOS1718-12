@@ -49,9 +49,6 @@ var hospital = require("./public/hospital-manager/v1/hospital.js");
 
 app.get(h + "/loadInitialData", hospital.getInitialData);
 app.get(h, hospital.getCollection);
-/****Gets***/
-app.get(h + "/:loadInitialData",hospital.getInitialData);
-app.get(h,hospital.getCollection);
 app.get(h + "/:country", hospital.getRecurso);
 app.get(h + "/:country/:year", hospital.getRecursoConcreto);
 
@@ -120,21 +117,6 @@ app.get(BASE_API_PATH_TAXES_STATS,(req,res)=>{
 });
 
 //GET A UN RECURSO
-//Country
-
-app.get(BASE_API_PATH_TAXES_STATS + "/:country", (req, res) => {
-   var country = req.params.country;
-   /* dbcountries.find({country:country}, function(err, countries){
-        if(err){
-        console.error("error accesing db");
-        res.sendStatus(500);
-        return;
-    }*/
-        console.log(Date() + " - GET /taxes-stats/" + country);
-        res.send(countries);
-    });
-
-
 
 //Country
 
@@ -148,7 +130,7 @@ app.get(BASE_API_PATH_TAXES_STATS+"/:country",(req,res)=>{
     
     
     
-}));
+})[0]);
 
 });
 
@@ -165,7 +147,7 @@ app.get(BASE_API_PATH_TAXES_STATS + "/:year",(req,res)=>{
     
     
     
-}));
+})[0]);
 });
 
 
