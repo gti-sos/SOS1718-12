@@ -82,42 +82,90 @@ module.exports.getCollection = (request, response) => {
 //GET a un recurso
 module.exports.getRecurso = (request, response) => {
     var country = request.params.country;
-    var a = [];
-    var res = [];
-    if (!country) {
-        console.log("BAD Request");
+    var aux = [];
+    var year = null;
+
+    if (!country ||country == null) {
+
+        console.log("No has introducido correctamente los datos, get data error section 1");
         response.sendStatus(400);
     }
-    else if (!db) {
-        response.sendStatus(404);
+    else {
+
+        if (checkdb(db) == false) {
+            response.sendStatus(500);
+            process.exit();
+        }
+        else {
+
+            db.find({}, function(error, stats) {
+                if (checkdb(stats) == false) {
+                    response.sendStatus(500);
+                }
+                else {
+
+                    filtradoNombreAnio(stats, aux, country, year);
+
+                    if (aux.length == 0) {
+                        console.log("no se ha encontrado ningún dato");
+                        response.sendStatus(404);
+                    }
+                    else {
+                        response.send(aux);
+
+                    }
+
+                }
+
+            });
+
+        }
+
+
+    }
+
+
+};
+var filtradoNombreAnio = function(stats, aux, country, year) {
+
+    if (year == null) {
+        if (isNaN(country)) {
+            stats.filter((x) => {
+                return x.country == country;
+
+            }).map((x) => {
+                return aux.push(x);
+            });
+        }
+        else {
+            stats.filter((x) => {
+                return x.year == parseInt(country);
+            }).map((x) => {
+                return aux.push(x);
+            });
+        }
     }
     else {
-        db.find({}, function(error, stats) {
-            if (stats.length === 0) {
-                console.log("WARNING: Error getting data from DB");
-                response.sendStatus(404);
-            }
-            else {
-                if (country) {
-                    for (var i = 0; i < stats.length; i++) {
-                        if (stats[i].country === country) {
-                            a.push(stats[i]);
-                        }
-                        else if (stats[i].year === parseInt(country)) {
-                            a.push(stats[i]);
-                        }
-                        else if (a.length === 0) {
-                            response.sendStatus(404);
-                        }
-                        else {
-                            response.send(a);
-                        }
-                    }
-                }
-            }
+        stats.filter((x) => {
+            return x.country == country && x.year == parseInt(year);
+        }).map((x) => {
+            return aux.push(x);
         });
     }
 };
+
+var checkdb = function(database) {
+
+    if (!database || database == null || database.length === 0) {
+        console.log("la base de datos está vacía, get all data, section 1");
+        return false;
+    }
+    else {
+        return true;
+    }
+
+};
+
 //GET a un recurso en concreto
 module.exports.getRecursoConcreto = (request, response) => {
     var country = request.params.country;
@@ -280,9 +328,7 @@ module.exports.putRecursoConcreto = (request, response) => {
 //DELETE una colección
 module.exports.deleteCollection = (request, response) => {
     console.log("INFO: New DELETE");
-    db.remove({}, {
-        multi: true
-    }, function(error, stats) {
+    db.remove({}, { multi: true }, function(error, stats) {
         if (error) {
             console.error('WARNING: Error removing data from DB');
             response.sendStatus(500); // internal server error
@@ -302,6 +348,7 @@ module.exports.deleteCollection = (request, response) => {
 };
 //DELETE a un recurso
 module.exports.deleteRecurso = (request, response) => {
+
     var country = request.params.country;
     if (!country) {
         console.log("WARNING: New DELETE");
