@@ -261,7 +261,7 @@ module.exports.putRecurso = (request, response) => {
     }
     else {
         console.log("INFO: New PUT");
-        if (!updateStat.country || !updateStat.year || !updateStat.expense || !updateStat.bed || !updateStat.atack) {
+        if (!updateStat.country || !updateStat.year || !updateStat.expense || !updateStat.bed || !updateStat.attack) {
             console.log("WARMING: New PUT incorrect");
             response.sendStatus(400); //incorrecto
         }
@@ -273,7 +273,7 @@ module.exports.putRecurso = (request, response) => {
                 year: updateStat.year,
                 expense: updateStat.bed,
                 bed: updateStat.usagephoneline,
-                atack: updateStat.atack
+                attack: updateStat.attack
             });
             response.sendStatus(200);
 
@@ -293,7 +293,7 @@ module.exports.putRecursoConcreto = (request, response) => {
     }
     else {
         console.log("INFO: New PUT request to stat" + countryPar + " and year " + yearPar + " with data " + JSON.stringify(updateStat, 2, null));
-        if (!updateStat.country || !updateStat.year || !updateStat.expense || !updateStat.bed || !updateStat.atack) {
+        if (!updateStat.country || !updateStat.year || !updateStat.expense || !updateStat.bed || !updateStat.attack) {
             console.log("WARNING: The stat " + JSON.stringify(updateStat, 2, null));
             response.sendStatus(422); // unprocessable entity ¿duda)400 o 422?
         }
