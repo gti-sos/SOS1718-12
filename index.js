@@ -117,21 +117,6 @@ app.get(BASE_API_PATH_TAXES_STATS,(req,res)=>{
 });
 
 //GET A UN RECURSO
-//Country
-
-app.get(BASE_API_PATH_TAXES_STATS + "/:country", (req, res) => {
-   var country = req.params.country;
-   /* dbcountries.find({country:country}, function(err, countries){
-        if(err){
-        console.error("error accesing db");
-        res.sendStatus(500);
-        return;
-    }*/
-        console.log(Date() + " - GET /taxes-stats/" + country);
-        res.send(countries);
-    });
-
-
 
 //Country
 
@@ -145,7 +130,7 @@ app.get(BASE_API_PATH_TAXES_STATS+"/:country",(req,res)=>{
     
     
     
-}));
+})[0]);
 
 });
 
@@ -162,7 +147,7 @@ app.get(BASE_API_PATH_TAXES_STATS + "/:year",(req,res)=>{
     
     
     
-}));
+})[0]);
 });
 
 
