@@ -36,3 +36,15 @@
 {"country":"greece","year":2013,"expense":9.3,"bed":4.9,"attack":2.3,"_id":"NyLeAO7X7yFOEYJ6"}
 {"$$deleted":true,"_id":"Ow3h99ZzduFOEmTC"}
 {"country":"france","year":2013,"expense":11.6,"bed":6.4,"attack":6.2,"_id":"QF3RKL13PvdTOyYT"}
+{"country":"france","year":2015,"expense":6.4,"attack":6.2,"_id":"QF3RKL13PvdTOyYT"}
+{"$$deleted":true,"_id":"NyLeAO7X7yFOEYJ6"}
+{"$$deleted":true,"_id":"QF3RKL13PvdTOyYT"}
+{"$$deleted":true,"_id":"suCHMnnKvWZhocuA"}
+{"$$deleted":true,"_id":"wC9V2bkuJLjJTlMe"}
+{"country":"belgium","year":2013,"expense":6.9,"bed":7,"attack":7,"_id":"O6eyN5sPERxPhZI6"}
+{"country":"cyprus","year":2013,"expense":7.3,"bed":3.4,"attack":2.2,"_id":"GUj2ydKhLOMbdH9t"}
+{"country":"france","year":2013,"expense":11.6,"bed":6.4,"attack":6.2,"_id":"GL2bWpuR93rdGJgi"}
+{"country":"greece","year":2013,"expense":9.3,"bed":4.9,"attack":2.3,"_id":"aNwobG1TqgPHvZlx"}
+{"$$deleted":true,"_id":"GL2bWpuR93rdGJgi"}
+{"country":"france","year":2013,"expense":11.6,"bed":6.4,"attack":6.2,"_id":"AonZxRwpq1hpGH88"}
+{"country":"france","year":2015,"expense":6.4,"attack":6.2,"_id":"AonZxRwpq1hpGH88"}
