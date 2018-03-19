@@ -49,9 +49,6 @@ var hospital = require("./public/hospital-manager/v1/hospital.js");
 
 app.get(h + "/loadInitialData", hospital.getInitialData);
 app.get(h, hospital.getCollection);
-/****Gets***/
-app.get(h + "/:loadInitialData",hospital.getInitialData);
-app.get(h,hospital.getCollection);
 app.get(h + "/:country", hospital.getRecurso);
 app.get(h + "/:country/:year", hospital.getRecursoConcreto);
 
