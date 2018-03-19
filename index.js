@@ -65,26 +65,16 @@ app.delete(h+"/:country/:year",hospital.deleteRecursoConcreto);
 /*********API JOSE*********/
 var BASE_API_PATH_TAXES_STATS = "/api/v1/taxes-stats";
 
-var countries = [country" : "spain",
-      "year": "2016",
-      "region" : "europe",
-      "income_group": "high",
-      "country_code" : "esp",
-      
+var countries = [{ "country" : "spain",
+      "year": "2016"
         
     },
     {"country" : "germany",
-      "year": "2016",
-      "region" : "europe",
-      "income_group": "high",
-      "country_code" : "ale",
+      "year": "2016"
         
     },
     {"country" : "england",
-      "year": "2016",
-      "region" : "europe",
-      "income_group": "high",
-      "country_code" : "ing",
+      "year": "2016"
     }];
 /*******************************LoadInitialData***************************/
 
@@ -94,16 +84,14 @@ app.get(BASE_API_PATH_TAXES_STATS + "/loadInitialData", function (req, res){
       "year": "2016",
       "region" : "europe",
       "income_group": "high",
-      "country_code" : "esp",
-      
+      "country_code" : "ing",
         
     },
     {"country" : "germany",
       "year": "2016",
-      "region" : "europe",
+       "region" : "europe",
       "income_group": "high",
-      "country_code" : "ale",
-        
+      "country_code" : "ing", 
     },
     {"country" : "england",
       "year": "2016",
