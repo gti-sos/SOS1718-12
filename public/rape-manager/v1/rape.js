@@ -547,12 +547,11 @@ var filtradoNombreAnio = function(datos, aux, country, year) {
             });
         }
         else {
-           /* datos.filter((x) => {
+            datos.filter((x) => {
                 return x.year == parseInt(country);
             }).map((x) => {
                 return aux.push(x);
-            });*/
-            aux = [];
+            });
         }
     }
     else {
