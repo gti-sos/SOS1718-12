@@ -62,6 +62,9 @@ app.put(h + "/:country/:year", hospital.putRecursoConcreto);
 app.delete(h,hospital.deleteCollection);
 app.delete(h+"/:country",hospital.deleteRecurso);
 app.delete(h+"/:country/:year",hospital.deleteRecursoConcreto);
+
+
+
 /*********API JOSE*********/
 var BASE_API_PATH_TAXES_STATS = "/api/v1/taxes-stats";
 
