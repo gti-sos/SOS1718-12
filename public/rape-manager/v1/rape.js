@@ -1,9 +1,8 @@
 // Aquí estarán todos los datos con apikey, limit y offset incluidos
 var mongoClient = require("mongodb").MongoClient;
 
-var mongoURL = "mongodb://admin:gatete@ds125195.mlab.com:25195/rape1718";
+var mongoURL = "mongodb://mjtr:gatete@ds111299.mlab.com:11299/rape-personal-1718";
 var db = null;
-var apikey = "sos1718-12";
 
 
 /******CONECTAR CON LA BASE DE DATOS******/
@@ -15,7 +14,7 @@ mongoClient.connect(mongoURL, { native_parser: true }, (error, database) => {
         process.exit();
     }
 
-    db = database.db("rape1718").collection("rape-stats");
+    db = database.db("rape-personal-1718").collection("rape-stats");
 
     console.log("la base de datos ha sido conectada con éxito");
 
@@ -23,157 +22,144 @@ mongoClient.connect(mongoURL, { native_parser: true }, (error, database) => {
 
 module.exports.getInitialData = (request, response) => {
 
-    var key = request.query.apikey;
-
     //Comprueba que la base de datos no esté vacía
 
-    if (!key) {
-        response.sendStatus(401); //No ha puesto la apikey
+    if (db != null || db.length != 0) {
+        //recorremos la base de datos
+        db.find({}).toArray(function(error, conjunto) {
+            if (error) {
 
-    }
-    else if (key != apikey) {
+                console.error(' Error from DB');
+                response.sendStatus(500); // internal server error
+            }
+            else {
 
-        response.sendStatus(403); //Está  mal puesta la apikey
-    }
-    else {
 
-        if (db != null || db.length != 0) {
-            //recorremos la base de datos
-            db.find({}).toArray(function(error, conjunto) {
-                if (error) {
+                /*Comprobamos que el conjunto no esté vacío*/
+                if (conjunto.length !== 0) {
 
-                    console.error(' Error from DB');
-                    response.sendStatus(500); // internal server error
+                    console.log("la base de datos ya está creada");
+                    response.sendStatus(409); //Conflicto,la base de datos ya estaba inicializada
+
                 }
                 else {
+                    db.insert([
 
-                    /*Comprobamos que el conjunto no esté vaacío*/
-                    if (conjunto.length !== 0) {
+                        {
+                            "country": "belgium",
+                            "year": 2006,
+                            "number-of-rape": 3194,
+                            "rate": 30.5,
+                            "total-since-two-thousand": 24319
 
-                        console.log("la base de datos ya está creada");
-                        response.sendStatus(409); //Conflicto,la base de datos ya estaba inicializada
+                        }, {
+                            "country": "belgium",
+                            "year": 2010,
+                            "number-of-rape": 2991,
+                            "rate": 27.9,
+                            "total-since-two-thousand": 20914
 
-                    }
-                    else {
-                        db.insert([
+                        }, {
+                            "country": "france",
+                            "year": 2004,
+                            "number-of-rape": 10408,
+                            "rate": 17.4,
+                            "total-since-two-thousand": 20914
+                        }, {
+                            "country": "france",
+                            "year": 2009,
+                            "number-of-rape": 10108,
+                            "rate": 16.2,
+                            "total-since-two-thousand": 71208
+                        }, {
+                            "country": "germany",
+                            "year": 2005,
+                            "number-of-rape": 8133,
+                            "rate": 9.9,
+                            "total-since-two-thousand": 12017
 
-                            {
-                                "country": "belgium",
-                                "year": 2006,
-                                "number-of-rape": 3194,
-                                "rate": 30.5,
-                                "total-since-two-thousand": 24319
+                        }, {
+                            "country": "germany",
+                            "year": 2010,
+                            "number-of-rape": 7724,
+                            "rate": 9.4,
+                            "total-since-two-thousand": 25730
+                        }, {
+                            "country": "italy",
+                            "year": 2004,
+                            "number-of-rape": 3734,
+                            "rate": 6.4,
+                            "total-since-two-thousand": 6478
+                        }, {
+                            "country": "netherlands",
+                            "year": 2007,
+                            "number-of-rape": 2095,
+                            "rate": 12.7,
+                            "total-since-two-thousand": 10465
 
-                            }, {
-                                "country": "belgium",
-                                "year": 2010,
-                                "number-of-rape": 2991,
-                                "rate": 27.9,
-                                "total-since-two-thousand": 20914
+                        }, {
+                            "country": "netherlands",
+                            "year": 2008,
+                            "number-of-rape": 1920,
+                            "rate": 11.6,
+                            "total-since-two-thousand": 12385
 
-                            }, {
-                                "country": "france",
-                                "year": 2004,
-                                "number-of-rape": 10408,
-                                "rate": 17.4,
-                                "total-since-two-thousand": 20914
-                            }, {
-                                "country": "france",
-                                "year": 2009,
-                                "number-of-rape": 10108,
-                                "rate": 16.2,
-                                "total-since-two-thousand": 71208
-                            }, {
-                                "country": "germany",
-                                "year": 2005,
-                                "number-of-rape": 8133,
-                                "rate": 9.9,
-                                "total-since-two-thousand": 12017
+                        }, {
+                            "country": "portugal",
+                            "year": 2008,
+                            "number-of-rape": 392,
+                            "rate": 3.7,
+                            "total-since-two-thousand": 392
 
-                            }, {
-                                "country": "germany",
-                                "year": 2010,
-                                "number-of-rape": 7724,
-                                "rate": 9.4,
-                                "total-since-two-thousand": 25730
-                            }, {
-                                "country": "italy",
-                                "year": 2004,
-                                "number-of-rape": 3734,
-                                "rate": 6.4,
-                                "total-since-two-thousand": 6478
-                            }, {
-                                "country": "netherlands",
-                                "year": 2007,
-                                "number-of-rape": 2095,
-                                "rate": 12.7,
-                                "total-since-two-thousand": 10465
+                        }, {
+                            "country": "portugal",
+                            "year": 2010,
+                            "number-of-rape": 424,
+                            "rate": 4,
+                            "total-since-two-thousand": 2856
 
-                            }, {
-                                "country": "netherlands",
-                                "year": 2008,
-                                "number-of-rape": 1920,
-                                "rate": 11.6,
-                                "total-since-two-thousand": 12385
+                        }, {
+                            "country": "sweden",
+                            "year": 2003,
+                            "number-of-rape": 2235,
+                            "rate": 25,
+                            "total-since-two-thousand": 2235
+                        }, {
+                            "country": "sweden",
+                            "year": 2010,
+                            "number-of-rape": 5960,
+                            "rate": 63.5,
+                            "total-since-two-thousand": 34583
 
-                            }, {
-                                "country": "portugal",
-                                "year": 2008,
-                                "number-of-rape": 392,
-                                "rate": 3.7,
-                                "total-since-two-thousand": 392
+                        }, {
+                            "country": "ukraine",
+                            "year": 2003,
+                            "number-of-rape": 1048,
+                            "rate": 2.2,
+                            "total-since-two-thousand": 6445
 
-                            }, {
-                                "country": "portugal",
-                                "year": 2010,
-                                "number-of-rape": 424,
-                                "rate": 4,
-                                "total-since-two-thousand": 2856
+                        }, {
+                            "country": "ukraine",
+                            "year": 2009,
+                            "number-of-rape": 758,
+                            "rate": 1.7,
+                            "total-since-two-thousand": 1048
 
-                            }, {
-                                "country": "sweden",
-                                "year": 2003,
-                                "number-of-rape": 2235,
-                                "rate": 25,
-                                "total-since-two-thousand": 2235
-                            }, {
-                                "country": "sweden",
-                                "year": 2010,
-                                "number-of-rape": 5960,
-                                "rate": 63.5,
-                                "total-since-two-thousand": 34583
-
-                            }, {
-                                "country": "ukraine",
-                                "year": 2003,
-                                "number-of-rape": 1048,
-                                "rate": 2.2,
-                                "total-since-two-thousand": 6445
-
-                            }, {
-                                "country": "ukraine",
-                                "year": 2009,
-                                "number-of-rape": 758,
-                                "rate": 1.7,
-                                "total-since-two-thousand": 1048
-
-                            }
-                        ]);
-
-
-                        console.log("La base de datos se ha creado correctamente");
-                        response.sendStatus(201);
-                    }
+                        }
+                    ]);
+                    console.log("La base de datos se ha creado correctamente");
+                    response.sendStatus(201);
                 }
-            });
-        }
-        else {
-            //TODO: Otro control más para manejar los erroes, section 2
-            console.log("No se ha inicialiazado la base de datos correctamente, SECTION 2 ERROR");
-            response.sendStatus(500);
-
-        }
+            }
+        });
     }
+    else {
+        //TODO: Otro control más para manejar los erroes, section 2
+        console.log("No se ha inicialiazado la base de datos correctamente, SECTION 2 ERROR");
+        response.sendStatus(500);
+
+    }
+
 
 };
 
@@ -182,32 +168,23 @@ module.exports.getInitialData = (request, response) => {
 //Get a un conjunto de datos
 
 module.exports.getAllData = (request, response) => {
-    var key = request.query.apikey;
     var limit = request.query.limit;
     var offset = request.query.offset;
     var from = request.query.from;
     var to = request.query.to;
 
-    if (!key)
-        response.sendStatus(401); //No ha puesto la apikey
-
-    else if (key != apikey)
-        response.sendStatus(403); //Está  mal puesta la apikey
+    if (checkdb(db) == false)
+        response.sendStatus(500);
 
     else {
 
-        if (checkdb(db) == false)
-            response.sendStatus(500);
+        if (!limit || !offset || limit == null || offset == null)
+            recorreDatos(response, from, to);
 
-        else {
-
-            if (!limit || !offset || limit == null || offset == null)
-                recorreDatos(response, from, to);
-
-            else
-                recorreDatosLimitOffset(response, parseInt(limit), parseInt(offset), from, to);
-        }
+        else
+            recorreDatosLimitOffset(response, parseInt(limit), parseInt(offset), from, to);
     }
+
 };
 
 //Get a un recurso en concreto por nombre y año
@@ -217,45 +194,36 @@ module.exports.getSingleDataNameYear = (request, response) => {
     var country = request.params.name;
     var year = request.params.year;
     var conjuntoAux = [];
-    var key = request.query.apikey;
 
-    if (!key)
-        response.sendStatus(401); //No ha puesto la apikey
+    if (compruebaDatosURL(country, year) == false)
+        response.sendStatus(400);
 
-    else if (key != apikey)
-        response.sendStatus(403); //Está  mal puesta la apikey
+
+    if (checkdb(db) == false)
+        response.sendStatus(500);
 
     else {
+        db.find({}).toArray(function(error, datos) {
 
-        if (compruebaDatosURL(country, year) == false)
-            response.sendStatus(400);
+            if (checkdb(datos) == false)
+                response.sendStatus(404);
 
+            else
+                filtradoNombreAnio(datos, conjuntoAux, country, year);
 
-        if (checkdb(db) == false)
-            response.sendStatus(500);
+            if (conjuntoAux.length === 0) {
+                console.log("el conjunto auxiliar no ha guardado ningún dato, luego no lo ha encontrado");
+                response.sendStatus(404);
+            }
+            else {
 
-        else {
-            db.find({}).toArray(function(error, datos) {
+                response.send(conjuntoAux);
+            }
 
-                if (checkdb(datos) == false)
-                    response.sendStatus(404);
+        });
 
-                else
-                    filtradoNombreAnio(datos, conjuntoAux, country, year);
-
-                if (conjuntoAux.length === 0) {
-                    console.log("el conjunto auxiliar no ha guardado ningún dato, luego no lo ha encontrado");
-                    response.sendStatus(404);
-                }
-                else {
-
-                    response.send(conjuntoAux);
-                }
-
-            });
-
-        }
     }
+
 };
 
 //GET a un recurso por nombre o año 
@@ -265,56 +233,47 @@ module.exports.getData = (request, response) => {
     var parametro = request.params.name;
     var aux = [];
     var year = null;
-    var key = request.query.apikey;
 
-    if (!key)
-        response.sendStatus(401); //No ha puesto la apikey
+    if (!parametro || parametro == null) {
 
-    else if (key != apikey)
-        response.sendStatus(403); //Está  mal puesta la apikey
-
+        console.log("No has introducido correctamente los datos, get data error section 1");
+        response.sendStatus(400);
+    }
     else {
 
-        if (!parametro || parametro == null) {
-
-            console.log("No has introducido correctamente los datos, get data error section 1");
-            response.sendStatus(400);
+        if (checkdb(db) == false) {
+            response.sendStatus(500);
+            process.exit();
         }
         else {
 
-            if (checkdb(db) == false) {
-                response.sendStatus(500);
-                process.exit();
-            }
-            else {
+            db.find({}).toArray(function(error, datos) {
 
-                db.find({}).toArray(function(error, datos) {
+                if (checkdb(datos) == false) {
+                    response.sendStatus(500);
+                }
+                else {
 
-                    if (checkdb(datos) == false) {
-                        response.sendStatus(500);
+                    filtradoNombreAnio(datos, aux, parametro, year);
+
+                    if (aux.length == 0) {
+                        console.log("no se ha encontrado ningún dato");
+                        response.sendStatus(404);
                     }
                     else {
-
-                        filtradoNombreAnio(datos, aux, parametro, year);
-
-                        if (aux.length == 0) {
-                            console.log("no se ha encontrado ningún dato");
-                            response.sendStatus(404);
-                        }
-                        else {
-                            response.send(aux);
-
-                        }
+                        response.send(aux);
 
                     }
 
-                });
+                }
 
-            }
-
+            });
 
         }
+
+
     }
+
 
 };
 
@@ -322,22 +281,9 @@ module.exports.getData = (request, response) => {
 
 // post a un dato en concreto no debe estar permitido
 module.exports.postDenied = (request, response) => {
-    var key = request.query.apikey;
 
-    if (!key) {
-        response.sendStatus(401); //No ha puesto la apikey
-
-    }
-    else if (key != apikey) {
-
-        response.sendStatus(403); //Está  mal puesta la apikey
-    }
-    else {
-        console.log("hemos hecho un post a un dato en concreto, método no permitido");
-        response.sendStatus(405);
-    }
-
-
+    console.log("hemos hecho un post a un dato en concreto, método no permitido");
+    response.sendStatus(405);
 };
 
 
@@ -347,61 +293,49 @@ module.exports.postDataGroup = (request, response) => {
     var parametros = request.body;
     var conflicto = [];
     console.log("compruebo ahora que el dato que he cogido no esté vacío");
-    var key = request.query.apikey;
 
-    if (!key) {
-        response.sendStatus(401); //No ha puesto la apikey
+    if (!parametros || parametros == null) {
+        console.log("no hay parametros");
+        response.sendStatus(400);
 
-    }
-    else if (key != apikey) {
-
-        response.sendStatus(403); //Está  mal puesta la apikey
     }
     else {
+        if (chequeaParametro(parametros) == false) {
 
-        if (!parametros || parametros == null) {
-            console.log("no hay parametros");
+            console.log("Bad request, algunos parámetros están mal");
             response.sendStatus(400);
-
         }
         else {
-            if (chequeaParametro(parametros) == false) {
 
-                console.log("Bad request, algunos parámetros están mal");
-                response.sendStatus(400);
+            if (checkdb(db) == false) {
+                response.sendStatus(500);
+
             }
             else {
 
-                if (checkdb(db) == false) {
-                    response.sendStatus(500);
+                db.find({}).toArray(function(error, datos) {
 
-                }
-                else {
-
-                    db.find({}).toArray(function(error, datos) {
-
-                        conflicto = datos.filter((x) => {
-                            return parametros.country == x.country && parametros.year == x.year
-                        }).map((x) => {
-                            return conflicto.push(x);
-                        });
-
-                        if (conflicto.length != 0) {
-
-                            console.log("El dato ya estaba creado");
-                            response.sendStatus(409);
-
-                        }
-                        else {
-
-                            db.insert(parametros);
-                            console.log("dato creado correctamente");
-                            response.sendStatus(201);
-
-                        }
-
+                    conflicto = datos.filter((x) => {
+                        return parametros.country == x.country && parametros.year == x.year
+                    }).map((x) => {
+                        return conflicto.push(x);
                     });
-                }
+
+                    if (conflicto.length != 0) {
+
+                        console.log("El dato ya estaba creado");
+                        response.sendStatus(409);
+
+                    }
+                    else {
+
+                        db.insert(parametros);
+                        console.log("dato creado correctamente");
+                        response.sendStatus(201);
+
+                    }
+
+                });
             }
         }
     }
@@ -412,20 +346,9 @@ module.exports.postDataGroup = (request, response) => {
 /***********************PUT****************************/
 
 module.exports.putDenied = (request, response) => {
-    var key = request.query.apikey;
-
-    if (!key) {
-        response.sendStatus(401); //No ha puesto la apikey
-
-    }
-    else if (key != apikey) {
-
-        response.sendStatus(403); //Está  mal puesta la apikey
-    }
-    else {
         console.log("no está permitido hace put a un conjunto de datos");
         response.sendStatus(405);
-    }
+    
 };
 
 module.exports.putSingleData = (request, response) => {
@@ -433,17 +356,6 @@ module.exports.putSingleData = (request, response) => {
     var pais = request.params.name;
     var anio = request.params.year;
     var datoActualizar = request.body;
-    var key = request.query.apikey;
-
-    if (!key) {
-        response.sendStatus(401); //No ha puesto la apikey
-
-    }
-    else if (key != apikey) {
-
-        response.sendStatus(403); //Está  mal puesta la apikey
-    }
-    else {
 
         if (compruebaDatosURL(pais, anio) == false) {
 
@@ -489,7 +401,6 @@ module.exports.putSingleData = (request, response) => {
                 }
             }
         }
-    }
 };
 
 
@@ -500,17 +411,6 @@ module.exports.deleteData = (request, response) => {
     var name = request.params.name;
     var year = request.params.year;
 
-    var key = request.query.apikey;
-    console.log("Hemos entrado en el delete individual del rapekey");
-    if (!key) {
-        response.sendStatus(401); //No ha puesto la apikey
-
-    }
-    else if (key != apikey) {
-
-        response.sendStatus(403); //Está  mal puesta la apikey
-    }
-    else {
         if (compruebaDatosURL(name, year) == false) {
 
             console.log("Al hacer delete los datos de la url no se han puesto correctamente");
@@ -548,24 +448,11 @@ module.exports.deleteData = (request, response) => {
                 });
 
             }
-
-        }
     }
 };
 
 module.exports.deleteAll = (request, response) => {
-    var key = request.query.apikey;
-
-    if (!key) {
-        response.sendStatus(401); //No ha puesto la apikey
-
-    }
-    else if (key != apikey) {
-
-        response.sendStatus(403); //Está  mal puesta la apikey
-    }
-    else {
-
+ 
         if (checkdb(db) == false) {
             response.sendStatus(500);
         }
@@ -574,10 +461,8 @@ module.exports.deleteAll = (request, response) => {
             db.remove();
             console.log("datos eliminados correctamente");
             response.sendStatus(204);
-
-
-        }
-    }
+       }
+    
 };
 
 
