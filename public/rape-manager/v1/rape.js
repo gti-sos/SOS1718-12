@@ -1,7 +1,7 @@
 // Aquí estarán todos los datos con apikey, limit y offset incluidos
 var mongoClient = require("mongodb").MongoClient;
 
-var mongoURL = "mongodb://mjtr:gatete@ds111299.mlab.com:11299/rape-personal-1718";
+var mongoURL = "mongodb://admin:gatete@ds125195.mlab.com:25195/rape1718";
 var db = null;
 
 
@@ -14,7 +14,7 @@ mongoClient.connect(mongoURL, { native_parser: true }, (error, database) => {
         process.exit();
     }
 
-    db = database.db("rape-personal-1718").collection("rape-stats");
+    db = database.db("rape1718").collection("rape-stats");
 
     console.log("la base de datos ha sido conectada con éxito");
 
@@ -346,9 +346,9 @@ module.exports.postDataGroup = (request, response) => {
 /***********************PUT****************************/
 
 module.exports.putDenied = (request, response) => {
-        console.log("no está permitido hace put a un conjunto de datos");
-        response.sendStatus(405);
-    
+    console.log("no está permitido hace put a un conjunto de datos");
+    response.sendStatus(405);
+
 };
 
 module.exports.putSingleData = (request, response) => {
@@ -357,50 +357,50 @@ module.exports.putSingleData = (request, response) => {
     var anio = request.params.year;
     var datoActualizar = request.body;
 
-        if (compruebaDatosURL(pais, anio) == false) {
+    if (compruebaDatosURL(pais, anio) == false) {
 
-            console.log("los datos año o país están mal introducidos");
-            response.sendStatus(400);
+        console.log("los datos año o país están mal introducidos");
+        response.sendStatus(400);
+    }
+    else {
+
+        if (checkdb(db) == false) {
+
+            console.log("fallo base de datos en el  put single data, section 1");
+            response.sendStatus(500);
+
         }
         else {
 
-            if (checkdb(db) == false) {
-
-                console.log("fallo base de datos en el  put single data, section 1");
-                response.sendStatus(500);
-
+            if (chequeaParametro(datoActualizar) == false) {
+                console.log("Algunos parámetros del dato nuevo que has introducido son incorrectos");
+                response.sendStatus(400);
             }
             else {
 
-                if (chequeaParametro(datoActualizar) == false) {
-                    console.log("Algunos parámetros del dato nuevo que has introducido son incorrectos");
-                    response.sendStatus(400);
+                if (pais === datoActualizar.country && parseInt(anio) === parseInt(datoActualizar.year)) {
+                    db.update({
+                        country: pais,
+                        year: parseInt(anio)
+                    }, {
+                        country: datoActualizar.country,
+                        year: datoActualizar.year,
+                        ["number-of-rape"]: datoActualizar["number-of-rape"],
+                        rate: datoActualizar.rate,
+                        ["total-since-two-thousand"]: datoActualizar["total-since-two-thousand"]
+
+                    });
+                    response.sendStatus(200); //OK
+
                 }
                 else {
 
-                    if (pais === datoActualizar.country && parseInt(anio) === parseInt(datoActualizar.year)) {
-                        db.update({
-                            country: pais,
-                            year: parseInt(anio)
-                        }, {
-                            country: datoActualizar.country,
-                            year: datoActualizar.year,
-                            ["number-of-rape"]: datoActualizar["number-of-rape"],
-                            rate: datoActualizar.rate,
-                            ["total-since-two-thousand"]: datoActualizar["total-since-two-thousand"]
-
-                        });
-                        response.sendStatus(200); //OK
-
-                    }
-                    else {
-
-                        console.log("No puedes modificar el país o el año, procura que tenga los mismos datos");
-                        response.sendStatus(405);
-                    }
+                    console.log("No puedes modificar el país o el año, procura que tenga los mismos datos");
+                    response.sendStatus(405);
                 }
             }
         }
+    }
 };
 
 
@@ -411,58 +411,58 @@ module.exports.deleteData = (request, response) => {
     var name = request.params.name;
     var year = request.params.year;
 
-        if (compruebaDatosURL(name, year) == false) {
+    if (compruebaDatosURL(name, year) == false) {
 
-            console.log("Al hacer delete los datos de la url no se han puesto correctamente");
-            response.sendStatus(400);
+        console.log("Al hacer delete los datos de la url no se han puesto correctamente");
+        response.sendStatus(400);
+    }
+    else {
+
+        if (checkdb(db) == false) {
+
+            console.log("Algo ocurre con la base de datos, error delete single data section 1");
+            response.sendStatus(500);
+
         }
         else {
 
-            if (checkdb(db) == false) {
+            db.remove({
+                country: name,
+                year: parseInt(year)
+            }, function(error, conjunto) {
+                var numeros = JSON.parse(conjunto);
+                if (error) {
+                    console.log("Algo pasa con la base de datos que está vacía");
+                    response.sendStatus(404);
+                }
+                else if (numeros.n > 0) {
 
-                console.log("Algo ocurre con la base de datos, error delete single data section 1");
-                response.sendStatus(500);
+                    console.log("El dato se ha borrado satisfactoriamente");
+                    response.sendStatus(204);
+                }
+                else {
+                    console.log("no se ha borrado nada ");
+                    response.sendStatus(404);
+                }
 
-            }
-            else {
+            });
 
-                db.remove({
-                    country: name,
-                    year: parseInt(year)
-                }, function(error, conjunto) {
-                    var numeros = JSON.parse(conjunto);
-                    if (error) {
-                        console.log("Algo pasa con la base de datos que está vacía");
-                        response.sendStatus(404);
-                    }
-                    else if (numeros.n > 0) {
-
-                        console.log("El dato se ha borrado satisfactoriamente");
-                        response.sendStatus(204);
-                    }
-                    else {
-                        console.log("no se ha borrado nada ");
-                        response.sendStatus(404);
-                    }
-
-                });
-
-            }
+        }
     }
 };
 
 module.exports.deleteAll = (request, response) => {
- 
-        if (checkdb(db) == false) {
-            response.sendStatus(500);
-        }
-        else {
 
-            db.remove();
-            console.log("datos eliminados correctamente");
-            response.sendStatus(204);
-       }
-    
+    if (checkdb(db) == false) {
+        response.sendStatus(500);
+    }
+    else {
+
+        db.remove();
+        console.log("datos eliminados correctamente");
+        response.sendStatus(204);
+    }
+
 };
 
 
@@ -553,7 +553,9 @@ var checkdb = function(database) {
 var recorreDatos = function(response, desde, hasta) {
 
     db.find({}).toArray((error, data) => {
+
         if (error) {
+            console.log("estoy dentro del recorre datos");
             console.log("Error con la base de datos");
             response.sendStatus(500);
 

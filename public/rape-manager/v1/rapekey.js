@@ -15,7 +15,7 @@ mongoClient.connect(mongoURL, { native_parser: true }, (error, database) => {
         process.exit();
     }
 
-    db = database.db("rape-personal-1718").collection("rape-stats");
+    db = database.db("rape1718").collection("rape-stats");
 
     console.log("la base de datos ha sido conectada con éxito");
 
