@@ -11,6 +11,7 @@ app.get("/hello", (req, res) => {
     res.send("Hello World");
 });
 
+app.get();
 
 app.use("/", express.static(path.join(__dirname, "public")));
 
@@ -20,8 +21,11 @@ app.listen(process.env.PORT);
 /*********API MANUEL*********/
 
 var rape = require("./public/rape-manager/v1/rape.js");
+/***POSTMAN***/
 
-
+app.get("/api/v1/rape-stats/docs",(req,res)=>{
+   res.redirect("https://documenter.getpostman.com/view/360397/collection/RVu1GWFS");
+});
 /*********CON MONGO*******/
 
 /****Gets***/
