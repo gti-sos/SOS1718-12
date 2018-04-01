@@ -58,7 +58,7 @@ console.log("Registering routes for taxes API...");
                 }
                 else {
                     res.sendStatus(201);
-                    console.log("INSERTED " + countriesinitials.length);
+                    console.log("INSERTED ");
                 }
             });
         
@@ -152,6 +152,8 @@ app.get(BASE_API_PATH_TAXES_STATS +"/:country",(req,res)=> {
             else {
                 console.log(Date() + " - GET /taxes-stats " + country + "/" + year);
                 res.send(countries[0]);
+               
+                
             }
 
         });
@@ -263,7 +265,7 @@ app.delete(BASE_API_PATH_TAXES_STATS + "/:country", (req, res) => {
                         }
                         else {
                             res.sendStatus(201);
-                            console.log("INSERTED " + intialCountries.length);
+                            console.log("INSERTED");
                         }
 
                     });
