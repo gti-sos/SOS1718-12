@@ -8,12 +8,10 @@ app.get("/hello", (req, res) => {
     res.send("Hello World");
 });
 
-<<<<<<< HEAD
 //app.get();
 
 
-=======
->>>>>>> 07dfab6fa53152b45fbc0f99f0a675bbedcbdbe6
+
 app.use("/", express.static(path.join(__dirname, "public")));
 
 app.listen(process.env.PORT);
