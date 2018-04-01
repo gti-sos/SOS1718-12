@@ -391,12 +391,10 @@ module.exports.putSingleData = (request, response) => {
 
                     });
                     response.sendStatus(200); //OK
-
                 }
                 else {
-
                     console.log("No puedes modificar el país o el año, procura que tenga los mismos datos");
-                    response.sendStatus(405);
+                    response.sendStatus(400);
                 }
             }
         }

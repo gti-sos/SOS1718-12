@@ -4,14 +4,16 @@ var bodyParser = require("body-parser");
 var app = express();
 app.use(bodyParser.json());
 
-
 app.get("/hello", (req, res) => {
     res.send("Hello World");
 });
 
+<<<<<<< HEAD
 //app.get();
 
 
+=======
+>>>>>>> 07dfab6fa53152b45fbc0f99f0a675bbedcbdbe6
 app.use("/", express.static(path.join(__dirname, "public")));
 
 app.listen(process.env.PORT);
@@ -75,7 +77,7 @@ app.put("/api/v1/secure/rape-stats",rapekey.putDenied);
 app.put("/api/v1/secure/rape-stats/:name",rapekey.putDenied);
 app.put("/api/v1/secure/rape-stats/:name/:year",rapekey.putSingleData);
 
-/***Delete**/
+/***Delete****/
 
 app.delete("/api/v1/secure/rape-stats",rapekey.deleteAll );
 app.delete("/api/v1/secure/rape-stats/:name/:year",rapekey.deleteData);
