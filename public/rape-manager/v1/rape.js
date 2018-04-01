@@ -396,7 +396,7 @@ module.exports.putSingleData = (request, response) => {
                 else {
 
                     console.log("No puedes modificar el país o el año, procura que tenga los mismos datos");
-                    response.sendStatus(405);
+                    response.sendStatus(400);
                 }
             }
         }
