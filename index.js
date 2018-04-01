@@ -146,7 +146,7 @@ var intialCountries = [{ "country" : "spain",
 
 
 
-/********************************MONGODB***********************************************/
+/********************************MONGODB**********************************************/
 
 MongoClient.connect(mdbURL,{native_parser:true},(err,mlabs)=>{
     
