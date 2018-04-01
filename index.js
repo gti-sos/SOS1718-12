@@ -71,7 +71,7 @@ app.put("/api/v1/secure/rape-stats",rapekey.putDenied);
 app.put("/api/v1/secure/rape-stats/:name",rapekey.putDenied);
 app.put("/api/v1/secure/rape-stats/:name/:year",rapekey.putSingleData);
 
-/***Delete**/
+/***Delete****/
 
 app.delete("/api/v1/secure/rape-stats",rapekey.deleteAll );
 app.delete("/api/v1/secure/rape-stats/:name/:year",rapekey.deleteData);
