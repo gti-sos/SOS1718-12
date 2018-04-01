@@ -334,14 +334,4 @@ app.put(BASE_API_PATH_TAXES_STATS,(req,res)=>{
     });
 
 
-    
-    
-    
-    
-    
-    
-    
-    
-    
-
 };
