@@ -1,8 +1,6 @@
 var express = require("express");
 var path = require("path");
 var bodyParser = require("body-parser");
-
-
 var app = express();
 app.use(bodyParser.json());
 
@@ -11,7 +9,7 @@ app.get("/hello", (req, res) => {
     res.send("Hello World");
 });
 
-app.get();
+//app.get();
 
 app.use("/", express.static(path.join(__dirname, "public")));
 
@@ -103,6 +101,72 @@ app.delete(h,hospital.deleteCollection);
 app.delete(h+"/:country",hospital.deleteRecurso);
 app.delete(h+"/:country/:year",hospital.deleteRecursoConcreto);
 
-
-
 /*********API JOSE*********/
+//Url Base 
+var BASE_API_PATH_TAXES_STATS = "/api/v1/taxes-stats";
+//api importada
+//Importamos nuestras APIs:
+var taxesApi = require("./public/taxes-manager/v1/taxes-stats.js");
+//MongoClient
+var MongoClient = require("mongodb").MongoClient;
+var mdbURL = "mongodb://dbtest:dbtest0@ds221339.mlab.com:21339/sos1718-jllopis-sandbox";
+
+/*******************************LOAD**************************************/
+
+var intialCountries = [{ "country" : "spain",
+      "year": "2016",
+      "region" : "europe",
+      "income_group": "high",
+      "country_code" : "esp",
+        
+    },
+    {"country" : "germany",
+      "year": "2016",
+      "region" : "europe",
+      "income_group": "high",
+      "country_code" : "ale",
+        
+    },
+    {"country" : "england",
+      "year": "2016",
+      "region" : "europe",
+      "income_group": "high",
+      "country_code" : "ing",
+    },
+    {"country" : "island",
+      "year": "2016",
+      "region" : "europe",
+      "income_group": "high",
+      "country_code" : "isl",
+    }
+];
+
+
+
+
+
+/********************************MONGODB***********************************************/
+
+MongoClient.connect(mdbURL,{native_parser:true},(err,mlabs)=>{
+    
+    if(err) {
+        
+        console.log("Error accesing DB :"+ err);
+        process.exit(1);
+    }
+        console.log("Conectado");
+        var database = mlabs.db("sos1718-jllopis-sandbox");
+        var db = database.collection("taxes-stats");    
+        db.find({}).toArray((err, countries) => {
+             if (countries.length == 0) {
+             console.log("Empty DB");
+             db.insert(intialCountries);
+    }
+    else {
+        console.log("DB has  " + countries.length + " countries");
+    }
+
+});
+taxesApi.register(app,db);
+
+});

@@ -1,85 +1,14 @@
-//Servidor Express
-var express = require("express");
-//Body Parser 
-var bodyParser =require("body-parser");
-//Express
-var app = express();
-var port = (process.env.PORT || 1607);
-
 //Url Base 
 var BASE_API_PATH_TAXES_STATS = "/api/v1/taxes-stats";
 
-//MongoClient
-var MongoClient = require("mongodb").MongoClient;
-var mdbURL = "mongodb://dbtest:dbtest0@ds221339.mlab.com:21339/sos1718-jllopis-sandbox";
-
-app.use(bodyParser.json()); // cualquier objeto que vea en json lo convierte en Js y viceversa
-app.use("/", express.static(__dirname+"public"));
-app.listen(process.env.PORT);
-
-/*****************************ENLACE-POSTMAN****************************/
+var taxesApi={};
+module.exports = taxesApi;
 
 
-app.get(BASE_API_PATH_TAXES_STATS + "/docs", (req, res) => {
-    res.redirect("https://documenter.getpostman.com/collection/view/392119-0548d099-ca3c-6390-1531-fff4ef0a4f19");
-});
-
-/*******************************LOAD**************************************/
-
-var intialCountries = [{ "country" : "spain",
-      "year": "2016",
-      "region" : "europe",
-      "income_group": "high",
-      "country_code" : "esp",
-        
-    },
-    {"country" : "germany",
-      "year": "2016",
-      "region" : "europe",
-      "income_group": "high",
-      "country_code" : "ale",
-        
-    },
-    {"country" : "england",
-      "year": "2016",
-      "region" : "europe",
-      "income_group": "high",
-      "country_code" : "ing",
-    },
-    {"country" : "island",
-      "year": "2016",
-      "region" : "europe",
-      "income_group": "high",
-      "country_code" : "isl",
-    }
-];
+taxesApi.register = function(app, db) {
+console.log("Registering routes for taxes API...");
 
 
-
-
-
-/********************************MONGODB***********************************************/
-
-MongoClient.connect(mdbURL,{native_parser:true},(err,mlabs)=>{
-    
-    if(err) {
-        
-        console.log("Error accesing DB :"+ err);
-        process.exit(1);
-    }
-        console.log("Conectado");
-        var database = mlabs.db("sos1718-jllopis-sandbox");
-        var db = database.collection("taxes-stats");    
-        db.find({}).toArray((err, countries) => {
-             if (countries.length == 0) {
-             console.log("Empty DB");
-             db.insert(intialCountries);
-    }
-    else {
-        console.log("DB has  " + countries.length + " countries");
-    }
-
-});
 /*****************************LOADINITIALDATA*********************************/
 
 // Inicializa DB
@@ -405,7 +334,14 @@ app.put(BASE_API_PATH_TAXES_STATS,(req,res)=>{
     });
 
 
+    
+    
+    
+    
+    
+    
+    
+    
+    
 
-});
-
-
+};
