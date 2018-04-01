@@ -106,6 +106,7 @@ app.delete(h+"/:country/:year",hospital.deleteRecursoConcreto);
 
 
 /*********API JOSE*********/
+//Url Base s
 var taxesApi = require("./public/taxes-manager/v1/taxes-stats.js");
 
 /*********CON MONGO*******/

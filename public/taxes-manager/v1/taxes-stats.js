@@ -1,9 +1,4 @@
-//Servidor Express
-var express = require("express");
-//Body Parser 
-var bodyParser =require("body-parser");
-//Express
-var app = express();
+
 //var port = (process.env.PORT || 1607);
 
 var taxesApi = {};
@@ -16,16 +11,6 @@ var BASE_API_PATH_TAXES_STATS = "/api/v1/taxes-stats";
 var MongoClient = require("mongodb").MongoClient;
 var mdbURL = "mongodb://dbtest:dbtest0@ds221339.mlab.com:21339/sos1718-jllopis-sandbox";
 
-app.use(bodyParser.json()); // cualquier objeto que vea en json lo convierte en Js y viceversa
-app.use("/", express.static(__dirname+"public"));
-app.listen(process.env.PORT);
-
-/*****************************ENLACE-POSTMAN****************************/
-
-
-app.get(BASE_API_PATH_TAXES_STATS + "/docs", (req, res) => {
-    res.redirect("https://documenter.getpostman.com/collection/view/392119-0548d099-ca3c-6390-1531-fff4ef0a4f19");
-});
 
 /*******************************LOAD**************************************/
 
