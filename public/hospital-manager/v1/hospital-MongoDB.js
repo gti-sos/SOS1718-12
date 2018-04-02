@@ -79,6 +79,12 @@ module.exports.getInitialData = (request, response) => {
                     "expense": 9.3,
                     "bed": 4.9,
                     "attack": 2.3
+                },{
+                    "country": "spain",
+                    "year": 2013,
+                    "expense": 9.4,
+                    "bed": 3.1,
+                    "attack": 8.5
                 }]);
                 console.log("OK");
                 response.sendStatus(201);
