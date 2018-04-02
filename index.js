@@ -24,7 +24,7 @@ app.get("/api/v1/rape-stats/docs",(req,res)=>{
 });
 
 app.get("/api/v1/hospital-stats/docs",(req,res)=>{
-   res.redirect("https://documenter.getpostman.com/view/360401/f04/RVu1Hqijs");
+   res.redirect("https://documenter.getpostman.com/view/360401/f04/RVu1Hqij");
 });
 /*********CON MONGO*******/
 
