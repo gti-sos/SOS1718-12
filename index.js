@@ -119,6 +119,10 @@ app.delete(h1,hospital1.deleteCollection);
 app.delete(h1+"/:country",hospital1.deleteRecurso);
 app.delete(h1+"/:country/:year",hospital1.deleteRecursoConcreto);
 
+app.get("/api/v1/hospital-stats/docs",(req,res)=>{
+   res.redirect("https://documenter.getpostman.com/view/360401/f04/RVu1Hqij");
+});
+
 /*********API JOSE*********/
 //Url Base 
 var BASE_API_PATH_TAXES_STATS = "/api/v1/taxes-stats";
