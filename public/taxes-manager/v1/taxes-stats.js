@@ -8,6 +8,12 @@ module.exports = taxesApi;
 taxesApi.register = function(app, db) {
 console.log("Registering routes for taxes API...");
 
+/*****************************ENLACE-POSTMAN****************************/
+
+
+app.get(BASE_API_PATH_TAXES_STATS + "/docs", (req, res) => {
+    res.redirect("https://documenter.getpostman.com/view/392119/taxes-stats/RVu1HWcs");
+});
 
 // Inicializa DB
 
