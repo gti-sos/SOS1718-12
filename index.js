@@ -22,6 +22,10 @@ var rape = require("./public/rape-manager/v1/rape.js");
 app.get("/api/v1/rape-stats/docs",(req,res)=>{
    res.redirect("https://documenter.getpostman.com/view/360397/collection/RVu1GWFS");
 });
+
+app.get("/api/v1/hospital-stats/docs",(req,res)=>{
+   res.redirect("https://documenter.getpostman.com/view/360401/f04/RVu1Hqijs");
+});
 /*********CON MONGO*******/
 
 /****Gets***/
@@ -119,9 +123,6 @@ app.delete(h1,hospital1.deleteCollection);
 app.delete(h1+"/:country",hospital1.deleteRecurso);
 app.delete(h1+"/:country/:year",hospital1.deleteRecursoConcreto);
 
-app.get("/api/v1/hospital-stats/docs",(req,res)=>{
-   res.redirect("https://documenter.getpostman.com/view/360401/f04/RVu1Hqijs");
-});
 
 /*********API JOSE*********/
 //Url Base 
