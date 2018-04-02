@@ -135,57 +135,70 @@ module.exports.getCollection = (request, response) => {
 
 //GET a un recurso
 module.exports.getRecurso = (request, response) => {
-    var country = request.params.country;
-    var aux = [];
-    var year = null;
-    var key = request.query.apikey;
+     var key = request.query.apikey;
+     if (!key) {
+         response.sendStatus(401);
+     }
+     else if (!check(key)) {
+         response.sendStatus(403);
+     }
+     else {
+         var from = parseInt(request.query.from);
+         var to = parseInt(request.query.to);
+         var country = request.params.country;
+         var a = [];
+         var res = [];
+         if (!country) {
+             console.log("BAD Request");
+             response.sendStatus(400);
+         }
+         else if (!db) {
+             response.sendStatus(404);
+         }
+         else {
+             db.find({}).toArray(function(error, stats1) {
+                 if (stats1.length === 0) {
+                     console.log("WARNING: Error getting data from DB");
+                     response.sendStatus(404);
+                 }
+                 else {
+                     if (country) {
+                         for (var i = 0; i < stats1.length; i++) {
+                             if (stats1[i].country === country) {
+                                 a.push(stats1[i]);
 
-    if (!key)
-        response.sendStatus(401); //No ha puesto la apikey
+                             }
+                             else if (stats1[i].year === parseInt(country)) {
+                                 a.push(stats1[i]);
 
-    else if (key != apikey)
-        response.sendStatus(403); //Está  mal puesta la apikey
+                             }
 
-    else {
-        if (!country ||country == null) {
+                         }
+                         if (from && to) {
+                             for (var i = 0; i < a.length; i++) {
+                                 if (from === a[i].year || (from <= a[i].year && to >= a[i].year)) {
+                                     res.push(a[i]);
 
-        console.log("No has introducido correctamente los datos, get data error section 1");
-        response.sendStatus(400);
-        }
-        else {
-            if (checkdb(db) == false) {
-            response.sendStatus(500);
-            process.exit();
-            }
-            else {
+                                 }
+                             }
+                            // response.send(res);
+                             response.sendStatus(200);
 
-                db.find({}).toArray(function(error, stats) {
-                if (checkdb(stats) == false) {
-                    response.sendStatus(500);
-                }
-                else {
+                         }
+                         else if (a.length === 0) {
+                             response.sendStatus(404);
+                         }
+                         else {
+                             response.send(a);
+                         }
+                     }
+                 }
 
-                    filtradoNombreAnio(stats, aux, country, year);
-
-                    if (aux.length == 0) {
-                        console.log("no se ha encontrado ningún dato");
-                        response.sendStatus(404);
-                    }
-                    else {
-                        response.send(aux);
-                    }
-
-                    }
-
-                });
-
-            }
-
-
-        }
-    }
-
+             });
+         }
+     }
 };
+/*
 var filtradoNombreAnio = function(stats, aux, country, year) {
 
     if (year == null) {
@@ -223,7 +236,7 @@ var checkdb = function(database) {
     else {
         return true;
     }
-};
+};*/
 
 //GET a un recurso en concreto
 module.exports.getRecursoConcreto = (request, response) => {
