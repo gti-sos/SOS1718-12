@@ -9,8 +9,6 @@ taxesApi.register = function(app, db) {
 console.log("Registering routes for taxes API...");
 
 
-/*****************************LOADINITIALDATA*********************************/
-
 // Inicializa DB
 
     app.get(BASE_API_PATH_TAXES_STATS + "/loadInitialData", (req, res) => {
@@ -58,11 +56,12 @@ console.log("Registering routes for taxes API...");
                 }
                 else {
                     res.sendStatus(201);
-                    console.log("INSERTED ");
+                    console.log("INSERTED " + countriesinitials.length);
                 }
             });
         
     });
+
 
 
 
