@@ -109,7 +109,7 @@ var taxesApi = require("./public/taxes-manager/v1/taxes-stats.js");
 var MongoClient = require("mongodb").MongoClient;
 var mdbURL = "mongodb://dbtest:dbtest0@ds221339.mlab.com:21339/sos1718-jllopis-sandbox";
 
-/*******************************LOAD**************************************/
+/*******************************LOAD*************************************/
 
 var intialCountries = [{ "country" : "spain",
       "year": "2016",
@@ -143,7 +143,7 @@ var intialCountries = [{ "country" : "spain",
 
 
 
-/********************************MONGODB***********************************************/
+/********************************MONGODB**********************************************/
 
 MongoClient.connect(mdbURL,{native_parser:true},(err,mlabs)=>{
     
