@@ -83,24 +83,30 @@ app.delete("/api/v1/secure/rape-stats/:name/:year",rapekey.deleteData);
 
 /*********API VERONICA*********/
 
+var h1 = "/api/v1/secure/hospital-stats";
+var hospital = require("./public/hospital-manager/v1/hospital-MongoDB.js");
+
+app.get(h1 + "/loadInitialData", hospital.getInitialData);
+app.get(h1, hospital.getCollection);
+app.get(h1 + "/:country", hospital.getRecurso);
+app.get(h1 + "/:country/:year", hospital.getRecursoConcreto);
+
+app.post(h1, hospital.postCollection);
+app.post(h1 + "/:country", hospital.postRecurso);
+
+app.put(h1, hospital.putCollection);
+app.put(h1 + "/:country", hospital.putRecurso);
+app.put(h1 + "/:country/:year", hospital.putRecursoConcreto);
+
+app.delete(h1,hospital.deleteCollection);
+app.delete(h1+"/:country",hospital.deleteRecurso);
+app.delete(h1+"/:country/:year",hospital.deleteRecursoConcreto);
+
+/*********API VERONICA MONGO*********/
 var h = "/api/v1/hospital-stats";
 var hospital = require("./public/hospital-manager/v1/hospital.js");
 
-app.get(h + "/loadInitialData", hospital.getInitialData);
-app.get(h, hospital.getCollection);
-app.get(h + "/:country", hospital.getRecurso);
-app.get(h + "/:country/:year", hospital.getRecursoConcreto);
 
-app.post(h, hospital.postCollection);
-app.post(h + "/:country", hospital.postRecurso);
-
-app.put(h, hospital.putCollection);
-app.put(h + "/:country", hospital.putRecurso);
-app.put(h + "/:country/:year", hospital.putRecursoConcreto);
-
-app.delete(h,hospital.deleteCollection);
-app.delete(h+"/:country",hospital.deleteRecurso);
-app.delete(h+"/:country/:year",hospital.deleteRecursoConcreto);
 
 /*********API JOSE*********/
 //Url Base 
