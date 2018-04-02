@@ -33,7 +33,13 @@ module.exports.getInitialData = (request, response) => {
                     "expense": 11.6,
                     "bed": 6.4,
                     "attack": 6.2
-                }, {
+                },{
+                    "country": "spain",
+                    "year": 2013,
+                    "expense": 9.4,
+                    "bed": 3.1,
+                    "attack": 8.5
+                },{
                     "country": "greece",
                     "year": 2013,
                     "expense": 9.3,
