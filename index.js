@@ -120,7 +120,7 @@ app.delete(h1+"/:country",hospital1.deleteRecurso);
 app.delete(h1+"/:country/:year",hospital1.deleteRecursoConcreto);
 
 app.get("/api/v1/hospital-stats/docs",(req,res)=>{
-   res.redirect("https://documenter.getpostman.com/view/360401/f04/RVu1Hqij");
+   res.redirect("https://documenter.getpostman.com/view/360401/f04/RVu1Hqijs");
 });
 
 /*********API JOSE*********/
