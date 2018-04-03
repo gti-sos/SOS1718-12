@@ -475,6 +475,7 @@ module.exports.deleteAll = (request, response) => {
 
 
 /************MÉTODOS AUXILIARES***********/
+
 var chequeaParametro = function(parametros) {
 
     if (parametros.country == null || parametros.country == "" ||
@@ -601,7 +602,7 @@ var recorreDatosLimitOffset = function(response, limit, offset, desde, hasta,
     pais, fromIncidence, toIncidence, fromRate, toRate, fromTotal, toTotal) {
     console.log("Hemos entrado con limit y offset");
     if (limit < 0 || offset < 0)
-        response.sendStatus(405);
+        response.sendStatus(404);
     else {
         db.find({}).skip(offset).limit(limit).toArray((error, data) => {
             if (error) {
