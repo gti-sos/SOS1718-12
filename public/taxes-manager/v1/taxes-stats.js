@@ -14,6 +14,147 @@ console.log("Registering routes for taxes API...");
 app.get(BASE_API_PATH_TAXES_STATS + "/docs", (req, res) => {
     res.redirect("https://documenter.getpostman.com/view/392119/taxes-stats/RVu1HWcs");
 });
+/*******************************BUSCADOR*******************************/
+ var buscador = function(base, aux_set, param_from, param_to, param_country, param_year, param_region, param_income, param_countrycode) {
+
+        console.log("Búsqueda con parametros: from = " + param_from + " ,to = " + param_to + ", country = " + param_country + ", year = " + param_year + ", region = " + param_region, ", income_group = " + param_income, ", country_code = " + param_countrycode + ".");
+        
+        
+        var f = parseInt(param_from);
+        var t = parseInt(param_to);
+       
+        
+
+        if (param_from != undefined || param_to != undefined || param_country != undefined || param_year != undefined) {
+
+            for (var j = 0; j < base.length; j++) {
+                var year = base[j].year;
+              
+              
+                var country = base[j].country;
+
+                // FROM + TO + COUNTRY
+                if (param_from != undefined && param_to != undefined && param_country != undefined && param_year == undefined) {
+
+                    if (f <= year && t >= year && param_country == country) {
+                        aux_set.push(base[j]);
+                    }
+
+                    // FROM + COUNTRY
+                }
+                else if (param_from != undefined && param_to == undefined && param_country != undefined && param_year == undefined) {
+
+                    if (f <= year && param_country == country) {
+                        aux_set.push(base[j]);
+                    }
+
+                    // TO + COUNTRY
+                }
+                else if (param_from == undefined && param_to != undefined && param_country != undefined && param_year == undefined) {
+
+                    if (t >= year && param_country == country) {
+                        aux_set.push(base[j]);
+                    }
+
+                    //FROM + TO
+                }
+                else if (param_from != undefined && param_to != undefined && param_country == undefined && param_year == undefined) {
+
+                    if (f <= year && t >= year) {
+                        aux_set.push(base[j]);
+                    }
+
+                    // FROM
+                }
+                else if (param_from != undefined && param_to == undefined && param_country == undefined && param_year == undefined) {
+
+                    if (f <= year) {
+                        aux_set.push(base[j]);
+                    }
+
+                    // TO
+                }
+                else if (param_from == undefined && param_to != undefined && param_country == undefined && param_year == undefined) {
+
+                    if (t >= year) {
+                        aux_set.push(base[j]);
+                    }
+                    // COUNTRY + YEAR    
+                }
+                else if (param_from == undefined && param_to == undefined && param_country != undefined && param_year != undefined) {
+                    if (param_country == country && param_year == base[j].year) {
+                        aux_set.push(base[j]);
+                    }
+
+                    // COUNTRY  
+                }
+                else if (param_from == undefined && param_to == undefined && param_country != undefined && param_year == undefined) {
+
+                    if (param_country == country) {
+                        aux_set.push(base[j]);
+                    }
+
+                    // YEAR    
+                }
+                else if (param_from == undefined && param_to == undefined && param_country == undefined && param_year != undefined) {
+
+                    if (param_year == base[j].year) {
+                        aux_set.push(base[j]);
+                    }
+                }
+
+            }
+
+            if ((param_region != undefined || param_income != undefined || param_countrycode != undefined ) && aux_set.length > 0) {
+
+
+                for (var j = 0; j < aux_set.length; j++) {
+                    if (param_region != undefined && param_income== undefined && param_countrycode == undefined  && aux_set.length >= 0) {
+                        if (aux_set[j].region != param_region) {
+                            aux_set.splice(j, 1);
+                        }
+                    }
+                    else if (param_region == undefined && param_income != undefined && param_countrycode == undefined  && aux_set.length >= 0) {
+                        if (aux_set[j].incomegroup != param_income) {
+                            aux_set.splice(j, 1);
+                        }
+                    }
+                    else if (param_region == undefined && param_income == undefined && param_countrycode != undefined  && aux_set.length >= 0) {
+                        if (aux_set[j].country_code != param_countrycode) {
+                            aux_set.splice(j, 1);
+                        }
+                    }
+                    
+                }
+
+            }
+
+        }
+        else if (param_region != undefined || param_income != undefined || param_countrycode != undefined ) {
+
+            for (var i = 0; i < base.length; i++) {
+                if (param_region != undefined && param_income == undefined && param_countrycode == undefined ) {
+                    if (base[i].region == param_region) {
+                        aux_set.push(base[i]);
+                    }
+                }
+                else if (param_region == undefined && param_income != undefined && param_countrycode == undefined ) {
+                    if (base[i].income_group == param_income) {
+                        aux_set.push(base[i]);
+                    }
+                }
+                else if (param_region == undefined && param_income == undefined && param_countrycode != undefined ) {
+                    if (base[i].country_code == param_countrycode) {
+                        aux_set.push(base[i]);
+                    }
+                }
+                
+            }
+        }
+        return aux_set;
+
+    };
+/*************************LOADINITIALDATA***************************/
 
 // Inicializa DB
 
@@ -21,27 +162,27 @@ app.get(BASE_API_PATH_TAXES_STATS + "/docs", (req, res) => {
     
     
     var countriesinitials = [{ "country" : "spain",
-      "year": "2016",
+      "year": "2012",
       "region" : "europe",
       "income_group": "high",
       "country_code" : "esp",
         
     },
     {"country" : "germany",
-      "year": "2016",
+      "year": "2013",
       "region" : "europe",
       "income_group": "high",
       "country_code" : "ale",
         
     },
     {"country" : "england",
-      "year": "2016",
+      "year": "2014",
       "region" : "europe",
       "income_group": "high",
       "country_code" : "ing",
     },
     {"country" : "island",
-      "year": "2016",
+      "year": "2015",
       "region" : "europe",
       "income_group": "high",
       "country_code" : "isl",
@@ -76,67 +217,173 @@ app.get(BASE_API_PATH_TAXES_STATS + "/docs", (req, res) => {
 
 
 /****************************************************GET*******************************************/
-//GET LISTA RECURSOS
-app.get(BASE_API_PATH_TAXES_STATS, (req,res) => {
-   if (!db) {
-        console.log("BD is empty");
-        res.sendStatus(404);
-    }else{
+// GET a recurso base
+
+    app.get(BASE_API_PATH_TAXES_STATS , (req, res) => {
+
+        //if (!checkApiKey(req, res)) return;
+
+        var limit = parseInt(req.query.limit);
+        var offset = parseInt(req.query.offset);
+        var from = req.query.fromYear;
+        var to = req.query.toYear;
+        var country = req.query.country;
+        var year = req.query.year;
+        var region = req.query.region;
+        var inc = req.query.inc;
+        var coun = req.query.coun;
         
-    
-    db.find({}).toArray((err, countries) => {
-        if (err) {
-            console.error("Error accesing DB");
-            res.sendStatus(500);
-            return;
-        } else{
-            
-            if (countries.length === 0) {
-                    console.log("INFO: Sending stats");
-                    res.sendStatus(404);
-                }else{
-                     res.send(countries.map((c)=>{
-                     delete c._id;
-                     return c;
-            
-                 }));
+
+        var aux = [];
+        var aux2 = [];
+
+
+        if (limit || offset >= 0) {
+            db.find({}).skip(offset).limit(limit).toArray(function(err, countries) {
+
+                if (err) {
+                    console.error('WARNING: Error getting data from DB');
+                    res.sendStatus(500); // internal server error
                 }
-         }
-        
-    });
-    }
-});
+                else {
+                    if (countries.length === 0) {
+                        res.sendStatus(204);
+                    }
+                    else if (from || to || country || year || region || inc || coun ) {
 
-//GET A UN RECURSO (COUNTRY)
+                        aux = buscador(countries, aux, from, to, country, year, region, inc, coun);
+                        if (aux.length > 0) {
+                            aux2 = aux.slice(offset, offset + limit);
+                            res.send(aux2);
 
-app.get(BASE_API_PATH_TAXES_STATS +"/:country",(req,res)=> {
-    var country = req.params.country;
-    console.log(Date() + "- GET /taxes-stats/"+country);
-    db.find({"country" : country}).toArray((err,countries)=>{
-        
-        if(err){
-            console.error("ERROR ACCESING DB!");
-            res.sendStatus(500);
-            return;
-        } else {
-            if(countries.length ===0){
-                
-                res.sendStatus(404);
-            }else{
-                res.send(countries.map((c)=>{
-                     delete c._id;
-                    return c;
-              })[0]);
-            }
+                        }
+                        else {
+                            res.sendStatus(404); // No content 
+                        }
+                    }
+                    else {
+                        res.send(countries);
+                    }
+                }
+            });
+
         }
-       
+        else {
+
+            db.find({}).toArray(function(err, countries) {
+                if (err) {
+                    console.error('ERROR from database');
+                    res.sendStatus(500); // internal server error
+                }
+                else {
+                    if (countries.length == 0) {
+                        res.sendStatus(204);
+                        return;
+                    }
+                    else if (from || to || country || year || region || inc || coun) {
+                        aux = buscador(countries, aux, from, to, country, year, region, inc, coun);
+                        if (aux.length > 0) {
+                            if (country != undefined && year != undefined) {
+                                res.send(aux[0]);
+                            }
+                            else {
+                                res.send(aux);
+                            }
+                        }
+                        else {
+                            res.sendStatus(404); //No content
+                        }
+                    }
+                    else {
+                        res.send(countries);
+                    }
+                }
+            });
+        }
+
+
     });
-    
-});
+// GET a recurso concreto 1 parámetro
+
+    app.get(BASE_API_PATH_TAXES_STATS + "/:parametro", (req, res) => {
+
+        //if (!checkApiKey(req, res)) return;
+
+        var limit = parseInt(req.query.limit);
+        var offset = parseInt(req.query.offset);
+        var from = req.query.fromYear;
+        var to = req.query.toYear;
+        var country = req.query.parametro;
+        var parametro = req.params.parametro;
+        var year = req.query.year;
+        var region = req.query.region;
+        var inc = req.query.income;
+        var coun= req.query.countrycode;
+        
+
+        var aux = [];
+        var aux2 = [];
 
 
+        if (limit || offset >= 0) {
+            db.find({ $or: [{ "country": parametro }, { "year": parametro }] }).skip(offset).limit(limit).toArray(function(err, countries) {
 
+                if (err) {
+                    console.error('WARNING: Error getting data from DB');
+                    res.sendStatus(500); // internal server error
+                }
+                else {
+                    if (countries.length === 0) {
+                        res.sendStatus(404);
+                    }
+                    else if (from || to || year || region || inc || coun ) {
 
+                        aux = buscador(countries, aux, from, to, country, year, region, inc, coun); 
+                        if (aux.length > 0) {
+                            aux2 = aux.slice(offset, offset + limit);
+                            res.send(aux2);
+
+                        }
+                        else {
+                            res.sendStatus(404); // No content 
+                        }
+                    }
+                    else {
+                        res.send(countries);
+                    }
+                }
+            });
+
+        }
+        else {
+
+            db.find({ $or: [{ "country": parametro }, { "year": parametro }] }).toArray(function(err, countries) {
+                if (err) {
+                    console.error('ERROR from database');
+                    res.sendStatus(500); // internal server error
+                }
+                else {
+                    if (countries.length == 0) {
+                        res.sendStatus(404);
+                        return;
+                    }
+                    else if (from || to || year || region || inc || coun) {
+                        aux = buscador(countries, aux, from, to, country, year, region, inc, coun);
+                        if (aux.length > 0) {
+                            res.send(aux);
+                        }
+                        else {
+                            res.sendStatus(404); //No content
+                        }
+                    }
+                    else {
+                        res.send(countries);
+                    }
+                }
+            });
+        }
+        
+    });
 
   // GET a recurso concreto 2 parámetros
 
