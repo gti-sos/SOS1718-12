@@ -124,7 +124,7 @@ module.exports.getCollection = (request, response) => {
 		var expense = parseInt(request.query.expense);
 		var bed = parseInt(request.query.bed);
 		var attack = parseInt(request.query.attack);
-
+		console.log("AQUI ESTOY")
 		var a = [];
 		var b = [];
 		var c = [];
