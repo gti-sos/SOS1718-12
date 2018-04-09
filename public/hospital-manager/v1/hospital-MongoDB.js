@@ -649,3 +649,4 @@ module.exports.getRecurso = (request, response) => {
 
 			return b;
 		};
+};
