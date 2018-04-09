@@ -598,7 +598,7 @@ module.exports.getRecurso = (request, response) => {
 				}
 			}
 		};
-
+};
 		var buscador = function(a, b, param_country, param_year, param_expense, param_bed, param_attack) {
 			if (param_country != undefined || param_year != undefined || param_expense != undefined || param_bed != undefined || param_attack != undefined) {
 				for (var j = 0; j < a.length; j++) {
@@ -649,4 +649,3 @@ module.exports.getRecurso = (request, response) => {
 
 			return b;
 		};
-};
