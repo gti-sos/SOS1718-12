@@ -200,452 +200,453 @@ module.exports.getCollection = (request, response) => {
 
 //GET a un recurso
 module.exports.getRecurso = (request, response) => {
-		var key = request.query.apikey;
-		if (!key) {
-			response.sendStatus(401);
-		}
-		else if (!check(key)) {
-			response.sendStatus(403);
+	var key = request.query.apikey;
+	if (!key) {
+		response.sendStatus(401);
+	}
+	else if (!check(key)) {
+		response.sendStatus(403);
+	}
+	else {
+		var country = request.params.country;
+		var aux = [];
+		var year = null;
+		if (!country || country == null) {
+			console.log("No has introducido correctamente los datos, get data error section 1");
+			response.sendStatus(400);
 		}
 		else {
-			var country = request.params.country;
-			var aux = [];
-			var year = null;
-			if (!country || country == null) {
-				console.log("No has introducido correctamente los datos, get data error section 1");
-				response.sendStatus(400);
+
+			if (checkdb(db) == false) {
+				response.sendStatus(500);
+				process.exit();
 			}
 			else {
 
-				if (checkdb(db) == false) {
-					response.sendStatus(500);
-					process.exit();
-				}
-				else {
+				db.find({}).toArray(function(error, stats) {
 
-					db.find({}).toArray(function(error, stats) {
+					if (checkdb(stats) == false) {
+						response.sendStatus(404);
+					}
+					else {
+						filtradoNombreAnio(stats, aux, country, year);
+					}
+					if (aux.length === 0) {
+						console.log("el conjunto auxiliar no ha guardado ningún dato, luego no lo ha encontrado");
+						response.sendStatus(404);
+					}
+					else {
 
-						if (checkdb(stats) == false) {
-							response.sendStatus(404);
-						}
-						else {
-							filtradoNombreAnio(stats, aux, country, year);
-						}
-						if (aux.length === 0) {
-							console.log("el conjunto auxiliar no ha guardado ningún dato, luego no lo ha encontrado");
-							response.sendStatus(404);
-						}
-						else {
+						response.send(aux);
+					}
 
-							response.send(aux);
-						}
+				});
 
-					});
-
-				}
 			}
-		};
+		}
+	};
 
-		var filtradoNombreAnio = function(stats, aux, country, year) {
+	var filtradoNombreAnio = function(stats, aux, country, year) {
 
-			if (year == null) {
-				if (isNaN(country)) {
-					stats.filter((x) => {
-						return x.country == country;
-
-					}).map((x) => {
-						return aux.push(x);
-					});
-				}
-				else {
-					stats.filter((x) => {
-						return x.year == parseInt(country);
-					}).map((x) => {
-						return aux.push(x);
-					});
-				}
-			}
-			else {
+		if (year == null) {
+			if (isNaN(country)) {
 				stats.filter((x) => {
-					return x.country == country && x.year == parseInt(year);
+					return x.country == country;
+
 				}).map((x) => {
 					return aux.push(x);
 				});
 			}
-		};
-
-		var checkdb = function(database) {
-
-			if (!database || database == null || database.length === 0) {
-				console.log("la base de datos está vacía, get all data, section 1");
-				return false;
-			}
 			else {
-				return true;
+				stats.filter((x) => {
+					return x.year == parseInt(country);
+				}).map((x) => {
+					return aux.push(x);
+				});
 			}
-		};
+		}
+		else {
+			stats.filter((x) => {
+				return x.country == country && x.year == parseInt(year);
+			}).map((x) => {
+				return aux.push(x);
+			});
+		}
+	};
 
-		//GET a un recurso en concreto
-		module.exports.getRecursoConcreto = (request, response) => {
-			var key = request.query.apikey;
-			if (!key) {
-				response.sendStatus(401);
-			}
-			else if (!check(key)) {
-				response.sendStatus(403);
-			}
-			else {
-				var country = request.params.country;
-				var year = parseInt(request.params.year);
-				var a = [];
-				if (!country) {
-					console.log("Bad Request");
-					response.sendStatus(400);
+	var checkdb = function(database) {
 
-				}
-				else if (!db) {
+		if (!database || database == null || database.length === 0) {
+			console.log("la base de datos está vacía, get all data, section 1");
+			return false;
+		}
+		else {
+			return true;
+		}
+	}
+};
+
+//GET a un recurso en concreto
+module.exports.getRecursoConcreto = (request, response) => {
+	var key = request.query.apikey;
+	if (!key) {
+		response.sendStatus(401);
+	}
+	else if (!check(key)) {
+		response.sendStatus(403);
+	}
+	else {
+		var country = request.params.country;
+		var year = parseInt(request.params.year);
+		var a = [];
+		if (!country) {
+			console.log("Bad Request");
+			response.sendStatus(400);
+
+		}
+		else if (!db) {
+			response.sendStatus(404);
+		}
+		else {
+			db.find({}).toArray(function(error, stats) {
+				if (stats.length === 0) {
+					console.log("WARNING: Error getting data from DB");
 					response.sendStatus(404);
 				}
 				else {
-					db.find({}).toArray(function(error, stats) {
-						if (stats.length === 0) {
-							console.log("WARNING: Error getting data from DB");
-							response.sendStatus(404);
-						}
-						else {
-							if (country) {
-								for (var i = 0; i < stats.length; i++) {
-									if (stats[i].country === country) {
-										a.push(stats[i]);
-									}
-								}
-								var b = a.filter(f => f.year === year);
-								response.send(b);
+					if (country) {
+						for (var i = 0; i < stats.length; i++) {
+							if (stats[i].country === country) {
+								a.push(stats[i]);
 							}
 						}
-					});
+						var b = a.filter(f => f.year === year);
+						response.send(b);
+					}
 				}
+			});
+		}
 
-			}
-		};
+	}
+};
 
-		/***POST***/
-		//POST a una coleccón
-		module.exports.postCollection = (request, response) => {
-			var key = request.query.apikey;
-			if (!key) {
-				response.sendStatus(401);
-			}
-			else if (!check(key)) {
-				response.sendStatus(403);
+/***POST***/
+//POST a una coleccón
+module.exports.postCollection = (request, response) => {
+	var key = request.query.apikey;
+	if (!key) {
+		response.sendStatus(401);
+	}
+	else if (!check(key)) {
+		response.sendStatus(403);
+	}
+	else {
+		var country = request.params.country;
+		var newHospital = request.body;
+		if (!newHospital) {
+			console.log("WARMING: New POST without hospital");
+			response.sendStatus(400); //bad request
+		}
+		else {
+			console.log("INFO: New PORT with correct body");
+			if (!newHospital.country || !newHospital.year || !newHospital.expense || !newHospital.bed || !newHospital.attack) {
+				console.log("WARMING: New POST incorrect");
+				console.log(newHospital);
+				response.sendStatus(422); //incorrecto
 			}
 			else {
-				var country = request.params.country;
-				var newHospital = request.body;
-				if (!newHospital) {
-					console.log("WARMING: New POST without hospital");
-					response.sendStatus(400); //bad request
-				}
-				else {
-					console.log("INFO: New PORT with correct body");
-					if (!newHospital.country || !newHospital.year || !newHospital.expense || !newHospital.bed || !newHospital.attack) {
-						console.log("WARMING: New POST incorrect");
-						console.log(newHospital);
-						response.sendStatus(422); //incorrecto
-					}
-					else {
-						db.find({}).toArray(function(error, stats) {
-							if (error) {
-								console.error('WARNING: Error getting data from DB');
-								response.sendStatus(500); // internal server error
-							}
-							else {
-								var hospitalBeforeInsertion = stats.filter((i) => {
-									return (i.country.localeCompare(newHospital.country, "en", {
-										"sensitiviry": "a"
-									}) === 0);
-								});
-								if (hospitalBeforeInsertion.length > 0) {
-									console.log("WARMING: This data already exists");
-									response.sendStatus(409);
-								}
-								else {
-									console.log("INFO: adding Internetandphones");
-									db.insert(newHospital);
-									response.sendStatus(201);
-								}
-							}
-						});
-					}
-				}
-			}
-		};
-
-		/***PUT***/
-
-		//PUT a un recurso
-		module.exports.putRecurso = (request, response) => {
-			var key = request.query.apikey;
-			if (!key) {
-				response.sendStatus(401);
-			}
-			else if (!check(key)) {
-				response.sendStatus(403);
-			}
-			else {
-				var updateStat = request.body;
-				if (!updateStat) {
-					console.log("WARNING: New PUT");
-					response.sendStatus(400); // bad request
-				}
-				else {
-					console.log("INFO: New PUT");
-					if (!updateStat.country || !updateStat.year || !updateStat.expense || !updateStat.bed || !updateStat.attack) {
-						console.log("WARMING: New PUT incorrect");
-						response.sendStatus(422); //incorrecto
-					}
-					else {
-						db.update({
-							country: updateStat.country
-						}, {
-							country: updateStat.country,
-							year: updateStat.year,
-							expense: updateStat.bed,
-							bed: updateStat.usagephoneline,
-							attack: updateStat.attack
-						});
-						response.sendStatus(200);
-
-					}
-				}
-			}
-		};
-
-		//PUT a un recurso en concreto
-		module.exports.putRecursoConcreto = (request, response) => {
-			var key = request.query.apikey;
-			if (!key) {
-				response.sendStatus(401);
-			}
-			else if (!check(key)) {
-				response.sendStatus(403);
-			}
-			else {
-				var updateStat = request.body;
-				var countryPar = request.params.country;
-				var yearPar = parseInt(request.params.year);
-				if (!updateStat) {
-					console.log("WARNING: New PUT");
-					response.sendStatus(400); // bad request
-
-				}
-				else {
-					console.log("INFO: New PUT request to stat" + countryPar + " and year " + yearPar + " with data " + JSON.stringify(updateStat, 2, null));
-					if (!updateStat.country || !updateStat.year || !updateStat.expense || !updateStat.bed || !updateStat.attack) {
-						console.log("WARNING: The stat " + JSON.stringify(updateStat, 2, null));
-						response.sendStatus(422); // unprocessable entity ¿duda)400 o 422?
-					}
-					else {
-						db.find({}, function(err, stats) {
-							if (err) {
-								console.error('WARNING: Error getting data from DB');
-								response.sendStatus(500); // internal server error
-							}
-							else {
-								console.log(stats);
-								if (countryPar === updateStat.country && yearPar === parseInt(updateStat.year)) {
-									db.update({
-										country: countryPar,
-										year: yearPar
-									}, updateStat);
-									console.log("INFO: Modifying data with country " + countryPar + " with data " + JSON.stringify(updateStat, 2, null));
-									response.send(updateStat); // return the updated contact
-								}
-								else {
-									console.log("WARNING: There are not any data with country " + countryPar);
-									response.sendStatus(400); // not found
-								}
-							}
-						});
-					}
-				}
-			}
-		};
-
-		//PUT a una colección
-		module.exports.putCollection = (request, response) => {
-			var key = request.query.apikey;
-			if (!key) {
-				response.sendStatus(401);
-			}
-			else if (!check(key)) {
-				response.sendStatus(403);
-			}
-			else {
-				response.sendStatus(405);
-			}
-		};
-
-		/***DELETE***/
-		//DELETE una colección
-		module.exports.deleteCollection = (request, response) => {
-			var key = request.query.apikey;
-			if (!key) {
-				response.sendStatus(401);
-			}
-			else if (!check(key)) {
-				response.sendStatus(403);
-			}
-			else {
-				console.log("INFO: New DELETE");
-				db.remove({}, {
-					multi: true
-				}, function(error, stats) {
+				db.find({}).toArray(function(error, stats) {
 					if (error) {
-						console.error('WARNING: Error removing data from DB');
+						console.error('WARNING: Error getting data from DB');
 						response.sendStatus(500); // internal server error
 					}
 					else {
-						if (stats.length > 0) {
-							console.log("INFO: The stats is removed");
-							response.sendStatus(204); // no content
+						var hospitalBeforeInsertion = stats.filter((i) => {
+							return (i.country.localeCompare(newHospital.country, "en", {
+								"sensitiviry": "a"
+							}) === 0);
+						});
+						if (hospitalBeforeInsertion.length > 0) {
+							console.log("WARMING: This data already exists");
+							response.sendStatus(409);
 						}
 						else {
-							console.log("WARNING: There are no stats to delete");
-							response.sendStatus(404); // not found
+							console.log("INFO: adding Internetandphones");
+							db.insert(newHospital);
+							response.sendStatus(201);
 						}
 					}
 				});
 			}
-		};
-		//DELETE a un recurso
-		module.exports.deleteRecurso = (request, response) => {
-			var key = request.query.apikey;
-			if (!key) {
-				response.sendStatus(401);
-			}
-			else if (!check(key)) {
-				response.sendStatus(403);
-			}
-			else {
-
-				var country = request.params.country;
-				if (!country) {
-					console.log("WARNING: New DELETE");
-					response.sendStatus(400); // bad request
-				}
-				else {
-					console.log("INFO: New DELETE");
-					db.remove({
-						country: country
-					}, {}, function(error, stats) {
-						if (error) {
-							console.error('WARNING: Error removing data from DB');
-							response.sendStatus(500); // internal server error
-						}
-						else {
-							console.log("INFO: Stats remove");
-							if (stats === 1) {
-								console.log("INFO: The stats is removed");
-								response.sendStatus(204); // no content
-							}
-							else {
-								console.log("WARNING: There are no stats to delete");
-								response.sendStatus(404); // not found
-							}
-						}
-					});
-				}
-			}
-
-
-		};
-
-		//DELETE a un recurso en concreto
-		module.exports.deleteRecursoConcreto = (request, response) => {
-			var key = request.query.apikey;
-			if (!key) {
-				response.sendStatus(401);
-			}
-			else if (!check(key)) {
-				response.sendStatus(403);
-			}
-			else {
-				var country = request.params.country;
-				var year = parseInt(request.params.year);
-				if (!country && !year) {
-					console.log("WARNING: New DELETE request");
-					response.sendStatus(400);
-				}
-				else {
-					console.log("INFO: New DELETE" + country);
-					db.remove({ country: country, year: year }, {}, function(error, stats) {
-						var a = JSON.parse(stats);
-						if (error) {
-							console.error('WARNING: Error removing data from DB');
-							response.sendStatus(500); // internal server error
-						}
-						else if (stats.length === 0) {
-							console.log("Something is wrong");
-							response.sendStatus(404);
-						}
-						else {
-							console.log("INFO: The stat with country " + country + " has been succesfully deleted");
-							response.sendStatus(204); // no content
-
-						}
-					});
-				}
-			}
-		};
+		}
+	}
 };
-		var buscador = function(a, b, param_country, param_year, param_expense, param_bed, param_attack) {
-			if (param_country != undefined || param_year != undefined || param_expense != undefined || param_bed != undefined || param_attack != undefined) {
-				for (var j = 0; j < a.length; j++) {
-					var country = a[j].country;
-					var year = parseInt(a[j].year);
-					var expense = parseInt(a[j].expense);
-					var bed = parseInt(a[j].bed);
-					var attack = parseInt(a[j].attack);
 
-					if (param_country != undefined && param_expense == undefined) {
+/***PUT***/
 
-						if (param_country == country) {
-							b.push(a[j]);
-						}
+//PUT a un recurso
+module.exports.putRecurso = (request, response) => {
+	var key = request.query.apikey;
+	if (!key) {
+		response.sendStatus(401);
+	}
+	else if (!check(key)) {
+		response.sendStatus(403);
+	}
+	else {
+		var updateStat = request.body;
+		if (!updateStat) {
+			console.log("WARNING: New PUT");
+			response.sendStatus(400); // bad request
+		}
+		else {
+			console.log("INFO: New PUT");
+			if (!updateStat.country || !updateStat.year || !updateStat.expense || !updateStat.bed || !updateStat.attack) {
+				console.log("WARMING: New PUT incorrect");
+				response.sendStatus(422); //incorrecto
+			}
+			else {
+				db.update({
+					country: updateStat.country
+				}, {
+					country: updateStat.country,
+					year: updateStat.year,
+					expense: updateStat.bed,
+					bed: updateStat.usagephoneline,
+					attack: updateStat.attack
+				});
+				response.sendStatus(200);
 
+			}
+		}
+	}
+};
+
+//PUT a un recurso en concreto
+module.exports.putRecursoConcreto = (request, response) => {
+	var key = request.query.apikey;
+	if (!key) {
+		response.sendStatus(401);
+	}
+	else if (!check(key)) {
+		response.sendStatus(403);
+	}
+	else {
+		var updateStat = request.body;
+		var countryPar = request.params.country;
+		var yearPar = parseInt(request.params.year);
+		if (!updateStat) {
+			console.log("WARNING: New PUT");
+			response.sendStatus(400); // bad request
+
+		}
+		else {
+			console.log("INFO: New PUT request to stat" + countryPar + " and year " + yearPar + " with data " + JSON.stringify(updateStat, 2, null));
+			if (!updateStat.country || !updateStat.year || !updateStat.expense || !updateStat.bed || !updateStat.attack) {
+				console.log("WARNING: The stat " + JSON.stringify(updateStat, 2, null));
+				response.sendStatus(422); // unprocessable entity ¿duda)400 o 422?
+			}
+			else {
+				db.find({}, function(err, stats) {
+					if (err) {
+						console.error('WARNING: Error getting data from DB');
+						response.sendStatus(500); // internal server error
 					}
-					if (param_country == undefined && param_expense != undefined) {
-
-						if (param_expense == expense) {
-							b.push(a[j]);
+					else {
+						console.log(stats);
+						if (countryPar === updateStat.country && yearPar === parseInt(updateStat.year)) {
+							db.update({
+								country: countryPar,
+								year: yearPar
+							}, updateStat);
+							console.log("INFO: Modifying data with country " + countryPar + " with data " + JSON.stringify(updateStat, 2, null));
+							response.send(updateStat); // return the updated contact
 						}
-
-					}
-
-					else if (param_country == undefined && param_expense == undefined && param_bed != undefined && param_attack == undefined) {
-
-						if (param_bed == bed) {
-							b.push(a[j]);
-						}
-					}
-
-					else if (param_country == undefined && param_expense == undefined && param_bed == undefined && param_attack != undefined) {
-
-						if (param_attack == attack) {
-							b.push(a[j]);
+						else {
+							console.log("WARNING: There are not any data with country " + countryPar);
+							response.sendStatus(400); // not found
 						}
 					}
-					else if (param_country == undefined && param_expense == undefined && param_bed != undefined && param_attack != undefined) {
+				});
+			}
+		}
+	}
+};
 
-						if (param_bed == bed && param_attack == attack) {
-							b.push(a[j]);
-						}
+//PUT a una colección
+module.exports.putCollection = (request, response) => {
+	var key = request.query.apikey;
+	if (!key) {
+		response.sendStatus(401);
+	}
+	else if (!check(key)) {
+		response.sendStatus(403);
+	}
+	else {
+		response.sendStatus(405);
+	}
+};
 
+/***DELETE***/
+//DELETE una colección
+module.exports.deleteCollection = (request, response) => {
+	var key = request.query.apikey;
+	if (!key) {
+		response.sendStatus(401);
+	}
+	else if (!check(key)) {
+		response.sendStatus(403);
+	}
+	else {
+		console.log("INFO: New DELETE");
+		db.remove({}, {
+			multi: true
+		}, function(error, stats) {
+			if (error) {
+				console.error('WARNING: Error removing data from DB');
+				response.sendStatus(500); // internal server error
+			}
+			else {
+				if (stats.length > 0) {
+					console.log("INFO: The stats is removed");
+					response.sendStatus(204); // no content
+				}
+				else {
+					console.log("WARNING: There are no stats to delete");
+					response.sendStatus(404); // not found
+				}
+			}
+		});
+	}
+};
+//DELETE a un recurso
+module.exports.deleteRecurso = (request, response) => {
+	var key = request.query.apikey;
+	if (!key) {
+		response.sendStatus(401);
+	}
+	else if (!check(key)) {
+		response.sendStatus(403);
+	}
+	else {
+
+		var country = request.params.country;
+		if (!country) {
+			console.log("WARNING: New DELETE");
+			response.sendStatus(400); // bad request
+		}
+		else {
+			console.log("INFO: New DELETE");
+			db.remove({
+				country: country
+			}, {}, function(error, stats) {
+				if (error) {
+					console.error('WARNING: Error removing data from DB');
+					response.sendStatus(500); // internal server error
+				}
+				else {
+					console.log("INFO: Stats remove");
+					if (stats === 1) {
+						console.log("INFO: The stats is removed");
+						response.sendStatus(204); // no content
 					}
+					else {
+						console.log("WARNING: There are no stats to delete");
+						response.sendStatus(404); // not found
+					}
+				}
+			});
+		}
+	}
+
+
+};
+
+//DELETE a un recurso en concreto
+module.exports.deleteRecursoConcreto = (request, response) => {
+	var key = request.query.apikey;
+	if (!key) {
+		response.sendStatus(401);
+	}
+	else if (!check(key)) {
+		response.sendStatus(403);
+	}
+	else {
+		var country = request.params.country;
+		var year = parseInt(request.params.year);
+		if (!country && !year) {
+			console.log("WARNING: New DELETE request");
+			response.sendStatus(400);
+		}
+		else {
+			console.log("INFO: New DELETE" + country);
+			db.remove({ country: country, year: year }, {}, function(error, stats) {
+				var a = JSON.parse(stats);
+				if (error) {
+					console.error('WARNING: Error removing data from DB');
+					response.sendStatus(500); // internal server error
+				}
+				else if (stats.length === 0) {
+					console.log("Something is wrong");
+					response.sendStatus(404);
+				}
+				else {
+					console.log("INFO: The stat with country " + country + " has been succesfully deleted");
+					response.sendStatus(204); // no content
+
+				}
+			});
+		}
+	}
+
+};
+var buscador = function(a, b, param_country, param_year, param_expense, param_bed, param_attack) {
+	if (param_country != undefined || param_year != undefined || param_expense != undefined || param_bed != undefined || param_attack != undefined) {
+		for (var j = 0; j < a.length; j++) {
+			var country = a[j].country;
+			var year = parseInt(a[j].year);
+			var expense = parseInt(a[j].expense);
+			var bed = parseInt(a[j].bed);
+			var attack = parseInt(a[j].attack);
+
+			if (param_country != undefined && param_expense == undefined) {
+
+				if (param_country == country) {
+					b.push(a[j]);
+				}
+
+			}
+			if (param_country == undefined && param_expense != undefined) {
+
+				if (param_expense == expense) {
+					b.push(a[j]);
 				}
 
 			}
 
-			return b;
-		};
+			else if (param_country == undefined && param_expense == undefined && param_bed != undefined && param_attack == undefined) {
+
+				if (param_bed == bed) {
+					b.push(a[j]);
+				}
+			}
+
+			else if (param_country == undefined && param_expense == undefined && param_bed == undefined && param_attack != undefined) {
+
+				if (param_attack == attack) {
+					b.push(a[j]);
+				}
+			}
+			else if (param_country == undefined && param_expense == undefined && param_bed != undefined && param_attack != undefined) {
+
+				if (param_bed == bed && param_attack == attack) {
+					b.push(a[j]);
+				}
+
+			}
+		}
+
+	}
+
+	return b;
+};
