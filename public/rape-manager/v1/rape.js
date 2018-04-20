@@ -301,27 +301,20 @@ module.exports.postDataGroup = (request, response) => {
 
     var parametros = request.body;
     var conflicto = [];
-    console.log("compruebo ahora que el dato que he cogido no esté vacío");
 
-    if (!parametros || parametros == null) {
-        console.log("no hay parametros");
+    if (!parametros || parametros == null) 
         response.sendStatus(400);
 
-    }
     else {
-        if (chequeaParametro(parametros) == false) {
-
-            console.log("Bad request, algunos parámetros están mal");
+        if (chequeaParametro(parametros) == false)
             response.sendStatus(400);
-        }
+
         else {
 
-            if (checkdb(db) == false) {
+            if (checkdb(db) == false)
                 response.sendStatus(500);
 
-            }
             else {
-
                 db.find({}).toArray(function(error, datos) {
 
                     conflicto = datos.filter((x) => {
@@ -330,12 +323,9 @@ module.exports.postDataGroup = (request, response) => {
                         return conflicto.push(x);
                     });
 
-                    if (conflicto.length != 0) {
-
-                        console.log("El dato ya estaba creado");
+                    if (conflicto.length != 0) 
                         response.sendStatus(409);
 
-                    }
                     else {
 
                         db.insert(parametros);
@@ -560,18 +550,15 @@ var checkdb = function(database) {
 var recorreDatos = function(response, desde, hasta, pais, fromIncidence, toIncidence, fromRate, toRate, desdeTotal, hastaTotal) {
     console.log("Estamos en el recorre datos");
     db.find({}).toArray((error, data) => {
-        if (error) {
-            console.log("Error con la base de datos");
+
+        if (error)
             response.sendStatus(500);
 
-        }
         else {
 
-            if (checkdb(data) == false) {
-                console.log("section 3 all data error, base de datos está vacía o no se ha podido encontrar");
+            if (checkdb(data) == false)
                 response.sendStatus(404);
 
-            }
             else {
 
                 if ((desde && hasta) || (!desde && hasta) || (desde && !hasta))

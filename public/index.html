@@ -1,69 +1,34 @@
 <!DOCTYPE html>
-<html>
-    <head>
- 
-        <title>SOS1718-12</title>
-        <h1>SOS1718-12</h1>
-    </head>
-    
-    <body> 
-        <ul>
-            <li><h3>Team</h3></li>
-           
-            <li><h3>Project description:</h3> We will analyze the relationship between the number of complaints about violations in the EU, tax rates on real estate and European hospital data.</li>
-            <li><h3>Repository:</h3> <a href="https://github.com/gti-sos/SOS1718-12">SOS1718/SOS1718-12</a></li>
-            <li><h3>**URL**: [TBD]:</h3><a href="http://sos1718-12.herokuapp.com">Enlace heroku</a></li>
-                
-  <div>            <br/>
-  
-<h3>Manuel Jesus (Data: rape-stats) </h3>
-<ul>    
-<li>Information : I will analyze data on the number of people that they suffered a rape in the EU. </li>
+<html ng-app="managerApp">
 
-<li><a href=https://github.com/mjtr>GitHub personal</a></li>
-<li><a href =https://sos1718-12.herokuapp.com/api/v1/rape-stats> API Manuel </a></li>
-
-</ul>
-</div>
-<h5>-----------------------------------------</h5>
-<div>
-<h3>Verónica (Data: hospitals-stats) </h3>
-<ul>
-<li>Information : I will analyze european hospital data of interest  </li>
-
-<li><a href=https://github.com/kkdekiki>GitHub personal</a></li>
-<li><a href =https://sos1718-12.herokuapp.com/api/v1/hospital-stats> API Vero </a></li>
+<head>
 
 
-</ul>
-</div>
-<h5>-----------------------------------------</h5>
-<h3>Jose Llopis  (Data: taxes-stats) </h3>
-<ul>
-    <li>Information :  will analyze the rates of property taxes in europe </li>
-
-<li><a href=https://github.com/jllopis2>GitHub personal</a></li>
-<li><a href =https://sos1718-12.herokuapp.com/api/v1/taxes-stats> API Jose </a></li>
+    <link rel="stylesheet" href="/bower_components/bootstrap/dist/css/bootstrap.min.css" type="text/css" />
+    <script type="text/javascript" src="/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="/bower_components/angular/angular.min.js"></script>
+    <script type="text/javascript" src="/bower_components/angular-route/angular-route.min.js"></script>
 
 
-</ul>
-<h5>-----------------------------------------</h5>
+    <script type="text/javascript" src="/managerApp.js"></script>
+    <script type="text/javascript" src="/rape-manager/front-end/normal/rapeListCtrl.js"></script>
+    <script type="text/javascript" src="/rape-manager/front-end/normal/rapeEditCtrl.js"></script>
+    <script type="text/javascript" src="/rape-manager/front-end/secure/rapeSecureListCtrl.js"></script>
+    <script type="text/javascript" src="/rape-manager/front-end/secure/rapeSecureEditCtrl.js"></script>
 
-<ul>
-    
-    <li><h3>APIS:</h3></li>
-    <li> <a href="https://documenter.getpostman.com/view/360397/sos1718-12-rape-stats-completo/RVu1GWFS">https://sos1718-12.herokuapp.com/api/v1/rape-stats/docs</a> ( developed by Manuel Jesús Torres Rincón ) </li>
-    <li> <a href="https://documenter.getpostman.com/view/360401/f04/RVu1Hqij">https://sos1718-12.herokuapp.com/api/v1/hospital-stats/docs</a> ( developed by Verónica Vela Palomo ) </li>
-    <li> <a href="https://documenter.getpostman.com/view/392119/entregable1/RVu4HAbE">https://sos1718-12.herokuapp.com/api/v1/taxes-stats/docs</a> ( developed by Jose Llopis Zapata ) </li>
 
-        
-    
-    
-</ul>
 
-             
-    </body>
+
+</head>
+
+<body>
+
+    <div ng-view>
+
+
+    </div>
+
+</body>
+
+
 </html>
-
-
-
