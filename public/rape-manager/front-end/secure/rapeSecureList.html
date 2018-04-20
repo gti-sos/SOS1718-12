@@ -70,7 +70,7 @@
                 </tr>
             </thead>
 
-            <tbody> 
+            <tbody>
                 <tr>
 
                     <th class="table-primary" id="apikey">Introduce APIKEY <input style="width:200px " class="form-control" ng-model="apikey"></input>
@@ -137,8 +137,18 @@
             </tbody>
 
         </table>
+        </table>
+        <div id="numberPagination" disabled=true>
+            <table>
+                <td><button class="btn btn-info" ng-click="previousPage(currentPage-1)" ng-disabled="currentPage==1 || currentPage==null">Prev</button></td>
+                <td ng-repeat="page in pages">
+                    <a><button class="btn btn-info" ng-click="newPage(page)" ng-disabled ="currentPage == page" >{{page}}</button></a>
+                </td>
+                <td><button class="btn btn-info" ng-click="nextPage(currentPage+1)" ng-disabled="currentPage == pages.length">Next</button></td>
+            </table>
 
-    </div>
+
+        </div>
 
 </body>
 
