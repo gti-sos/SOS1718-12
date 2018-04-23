@@ -25,6 +25,7 @@ function refresh() {
 
             $http.put(api + "/" + updatedTaxAux.country + "/" + updatedTaxAux.year, updatedTaxAux).then(function(response) {
                 $scope.status = "Status: " + response.status;
+                $location.path("/");
             }, function(response) {
                 switch (response.status) {
                     case 400:
