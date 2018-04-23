@@ -171,7 +171,7 @@ var intialCountries = [{ "country" : "spain",
 /********************************MONGODB**********************************************/
 
 MongoClient.connect(mdbURL,{native_parser:true},(err,mlabs)=>{
-    
+    console.log("G");
     if(err) {
         
         console.log("Error accesing DB :"+ err);
@@ -191,5 +191,5 @@ MongoClient.connect(mdbURL,{native_parser:true},(err,mlabs)=>{
 
 });
 taxesApi.register(app,db);
-
+console.log("H");
 });

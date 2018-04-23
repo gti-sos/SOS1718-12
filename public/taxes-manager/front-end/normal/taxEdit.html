@@ -1,0 +1,27 @@
+<h1>Edit Country</h1>
+<table class="table">
+    <thead>
+        <tr>
+        <th>Country</th>
+        <th>Year</th>
+        <th>Region</th>
+        <th>Income Group</th>
+        <th>Country Code</th>
+        <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+             <td>{{updatedTax.country}}</td>
+             <td>{{updatedTax.year}}</td>
+             <td><input class="form-control" ng-model="updatedTax.region"/></td>
+             <td><input class="form-control" ng-model="updatedTax.income_group"/></td> 
+             <td><input class="form-control" ng-model="updatedTax.country_code"/></td> 
+             <td><button class="button btn-primary" ng-click="updateTax()">
+                 Update
+                 </button></td>
+        </tr>
+    </table>
+<b>
+Status : <div>{{status}}</div>
+</b>

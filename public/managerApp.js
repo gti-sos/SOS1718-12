@@ -28,9 +28,17 @@ angular.module("managerApp",["ngRoute"]).config(function($routeProvider){
             templateUrl: "/rape-manager/front-end/secure/rapeSecureEdit.html",
             controller: "rapeSecureEditCtrl"
             
+        }).when("/api/v1/taxes-stats",{
+            
+            templateUrl: "/taxes-manager/front-end/normal/List.html",
+            controller: "listadoCtrl"
+        
+        }).when("/api/v1/taxes-stats/:country/:year", {
+            
+            templateUrl: "/taxes-manager/front-end/normal/taxEdit.html",
+            controller: "editarCtrl"
+            
         });
-        
-        
         
         
         

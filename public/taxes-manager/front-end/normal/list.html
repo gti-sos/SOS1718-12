@@ -1,0 +1,44 @@
+<h1>Country List</h1>
+<table class="table">
+    <thead>
+        <tr>
+        <th>Country</th>
+        <th>Year</th>
+        <th>Region</th>
+        <th>Income Group</th>
+        <th>Country Code</th>
+        <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td><input class="form-control" ng-model="newTax.country"/></td>
+             <td><input class="form-control" ng-model="newTax.year"/></td>
+             <td><input class="form-control" ng-model="newTax.region"/></td>
+             <td><input class="form-control" ng-model="newTax.income_group"/></td> 
+             <td><input class="form-control" ng-model="newTax.country_code"/></td> 
+             <td><button class="button btn-primary" ng-click="addTax()">
+                 Add
+                 </button>
+             </td>
+             <td><button class="button btn-danger" ng-click="deleteTaxAll()">
+                 Delete All
+                 </button>
+             </td>
+            
+        </tr>
+        <tr ng-repeat="tax in taxesstats">
+            <td><a href ="/#!/api/v1/taxes-stats/edit/{{tax.country}}/{{tax.year}}">{{tax.country}}</a></td>
+            <td>{{tax.year}}</td>
+            <td>{{tax.region}}</td>
+            <td>{{tax.income_group}}</td>
+            <td>{{tax.country_code}}</td>
+            <td><button class="button btn-danger" ng-click="deleteTax(tax.country)">Delete</button></td>
+        </tr>
+    </tbody>
+</table>
+<div ng-model="status"></div>
+</hr>
+<b>
+Status : <div>{{status}}</div>
+</b>

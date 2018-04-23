@@ -304,7 +304,7 @@ app.get(BASE_API_PATH_TAXES_STATS + "/docs", (req, res) => {
 
     });
 // GET a recurso concreto 1 parámetro
-
+console.log("A");
     app.get(BASE_API_PATH_TAXES_STATS + "/:parametro", (req, res) => {
 
         //if (!checkApiKey(req, res)) return;
@@ -324,10 +324,10 @@ app.get(BASE_API_PATH_TAXES_STATS + "/docs", (req, res) => {
         var aux = [];
         var aux2 = [];
 
-
+console.log("B");
         if (limit || offset >= 0) {
             db.find({ $or: [{ "country": parametro }, { "year": parametro }] }).skip(offset).limit(limit).toArray(function(err, countries) {
-
+console.log("c");
                 if (err) {
                     console.error('WARNING: Error getting data from DB');
                     res.sendStatus(500); // internal server error
@@ -358,6 +358,7 @@ app.get(BASE_API_PATH_TAXES_STATS + "/docs", (req, res) => {
         else {
 
             db.find({ $or: [{ "country": parametro }, { "year": parametro }] }).toArray(function(err, countries) {
+console.log("D");
                 if (err) {
                     console.error('ERROR from database');
                     res.sendStatus(500); // internal server error
@@ -382,9 +383,9 @@ app.get(BASE_API_PATH_TAXES_STATS + "/docs", (req, res) => {
                 }
             });
         }
-        
+console.log("E");      
     });
-
+console.log("F");
   // GET a recurso concreto 2 parámetros
 
     app.get(BASE_API_PATH_TAXES_STATS + "/:country/:year", (req, res) => {
