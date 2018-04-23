@@ -30,7 +30,7 @@ angular.module("managerApp",["ngRoute"]).config(function($routeProvider){
             
         }).when("/api/v1/taxes-stats",{
             
-            templateUrl: "/taxes-manager/front-end/normal/List.html",
+            templateUrl: "/taxes-manager/front-end/normal/list.html",
             controller: "listadoCtrl"
         
         }).when("/api/v1/taxes-stats/:country/:year", {
@@ -41,6 +41,6 @@ angular.module("managerApp",["ngRoute"]).config(function($routeProvider){
         });
         
         
-        
+    console.log("App initialized and configured");    
     
 }) ;
