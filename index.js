@@ -59,28 +59,28 @@ var rapekey = require("./public/rape-manager/v1/rapekey.js");
 
 /****Gets***/
 
-app.get("/api/v1/secure/rape-stats/loadInitialData",rapekey.getInitialData);
+/*app.get("/api/v1/secure/rape-stats/loadInitialData",rapekey.getInitialData);
 app.get("/api/v1/secure/rape-stats",rapekey.getAllData);
 app.get("/api/v1/secure/rape-stats/:name/:year",rapekey.getSingleDataNameYear);
 app.get("/api/v1/secure/rape-stats/:name",rapekey.getData);
 
 /**Post**/
-
+/*
 app.post("/api/v1/secure/rape-stats",rapekey.postDataGroup);
 app.post("/api/v1/secure/rape-stats/:name",rapekey.postDenied);
 app.post("/api/v1/secure/rape-stats/:name/:year",rapekey.postDenied);
 
 /***Put****/
-
+/*
 app.put("/api/v1/secure/rape-stats",rapekey.putDenied);
 app.put("/api/v1/secure/rape-stats/:name",rapekey.putDenied);
 app.put("/api/v1/secure/rape-stats/:name/:year",rapekey.putSingleData);
 
 /***Delete****/
-
+/*
 app.delete("/api/v1/secure/rape-stats",rapekey.deleteAll );
 app.delete("/api/v1/secure/rape-stats/:name/:year",rapekey.deleteData);
-
+*/
 
 /*********API VERONICA*********/
 var h = "/api/v1/hospital-stats";
