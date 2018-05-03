@@ -658,5 +658,5 @@ var buscador = function(a, b, param_country, param_year, param_expense, param_be
 
 	return b;
 	};
-};
+
 
