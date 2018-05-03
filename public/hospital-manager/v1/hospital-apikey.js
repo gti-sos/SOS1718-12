@@ -246,45 +246,43 @@ module.exports.getRecurso = (request, response) => {
 			}
 		}
 	};
+var filtradoNombreAnio = function(stats, aux, country, year) {
 
-	var filtradoNombreAnio = function(stats, aux, country, year) {
+    if (year == null) {
+        if (isNaN(country)) {
+            stats.filter((x) => {
+                return x.country == country;
 
-		if (year == null) {
-			if (isNaN(country)) {
-				stats.filter((x) => {
-					return x.country == country;
+            }).map((x) => {
+                return aux.push(x);
+            });
+        }
+        else {
+            stats.filter((x) => {
+                return x.year == parseInt(country);
+            }).map((x) => {
+                return aux.push(x);
+            });
+        }
+    }
+    else {
+        stats.filter((x) => {
+            return x.country == country && x.year == parseInt(year);
+        }).map((x) => {
+            return aux.push(x);
+        });
+    }
+};
 
-				}).map((x) => {
-					return aux.push(x);
-				});
-			}
-			else {
-				stats.filter((x) => {
-					return x.year == parseInt(country);
-				}).map((x) => {
-					return aux.push(x);
-				});
-			}
-		}
-		else {
-			stats.filter((x) => {
-				return x.country == country && x.year == parseInt(year);
-			}).map((x) => {
-				return aux.push(x);
-			});
-		}
-	};
+var checkdb = function(database) {
 
-	var checkdb = function(database) {
-
-		if (!database || database == null || database.length === 0) {
-			console.log("la base de datos está vacía, get all data, section 1");
-			return false;
-		}
-		else {
-			return true;
-		}
-	};
+    if (!database || database == null || database.length === 0) {
+        console.log("la base de datos está vacía, get all data, section 1");
+        return false;
+    }
+    else {
+        return true;
+    }
 };
 
 //GET a un recurso en concreto
