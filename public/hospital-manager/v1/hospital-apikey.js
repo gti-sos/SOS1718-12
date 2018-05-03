@@ -212,15 +212,7 @@ module.exports.getRecurso = (request, response) => {
 		var country = request.params.name;
     var year = request.params.year;
     var conjuntoAux = [];
-    var key = request.query.apikey;
-
-    if (!key){
-        response.sendStatus(401); //No ha puesto la apikey
-
-    }else if (key != apikey){
-        response.sendStatus(403); //Está  mal puesta la apikey
-
-    }else {
+    
     	if (!country || country == null) {
     		console.log("No has introducido correctamente los datos, get data error section 1");
         response.sendStatus(400);
@@ -250,8 +242,8 @@ module.exports.getRecurso = (request, response) => {
             });
         	}
         }
-      }
-   }
+			}
+   
 };
 var filtradoNombreAnio = function(stats, aux, country, year) {
 
