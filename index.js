@@ -105,7 +105,7 @@ app.delete(h+"/:country/:year",hospital.deleteRecursoConcreto);
 /*********API VERONICA MONGO*********/
 
 var h1 = "/api/v1/secure/hospital-stats";
-var hospital1 = require("./public/hospital-manager/v1/hospital-MongoDB.js");
+var hospital1 = require("./public/hospital-manager/v1/hospital-apikey.js");
 
 app.get(h1 + "/loadInitialData", hospital1.getInitialData);
 app.get(h1, hospital1.getCollection);
