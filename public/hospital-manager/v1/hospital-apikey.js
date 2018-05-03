@@ -124,7 +124,7 @@ module.exports.getCollection = (request, response) => {
 		var expense = parseInt(request.query.expense);
 		var bed = parseInt(request.query.bed);
 		var attack = parseInt(request.query.attack);
-		console.log("AQUI ESTOY")
+		console.log(country);
 		var a = [];
 		var b = [];
 		var c = [];
@@ -178,6 +178,7 @@ module.exports.getCollection = (request, response) => {
 
 					}
 					if (country || year || expense || bed || attack) {
+						console.log("HE ENTRADO CON BUSQUEDA");
 						a = buscador(stats, a, country, year, expense, bed, attack);
 						if (a.length > 0) {
 							response.send(a);
@@ -609,37 +610,39 @@ var buscador = function(a, b, param_country, param_year, param_expense, param_be
 			var bed = parseInt(a[j].bed);
 			var attack = parseInt(a[j].attack);
 
-			if (param_country != undefined && param_expense == undefined) {
+			if (param_country != undefined && param_year == undefined && param_expense == undefined && param_bed == undefined && param_attack == undefined){
 
 				if (param_country == country) {
 					b.push(a[j]);
 				}
-
 			}
-			if (param_country == undefined && param_expense != undefined) {
+			else if (param_country == undefined && param_year != undefined && param_expense == undefined && param_bed == undefined && param_attack == undefined) {
+
+				if (param_year == year) {
+					b.push(a[j]);
+				}
+			}
+			else if (param_country == undefined && param_year == undefined && param_expense != undefined && param_bed == undefined && param_attack == undefined) {
 
 				if (param_expense == expense) {
 					b.push(a[j]);
 				}
-
 			}
-
-			else if (param_country == undefined && param_expense == undefined && param_bed != undefined && param_attack == undefined) {
+			else if (param_country == undefined && param_year == undefined && param_expense == undefined && param_bed != undefined && param_attack == undefined) {
 
 				if (param_bed == bed) {
 					b.push(a[j]);
 				}
 			}
-
-			else if (param_country == undefined && param_expense == undefined && param_bed == undefined && param_attack != undefined) {
+			else if (param_country == undefined && param_year == undefined && param_expense == undefined && param_bed == undefined && param_attack != undefined) {
 
 				if (param_attack == attack) {
 					b.push(a[j]);
 				}
 			}
-			else if (param_country == undefined && param_expense == undefined && param_bed != undefined && param_attack != undefined) {
+			else if (param_country == undefined && param_year == undefined && param_expense != undefined && param_bed != undefined && param_attack != undefined) {
 
-				if (param_bed == bed && param_attack == attack) {
+				if (param_expense == expense && param_bed == bed && param_attack == attack) {
 					b.push(a[j]);
 				}
 
