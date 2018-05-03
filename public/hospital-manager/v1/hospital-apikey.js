@@ -218,6 +218,7 @@ module.exports.getRecurso = (request, response) => {
         response.sendStatus(400);
        }
        else{
+       	console.log("Aquiiii");
        	if(checkdb(db) == false){
             response.sendStatus(500);
        	}
