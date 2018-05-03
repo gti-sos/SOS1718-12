@@ -284,7 +284,7 @@ module.exports.getRecurso = (request, response) => {
 		else {
 			return true;
 		}
-	}
+	};
 };
 
 //GET a un recurso en concreto
