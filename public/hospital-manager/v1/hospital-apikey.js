@@ -201,15 +201,20 @@ module.exports.getCollection = (request, response) => {
 
 //GET a un recurso
 module.exports.getRecurso = (request, response) => {
+	console.log("HOLA? aqui tmp?");
 	var key = request.query.apikey;
 	if (!key) {
+		console.log("if primero key");
 		response.sendStatus(401);
 	}
 	else if (!check(key)) {
+		console.log("else ifde key");
 		response.sendStatus(403);
 	}
 	else {
+		console.log("Despues de key");
 		var country = request.params.name;
+		console.log("Cogiendo valor country");
     var year = request.params.year;
     var conjuntoAux = [];
     	console.log("Antes del if primero");
