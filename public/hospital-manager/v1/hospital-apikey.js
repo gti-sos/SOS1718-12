@@ -212,7 +212,7 @@ module.exports.getRecurso = (request, response) => {
 		var country = request.params.name;
     var year = request.params.year;
     var conjuntoAux = [];
-    
+    	console.log("Antes del if primero");
     	if (!country || country == null) {
     		console.log("No has introducido correctamente los datos, get data error section 1");
         response.sendStatus(400);
@@ -220,6 +220,7 @@ module.exports.getRecurso = (request, response) => {
        else{
        	console.log("Aquiiii");
        	if(checkdb(db) == false){
+       		console.log("Arriba de 500 ");
             response.sendStatus(500);
        	}
         else {
