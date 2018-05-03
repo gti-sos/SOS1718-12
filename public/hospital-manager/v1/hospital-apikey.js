@@ -209,43 +209,50 @@ module.exports.getRecurso = (request, response) => {
 		response.sendStatus(403);
 	}
 	else {
-		var country = request.params.country;
-		var aux = [];
-		var year = null;
-		if (!country || country == null) {
-			console.log("No has introducido correctamente los datos, get data error section 1");
-			response.sendStatus(400);
-		}
-		else {
+		var country = request.params.name;
+    var year = request.params.year;
+    var conjuntoAux = [];
+    var key = request.query.apikey;
 
-			if (checkdb(db) == false) {
-				response.sendStatus(500);
-				process.exit();
-			}
-			else {
+    if (!key){
+        response.sendStatus(401); //No ha puesto la apikey
 
-				db.find({}).toArray(function(error, stats) {
+    }else if (key != apikey){
+        response.sendStatus(403); //Está  mal puesta la apikey
 
-					if (checkdb(stats) == false) {
-						response.sendStatus(404);
-					}
-					else {
-						filtradoNombreAnio(stats, aux, country, year);
-					}
-					if (aux.length === 0) {
-						console.log("el conjunto auxiliar no ha guardado ningún dato, luego no lo ha encontrado");
-						response.sendStatus(404);
-					}
-					else {
+    }else {
+    	if (!country || country == null) {
+    		console.log("No has introducido correctamente los datos, get data error section 1");
+        response.sendStatus(400);
+       }
+       else{
+       	if(checkdb(db) == false){
+            response.sendStatus(500);
+       	}
+        else {
+            db.find({}).toArray(function(error, datos) {
 
-						response.send(aux);
-					}
+                if (checkdb(datos) == false)
+                    response.sendStatus(404);
 
-				});
+                else
+                    filtradoNombreAnio(datos, conjuntoAux, country, year);
 
-			}
-		}
-	};
+                if (conjuntoAux.length === 0) {
+                    console.log("el conjunto auxiliar no ha guardado ningún dato, luego no lo ha encontrado");
+                    response.sendStatus(404);
+                }
+                else {
+
+                    response.send(conjuntoAux);
+                }
+
+            });
+        	}
+        }
+      }
+   }
+};
 var filtradoNombreAnio = function(stats, aux, country, year) {
 
     if (year == null) {
@@ -650,5 +657,6 @@ var buscador = function(a, b, param_country, param_year, param_expense, param_be
 	}
 
 	return b;
+	};
 };
-};
+
