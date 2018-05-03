@@ -201,94 +201,52 @@ module.exports.getCollection = (request, response) => {
 
 //GET a un recurso
 module.exports.getRecurso = (request, response) => {
-	console.log("HOLA? aqui tmp?");
 	var key = request.query.apikey;
-	if (!key) {
-		console.log("if primero key");
-		response.sendStatus(401);
-	}
-	else if (!check(key)) {
-		console.log("else ifde key");
-		response.sendStatus(403);
-	}
-	else {
-		console.log("Despues de key");
-		var country = request.params.name;
-		console.log("Cogiendo valor country");
-    var year = request.params.year;
-    var conjuntoAux = [];
-    	console.log("Antes del if primero");
-    	if (!country || country == null) {
-    		console.log("No has introducido correctamente los datos, get data error section 1");
-        response.sendStatus(400);
-       }
-       else{
-       	console.log("Aquiiii");
-       	if(checkdb(db) == false){
-       		console.log("Arriba de 500 ");
-            response.sendStatus(500);
-       	}
-        else {
-            db.find({}).toArray(function(error, datos) {
+     if (!key) {
+         response.sendStatus(401);
+     }
+     else if (!check(key)) {
+         response.sendStatus(403);
+     }
+     else {
+         var country = request.params.country;
+         var a = [];
+         if (!country) {
+             console.log("BAD Request");
+             response.sendStatus(400);
+         }
+         else if (!db) {
+             response.sendStatus(404);
+         }
+         else {
+             db.find({}).toArray(function(error, stats1) {
+                 if (stats1.length === 0) {
+                     console.log("WARNING: Error getting data from DB");
+                     response.sendStatus(404);
+                 }
+                 else {
+                     if (country) {
+                         for (var i = 0; i < stats1.length; i++) {
+                             if (stats1[i].country === country) {
+                                 a.push(stats1[i]);
 
-                if (checkdb(datos) == false)
-                    response.sendStatus(404);
+                             }
+                             else if (stats1[i].year === parseInt(country)) {
+                                 a.push(stats1[i]);
 
-                else
-                    filtradoNombreAnio(datos, conjuntoAux, country, year);
-
-                if (conjuntoAux.length === 0) {
-                    console.log("el conjunto auxiliar no ha guardado ningún dato, luego no lo ha encontrado");
-                    response.sendStatus(404);
-                }
-                else {
-
-                    response.send(conjuntoAux);
-                }
-
-            });
-        	}
-        }
-			}
-   
-};
-var filtradoNombreAnio = function(stats, aux, country, year) {
-
-    if (year == null) {
-        if (isNaN(country)) {
-            stats.filter((x) => {
-                return x.country == country;
-
-            }).map((x) => {
-                return aux.push(x);
-            });
-        }
-        else {
-            stats.filter((x) => {
-                return x.year == parseInt(country);
-            }).map((x) => {
-                return aux.push(x);
-            });
-        }
-    }
-    else {
-        stats.filter((x) => {
-            return x.country == country && x.year == parseInt(year);
-        }).map((x) => {
-            return aux.push(x);
-        });
-    }
-};
-
-var checkdb = function(database) {
-
-    if (!database || database == null || database.length === 0) {
-        console.log("la base de datos está vacía, get all data, section 1");
-        return false;
-    }
-    else {
-        return true;
-    }
+                             }
+                             else if (a.length === 0) {
+                             	response.sendStatus(404);
+                        		}
+                        		else {
+                             response.send(a);
+                        		}
+                    			}
+                     }
+                 }
+             });
+         }
+     }
 };
 
 //GET a un recurso en concreto
