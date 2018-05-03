@@ -200,7 +200,7 @@ module.exports.getCollection = (request, response) => {
 };
 
 //GET a un recurso
-module.exports.getRecurso = (request, response) => {
+module.exports.getRecursoSusMuertos = (request, response) => {
 	var key = request.query.apikey;
      if (!key) {
          response.sendStatus(401);
