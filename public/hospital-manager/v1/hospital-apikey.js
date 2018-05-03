@@ -393,6 +393,7 @@ module.exports.postCollection = (request, response) => {
 module.exports.putRecurso = (request, response) => {
 	var key = request.query.apikey;
 	if (!key) {
+		console.log("Hola aqui?");
 		response.sendStatus(401);
 	}
 	else if (!check(key)) {
