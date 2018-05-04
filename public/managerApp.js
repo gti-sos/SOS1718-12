@@ -9,7 +9,7 @@ angular.module("managerApp",["ngRoute"]).config(function($routeProvider){
             
         }).when("/analytics" ,{
             
-            templateUrl: "/analytics.html"
+            templateUrl: "/graphics.html"
             
         }).when("/api/v1/rape-stats",{
             
