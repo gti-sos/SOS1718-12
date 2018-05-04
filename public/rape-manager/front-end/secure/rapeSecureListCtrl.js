@@ -3,7 +3,4 @@ angular.module("managerApp").controller("rapeSecureListCtrl", ["$scope", "$http"
 
     console.log("rapeSecureListCtrl   ok");
    
-
-
-
 }]);
