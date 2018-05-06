@@ -242,6 +242,7 @@ module.exports.getCollection = (request, response) => {
 						if (a.length > 0) {
 							console.log("Hola lo hago 2");
 							response.send(a);
+							return;
 						}
 						else {
 							response.sendStatus(404);
