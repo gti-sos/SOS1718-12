@@ -278,6 +278,6 @@ angular.module("managerApp").controller("rapeListCtrl", ["$scope", "$http", func
 
     };
 
-
+  
 
 }]);
