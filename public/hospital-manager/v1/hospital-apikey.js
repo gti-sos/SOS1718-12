@@ -30,6 +30,7 @@ var buscador = function(a, b, param_country, param_year, param_expense, param_be
 		for (var j = 0; j < a.length; j++) {
 			console.log("aaaaa");
 			var country = a[j].country;
+			console.log("countryyy");
 			var year = parseInt(a[j].year);
 			var expense = parseInt(a[j].expense);
 			var bed = parseInt(a[j].bed);
