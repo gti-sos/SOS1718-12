@@ -37,7 +37,7 @@ var buscador = function(a, b, param_country, param_year, param_expense, param_be
 			var attack = parseInt(a[j].attack);
 
 			if (param_country != undefined && param_year == undefined && param_expense == undefined && param_bed == undefined && param_attack == undefined){
-
+				console.log("Vamos alla!");
 				if (param_country == country) {
 					console.log("kkkk");
 					b.push(a[j]);
