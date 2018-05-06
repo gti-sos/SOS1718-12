@@ -209,45 +209,86 @@ module.exports.getRecursoSusMuertos = (request, response) => {
          response.sendStatus(403);
      }
      else {
-         var country = request.params.country;
-         var a = [];
-         if (!country) {
-             console.log("BAD Request");
-             response.sendStatus(400);
-         }
-         else if (!db) {
-             response.sendStatus(404);
-         }
-         else {
-             db.find({}).toArray(function(error, stats1) {
-                 if (stats1.length === 0) {
-                     console.log("WARNING: Error getting data from DB");
-                     response.sendStatus(404);
-                 }
-                 else {
-                     if (country) {
-                         for (var i = 0; i < stats1.length; i++) {
-                             if (stats1[i].country === country) {
-                                 a.push(stats1[i]);
+     var country = request.params.name;
+     var aux = [];
+     var year = null;
 
-                             }
-                             else if (stats1[i].year === parseInt(country)) {
-                                 a.push(stats1[i]);
+    if (!country || country == null) {
 
-                             }
-                             else if (a.length === 0) {
-                             	response.sendStatus(404);
-                             	
-                             }
-                             else {
-                             	response.send(a);
-                        	}
-                    	}
-                     }
-                 }
-             });
-         }
-     }
+        console.log("No has introducido correctamente los datos, get data error section 1");
+        response.sendStatus(400);
+    }
+    else {
+
+        if (checkdb(db) == false) {
+            response.sendStatus(500);
+            process.exit();
+        }
+        else {
+
+            db.find({}).toArray(function(error, stats) {
+
+                if (checkdb(stats) == false) {
+                    response.sendStatus(500);
+                }
+                else {
+
+                    filtrado(stats, aux, country, year);
+
+                    if (aux.length == 0) {
+                        console.log("no se ha encontrado ningún dato");
+                        response.sendStatus(404);
+                    }
+                    else {
+                        response.send(aux);
+
+                    }
+
+                }
+
+            });
+         
+        }
+	}
+    }
+};
+var filtrado = function(stats, aux, country, year) {
+
+    if (year == null) {
+        if (isNaN(country)) {
+            stats.filter((x) => {
+                return x.country == country;
+
+            }).map((x) => {
+                return aux.push(x);
+            });
+        }
+        else {
+            stats.filter((x) => {
+                return x.year == parseInt(country);
+            }).map((x) => {
+                return aux.push(x);
+            });
+        }
+    }
+    else {
+        stats.filter((x) => {
+            return x.country == country && x.year == parseInt(year);
+        }).map((x) => {
+            return aux.push(x);
+        });
+    }
+};
+
+var checkdb = function(database) {
+
+    if (!database || database == null || database.length === 0) {
+        console.log("la base de datos está vacía, get all data, section 1");
+        return false;
+    }
+    else {
+        return true;
+    }
 };
 
 //GET a un recurso en concreto
