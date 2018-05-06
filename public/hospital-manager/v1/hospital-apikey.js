@@ -24,6 +24,62 @@ var check = function(f) {
 	}
 	return res;
 };
+/******AUXILIAR**********/
+var buscador = function(a, b, param_country, param_year, param_expense, param_bed, param_attack) {
+	if (param_country != undefined || param_year != undefined || param_expense != undefined || param_bed != undefined || param_attack != undefined) {
+		for (var j = 0; j < a.length; j++) {
+			console.log("aaaaa");
+			var country = a[j].country;
+			console.log("countryyy");
+			var year = parseInt(a[j].year);
+			var expense = parseInt(a[j].expense);
+			var bed = parseInt(a[j].bed);
+			var attack = parseInt(a[j].attack);
+			console.log("no se mete");
+			if (param_country != undefined && param_year == undefined && param_expense == undefined && param_bed == undefined && param_attack == undefined){
+				console.log("Vamos alla!");
+				if (param_country == country) {
+					console.log("kkkk");
+					b.push(a[j]);
+				}
+			}
+			else if (param_country == undefined && param_year != undefined && param_expense == undefined && param_bed == undefined && param_attack == undefined) {
+
+				if (param_year == year) {
+					b.push(a[j]);
+				}
+			}
+			else if (param_country == undefined && param_year == undefined && param_expense != undefined && param_bed == undefined && param_attack == undefined) {
+
+				if (param_expense == expense) {
+					b.push(a[j]);
+				}
+			}
+			else if (param_country == undefined && param_year == undefined && param_expense == undefined && param_bed != undefined && param_attack == undefined) {
+
+				if (param_bed == bed) {
+					b.push(a[j]);
+				}
+			}
+			else if (param_country == undefined && param_year == undefined && param_expense == undefined && param_bed == undefined && param_attack != undefined) {
+
+				if (param_attack == attack) {
+					b.push(a[j]);
+				}
+			}
+			else if (param_country == undefined && param_year == undefined && param_expense != undefined && param_bed != undefined && param_attack != undefined) {
+
+				if (param_expense == expense && param_bed == bed && param_attack == attack) {
+					b.push(a[j]);
+				}
+
+			}
+		}
+
+	}
+
+	return b;
+};
 
 /*****API********/
 
@@ -124,7 +180,7 @@ module.exports.getCollection = (request, response) => {
 		var expense = parseInt(request.query.expense);
 		var bed = parseInt(request.query.bed);
 		var attack = parseInt(request.query.attack);
-		console.log("AQUI ESTOY")
+		console.log(country);
 		var a = [];
 		var b = [];
 		var c = [];
@@ -154,16 +210,20 @@ module.exports.getCollection = (request, response) => {
 						else {
 
 							response.send(c);
+							return;
+                        }
+                    }
+                    else {
+                    	response.send(stats.map((x)=> {
+                    	console.log("primer map");
+                        delete x._id;
+                        return x;
+                        }));
+                    }
+                }
+            });
 
-						}
-					}
-					else {
-						response.send(stats);
-					}
-				}
-			});
-
-		}
+        }
 		else {
 
 			db.find({}).toArray(function(error, stats) {
@@ -172,124 +232,140 @@ module.exports.getCollection = (request, response) => {
 					response.sendStatus(500); // internal server error
 				}
 				else {
+					console.log("Busca que te busca");
 					if (stats.length === 0) {
-
 						response.send(stats);
+						return;
 
 					}
+					console.log("no está vacio");
 					if (country || year || expense || bed || attack) {
+						console.log("HE ENTRADO CON BUSQUEDA");
 						a = buscador(stats, a, country, year, expense, bed, attack);
+						console.log("HOLA, LO HAGO?");
 						if (a.length > 0) {
+							console.log("Hola lo hago 2");
 							response.send(a);
+							return;
 						}
 						else {
 							response.sendStatus(404);
 
 						}
 					}
+					
 					else {
-						response.send(stats);
+						console.log("Deberiamos estar aqui");
+						response.send(stats.map((x)=> {
+							console.log("segundo map");
+							delete x._id;
+							console.log("hola aqui 3");
+							return x;
+                        }));
 					}
 				}
 			});
 		}
-
-
 	}
 };
 
 //GET a un recurso
-module.exports.getRecurso = (request, response) => {
+module.exports.getRecursoSusMuertos = (request, response) => {
 	var key = request.query.apikey;
-	if (!key) {
-		response.sendStatus(401);
+     if (!key) {
+         response.sendStatus(401);
+     }
+     else if (!check(key)) {
+         response.sendStatus(403);
+     }
+     else {
+     var country = request.params.country;
+     var aux = [];
+     var year = null;
+
+    if (!country || country == null) {
+
+        console.log("No has introducido correctamente los datos, get data error section 1");
+        response.sendStatus(400);
+    }
+    else {
+
+        if (checkdb(db) == false) {
+            response.sendStatus(500);
+            process.exit();
+        }
+        else {
+
+            db.find({}).toArray(function(error, stats) {
+
+                if (checkdb(stats) == false) {
+                    response.sendStatus(500);
+                }
+                else {
+
+                    filtrado(stats, aux, country, year);
+
+                    if (aux.length == 0) {
+                        console.log("no se ha encontrado ningún dato");
+                        response.sendStatus(404);
+                    }
+                    else {
+                        response.send(aux);
+
+                    }
+
+                }
+
+            });
+         
+        }
 	}
-	else if (!check(key)) {
-		response.sendStatus(403);
-	}
-	else {
-		var country = request.params.country;
-		var aux = [];
-		var year = null;
-		if (!country || country == null) {
-			console.log("No has introducido correctamente los datos, get data error section 1");
-			response.sendStatus(400);
-		}
-		else {
+    }
+};
+var filtrado = function(stats, aux, country, year) {
 
-			if (checkdb(db) == false) {
-				response.sendStatus(500);
-				process.exit();
-			}
-			else {
+    if (year == null) {
+        if (isNaN(country)) {
+            stats.filter((x) => {
+                return x.country == country;
 
-				db.find({}).toArray(function(error, stats) {
+            }).map((x) => {
+                return aux.push(x);
+            });
+        }
+        else {
+            stats.filter((x) => {
+                return x.year == parseInt(country);
+            }).map((x) => {
+                return aux.push(x);
+            });
+        }
+    }
+    else {
+        stats.filter((x) => {
+            return x.country == country && x.year == parseInt(year);
+        }).map((x) => {
+            return aux.push(x);
+        });
+    }
+};
 
-					if (checkdb(stats) == false) {
-						response.sendStatus(404);
-					}
-					else {
-						filtradoNombreAnio(stats, aux, country, year);
-					}
-					if (aux.length === 0) {
-						console.log("el conjunto auxiliar no ha guardado ningún dato, luego no lo ha encontrado");
-						response.sendStatus(404);
-					}
-					else {
+var checkdb = function(database) {
 
-						response.send(aux);
-					}
-
-				});
-
-			}
-		}
-	};
-
-	var filtradoNombreAnio = function(stats, aux, country, year) {
-
-		if (year == null) {
-			if (isNaN(country)) {
-				stats.filter((x) => {
-					return x.country == country;
-
-				}).map((x) => {
-					return aux.push(x);
-				});
-			}
-			else {
-				stats.filter((x) => {
-					return x.year == parseInt(country);
-				}).map((x) => {
-					return aux.push(x);
-				});
-			}
-		}
-		else {
-			stats.filter((x) => {
-				return x.country == country && x.year == parseInt(year);
-			}).map((x) => {
-				return aux.push(x);
-			});
-		}
-	};
-
-	var checkdb = function(database) {
-
-		if (!database || database == null || database.length === 0) {
-			console.log("la base de datos está vacía, get all data, section 1");
-			return false;
-		}
-		else {
-			return true;
-		}
-	}
+    if (!database || database == null || database.length === 0) {
+        console.log("la base de datos está vacía, get all data, section 1");
+        return false;
+    }
+    else {
+        return true;
+    }
 };
 
 //GET a un recurso en concreto
 module.exports.getRecursoConcreto = (request, response) => {
 	var key = request.query.apikey;
 	if (!key) {
+		console.log("Hola aqui?");
 		response.sendStatus(401);
 	}
 	else if (!check(key)) {
@@ -600,53 +676,6 @@ module.exports.deleteRecursoConcreto = (request, response) => {
 	}
 
 };
-var buscador = function(a, b, param_country, param_year, param_expense, param_bed, param_attack) {
-	if (param_country != undefined || param_year != undefined || param_expense != undefined || param_bed != undefined || param_attack != undefined) {
-		for (var j = 0; j < a.length; j++) {
-			var country = a[j].country;
-			var year = parseInt(a[j].year);
-			var expense = parseInt(a[j].expense);
-			var bed = parseInt(a[j].bed);
-			var attack = parseInt(a[j].attack);
 
-			if (param_country != undefined && param_expense == undefined) {
 
-				if (param_country == country) {
-					b.push(a[j]);
-				}
 
-			}
-			if (param_country == undefined && param_expense != undefined) {
-
-				if (param_expense == expense) {
-					b.push(a[j]);
-				}
-
-			}
-
-			else if (param_country == undefined && param_expense == undefined && param_bed != undefined && param_attack == undefined) {
-
-				if (param_bed == bed) {
-					b.push(a[j]);
-				}
-			}
-
-			else if (param_country == undefined && param_expense == undefined && param_bed == undefined && param_attack != undefined) {
-
-				if (param_attack == attack) {
-					b.push(a[j]);
-				}
-			}
-			else if (param_country == undefined && param_expense == undefined && param_bed != undefined && param_attack != undefined) {
-
-				if (param_bed == bed && param_attack == attack) {
-					b.push(a[j]);
-				}
-
-			}
-		}
-
-	}
-
-	return b;
-};

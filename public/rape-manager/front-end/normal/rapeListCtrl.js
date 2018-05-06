@@ -2,6 +2,7 @@
 angular.module("managerApp").controller("rapeListCtrl", ["$scope", "$http", function($scope, $http) {
 
     console.log("rapeListCtrl  ok");
+<<<<<<< HEAD
     $scope.url = "api/v1/rape-stats";
     refresh();
 
@@ -279,5 +280,9 @@ angular.module("managerApp").controller("rapeListCtrl", ["$scope", "$http", func
     };
 
   
+=======
+    
+
+>>>>>>> 5c4339642e3bcabedc1448ee4dbbb0b1e980cbdc
 
 }]);

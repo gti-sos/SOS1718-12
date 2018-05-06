@@ -7,6 +7,10 @@ angular.module("managerApp",["ngRoute"]).config(function($routeProvider){
             
            templateUrl: "/home.html" 
             
+        }).when("/analytics" ,{
+            
+            templateUrl: "/graphics.html"
+            
         }).when("/api/v1/rape-stats",{
             
             templateUrl: "/rape-manager/front-end/normal/rapeList.html",

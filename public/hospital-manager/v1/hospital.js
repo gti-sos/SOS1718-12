@@ -110,7 +110,7 @@ module.exports.getRecurso = (request, response) => {
                 }
                 else {
 
-                    filtradoNombreAnio(stats, aux, country, year);
+                    filtrado(stats, aux, country, year);
 
                     if (aux.length == 0) {
                         console.log("no se ha encontrado ningún dato");
@@ -132,7 +132,7 @@ module.exports.getRecurso = (request, response) => {
 
 
 };
-var filtradoNombreAnio = function(stats, aux, country, year) {
+var filtrado = function(stats, aux, country, year) {
 
     if (year == null) {
         if (isNaN(country)) {
