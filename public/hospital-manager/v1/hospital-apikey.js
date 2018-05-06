@@ -28,6 +28,7 @@ var check = function(f) {
 var buscador = function(a, b, param_country, param_year, param_expense, param_bed, param_attack) {
 	if (param_country != undefined || param_year != undefined || param_expense != undefined || param_bed != undefined || param_attack != undefined) {
 		for (var j = 0; j < a.length; j++) {
+			console.log("aaaaa");
 			var country = a[j].country;
 			var year = parseInt(a[j].year);
 			var expense = parseInt(a[j].expense);
@@ -37,6 +38,7 @@ var buscador = function(a, b, param_country, param_year, param_expense, param_be
 			if (param_country != undefined && param_year == undefined && param_expense == undefined && param_bed == undefined && param_attack == undefined){
 
 				if (param_country == country) {
+					console.log("kkkk");
 					b.push(a[j]);
 				}
 			}
@@ -77,6 +79,7 @@ var buscador = function(a, b, param_country, param_year, param_expense, param_be
 
 	return b;
 };
+
 /*****API********/
 
 //POST a un recurso concreto (no sigue con las buenas prácticas)
