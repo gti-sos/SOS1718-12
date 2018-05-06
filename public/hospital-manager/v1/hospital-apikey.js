@@ -209,7 +209,7 @@ module.exports.getRecursoSusMuertos = (request, response) => {
          response.sendStatus(403);
      }
      else {
-     var country = request.params.name;
+     var country = request.params.country;
      var aux = [];
      var year = null;
 
