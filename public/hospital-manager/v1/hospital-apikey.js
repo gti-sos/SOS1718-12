@@ -24,7 +24,59 @@ var check = function(f) {
 	}
 	return res;
 };
+/******AUXILIAR**********/
+var buscador = function(a, b, param_country, param_year, param_expense, param_bed, param_attack) {
+	if (param_country != undefined || param_year != undefined || param_expense != undefined || param_bed != undefined || param_attack != undefined) {
+		for (var j = 0; j < a.length; j++) {
+			var country = a[j].country;
+			var year = parseInt(a[j].year);
+			var expense = parseInt(a[j].expense);
+			var bed = parseInt(a[j].bed);
+			var attack = parseInt(a[j].attack);
 
+			if (param_country != undefined && param_year == undefined && param_expense == undefined && param_bed == undefined && param_attack == undefined){
+
+				if (param_country == country) {
+					b.push(a[j]);
+				}
+			}
+			else if (param_country == undefined && param_year != undefined && param_expense == undefined && param_bed == undefined && param_attack == undefined) {
+
+				if (param_year == year) {
+					b.push(a[j]);
+				}
+			}
+			else if (param_country == undefined && param_year == undefined && param_expense != undefined && param_bed == undefined && param_attack == undefined) {
+
+				if (param_expense == expense) {
+					b.push(a[j]);
+				}
+			}
+			else if (param_country == undefined && param_year == undefined && param_expense == undefined && param_bed != undefined && param_attack == undefined) {
+
+				if (param_bed == bed) {
+					b.push(a[j]);
+				}
+			}
+			else if (param_country == undefined && param_year == undefined && param_expense == undefined && param_bed == undefined && param_attack != undefined) {
+
+				if (param_attack == attack) {
+					b.push(a[j]);
+				}
+			}
+			else if (param_country == undefined && param_year == undefined && param_expense != undefined && param_bed != undefined && param_attack != undefined) {
+
+				if (param_expense == expense && param_bed == bed && param_attack == attack) {
+					b.push(a[j]);
+				}
+
+			}
+		}
+
+	}
+
+	return b;
+};
 /*****API********/
 
 //POST a un recurso concreto (no sigue con las buenas prácticas)
@@ -607,57 +659,6 @@ module.exports.deleteRecursoConcreto = (request, response) => {
 	}
 
 };
-var buscador = function(a, b, param_country, param_year, param_expense, param_bed, param_attack) {
-	if (param_country != undefined || param_year != undefined || param_expense != undefined || param_bed != undefined || param_attack != undefined) {
-		for (var j = 0; j < a.length; j++) {
-			var country = a[j].country;
-			var year = parseInt(a[j].year);
-			var expense = parseInt(a[j].expense);
-			var bed = parseInt(a[j].bed);
-			var attack = parseInt(a[j].attack);
 
-			if (param_country != undefined && param_year == undefined && param_expense == undefined && param_bed == undefined && param_attack == undefined){
-
-				if (param_country == country) {
-					b.push(a[j]);
-				}
-			}
-			else if (param_country == undefined && param_year != undefined && param_expense == undefined && param_bed == undefined && param_attack == undefined) {
-
-				if (param_year == year) {
-					b.push(a[j]);
-				}
-			}
-			else if (param_country == undefined && param_year == undefined && param_expense != undefined && param_bed == undefined && param_attack == undefined) {
-
-				if (param_expense == expense) {
-					b.push(a[j]);
-				}
-			}
-			else if (param_country == undefined && param_year == undefined && param_expense == undefined && param_bed != undefined && param_attack == undefined) {
-
-				if (param_bed == bed) {
-					b.push(a[j]);
-				}
-			}
-			else if (param_country == undefined && param_year == undefined && param_expense == undefined && param_bed == undefined && param_attack != undefined) {
-
-				if (param_attack == attack) {
-					b.push(a[j]);
-				}
-			}
-			else if (param_country == undefined && param_year == undefined && param_expense != undefined && param_bed != undefined && param_attack != undefined) {
-
-				if (param_expense == expense && param_bed == bed && param_attack == attack) {
-					b.push(a[j]);
-				}
-
-			}
-		}
-
-	}
-
-	return b;
-	};
 
 
