@@ -237,11 +237,12 @@ module.exports.getRecursoSusMuertos = (request, response) => {
                              }
                              else if (a.length === 0) {
                              	response.sendStatus(404);
-                        		}
-                        		else {
-                             response.send(a);
-                        		}
-                    			}
+                             	
+                             }
+                             else {
+                             	response.send(a);
+                        	}
+                    	}
                      }
                  }
              });
