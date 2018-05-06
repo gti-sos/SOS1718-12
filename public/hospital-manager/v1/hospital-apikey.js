@@ -230,11 +230,11 @@ module.exports.getCollection = (request, response) => {
 				else {
 					console.log("Busca que te busca");
 					if (stats.length === 0) {
-						console.log("Vacio por?");
 						response.send(stats);
 						return;
 
 					}
+					console.log("no está vacio");
 					if (country || year || expense || bed || attack) {
 						console.log("HE ENTRADO CON BUSQUEDA");
 						a = buscador(stats, a, country, year, expense, bed, attack);
