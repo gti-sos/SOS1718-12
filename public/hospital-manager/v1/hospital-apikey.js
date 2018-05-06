@@ -228,7 +228,7 @@ module.exports.getCollection = (request, response) => {
 				}
 				else {
 					if (stats.length === 0) {
-
+						console.log("Vacio por?");
 						response.send(stats);
 
 					}
