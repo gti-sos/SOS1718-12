@@ -232,6 +232,7 @@ module.exports.getCollection = (request, response) => {
 					if (stats.length === 0) {
 						console.log("Vacio por?");
 						response.send(stats);
+						return;
 
 					}
 					if (country || year || expense || bed || attack) {
