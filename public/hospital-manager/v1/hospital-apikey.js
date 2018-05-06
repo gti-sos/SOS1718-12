@@ -211,6 +211,7 @@ module.exports.getCollection = (request, response) => {
                     }
                     else {
                     	response.send(stats.map((x)=> {
+                    	console.log("primer map");
                         delete x._id;
                         return x;
                         }));
@@ -248,6 +249,7 @@ module.exports.getCollection = (request, response) => {
 					
 					else {
 						response.send(a.map((x)=> {
+							console.log("segundo map");
 							delete x._id;
 							console.log("hola aqui 3");
 							return x;
