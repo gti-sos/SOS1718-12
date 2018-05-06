@@ -250,6 +250,7 @@ module.exports.getCollection = (request, response) => {
 					}
 					
 					else {
+						console.log("Deberiamos estar aqui");
 						response.send(a.map((x)=> {
 							console.log("segundo map");
 							delete x._id;
