@@ -211,6 +211,7 @@ module.exports.getCollection = (request, response) => {
                     }
                     else {
                     	response.send(stats.map((x)=> {
+                        delete x._id;
                         return x;
                         }));
                     }
@@ -236,6 +237,7 @@ module.exports.getCollection = (request, response) => {
 						a = buscador(stats, a, country, year, expense, bed, attack);
 						console.log("HOLA, LO HAGO?");
 						if (a.length > 0) {
+							console.log("Hola lo hago 2");
 							response.send(a);
 						}
 						else {
@@ -243,8 +245,11 @@ module.exports.getCollection = (request, response) => {
 
 						}
 					}
+					
 					else {
 						response.send(a.map((x)=> {
+							delete x._id;
+							console.log("hola aqui 3");
 							return x;
                         }));
 					}
