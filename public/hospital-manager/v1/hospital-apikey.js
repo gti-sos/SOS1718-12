@@ -206,16 +206,18 @@ module.exports.getCollection = (request, response) => {
 						else {
 
 							response.send(c);
+							return;
+                        }
+                    }
+                    else {
+                    	response.send(stats.map((x)=> {
+                        return x;
+                        }));
+                    }
+                }
+            });
 
-						}
-					}
-					else {
-						response.send(stats);
-					}
-				}
-			});
-
-		}
+        }
 		else {
 
 			db.find({}).toArray(function(error, stats) {
@@ -242,13 +244,13 @@ module.exports.getCollection = (request, response) => {
 						}
 					}
 					else {
-						response.send(stats);
+						response.send(a.map((x)=> {
+							return x;
+                        }));
 					}
 				}
 			});
 		}
-
-
 	}
 };
 
