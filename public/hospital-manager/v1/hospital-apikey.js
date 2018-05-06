@@ -228,6 +228,7 @@ module.exports.getCollection = (request, response) => {
 					response.sendStatus(500); // internal server error
 				}
 				else {
+					console.log("Busca que te busca");
 					if (stats.length === 0) {
 						console.log("Vacio por?");
 						response.send(stats);
