@@ -180,6 +180,7 @@ module.exports.getCollection = (request, response) => {
 					if (country || year || expense || bed || attack) {
 						console.log("HE ENTRADO CON BUSQUEDA");
 						a = buscador(stats, a, country, year, expense, bed, attack);
+						console.log("HOLA, LO HAGO?");
 						if (a.length > 0) {
 							response.send(a);
 						}
