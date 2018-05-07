@@ -1,6 +1,6 @@
 describe('Add stats', function() {
     it('should add a new stats', function() {
-      browser.get('https://personal-sos161709mjtr.c9users.io/#!/api/v2/rape-stats')
+      browser.get('https://sos1718-12.herokuapp.com/#!/api/v2/rape-stats')
 
         element.all(by.repeater("data in database")).then(function(initialData) {
             //browser.driver.sleep(2000);
