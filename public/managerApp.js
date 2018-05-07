@@ -11,6 +11,7 @@ angular.module("managerApp",["ngRoute"]).config(function($routeProvider){
             
             templateUrl: "/graphics.html"
             
+            
         }).when("/api/v1/rape-stats",{
             
             templateUrl: "/rape-manager/front-end/normal/rapeList.html",
@@ -42,10 +43,10 @@ angular.module("managerApp",["ngRoute"]).config(function($routeProvider){
             templateUrl: "/taxes-manager/front-end/normal/taxEdit.html",
             controller: "editarCtrl"
             
-        }).when("/api/v1/taxes-stats/analytics/data"),{
+        }).when("/data",{
             templateUrl: "/taxes-manager/front-end/normal/Grafica.html",
-            controller: "analitycs"
-        };
+            controller: "analitycs-jll"
+        });
         
         
     console.log("App initialized and configured");    

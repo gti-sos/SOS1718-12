@@ -4,7 +4,7 @@
 /*global google*/
 
 
-angular.module("managerApp").controller("analitycs", ["$scope", "$http","$location", function($scope, $http, $location) {
+angular.module("managerApp").controller("analitycs-jll", ["$scope", "$http","$location", function($scope, $http, $location) {
     console.log("Graph Controller Initialized!");
     var api ="api/v1/taxes-stats";
     
@@ -111,7 +111,7 @@ Highcharts.chart('container', {
  */
  
        
-        
+      
         google.charts.load('current', {
         'packages':['geochart'],
         // Note: you will need to get a mapsApiKey for your project.
