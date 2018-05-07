@@ -2,7 +2,7 @@
 angular.module("managerApp").controller("rapeListCtrl", ["$scope", "$http", function($scope, $http) {
 
     console.log("rapeListCtrl  ok");
-    $scope.url = "api/v1/rape-stats";
+    $scope.url = "/api/v2/rape-stats";
     refresh();
 
     $scope.loadInitialData = function() {
@@ -278,8 +278,6 @@ angular.module("managerApp").controller("rapeListCtrl", ["$scope", "$http", func
 
     };
 
-  
-    
 
 
 }]);

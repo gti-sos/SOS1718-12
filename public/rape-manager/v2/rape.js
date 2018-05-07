@@ -185,6 +185,8 @@ module.exports.getAllData = (request, response) => {
         response.sendStatus(500);
 
     else {
+        
+   
 
         if (!limit || !offset || limit == null || offset == null)
             recorreDatos(response, from, to, pais, fromIncidence, toIncidence, fromRate, toRate, fromTotal, toTotal);
@@ -192,8 +194,8 @@ module.exports.getAllData = (request, response) => {
         else
             recorreDatosLimitOffset(response, parseInt(limit), parseInt(offset), from, to,
                 pais, fromIncidence, toIncidence, fromRate, toRate, fromTotal, toTotal);
-    }
-
+    
+}
 };
 
 //Get a un recurso en concreto por nombre y año
@@ -215,14 +217,14 @@ module.exports.getSingleDataNameYear = (request, response) => {
         db.find({}).toArray(function(error, datos) {
 
             if (checkdb(datos) == false)
-                response.sendStatus(404);
+                response.send([]);
 
             else
                 filtradoNombreAnio(datos, conjuntoAux, country, year);
 
             if (conjuntoAux.length === 0) {
                 console.log("el conjunto auxiliar no ha guardado ningún dato, luego no lo ha encontrado");
-                response.sendStatus(404);
+                response.send([]);
             }
             else {
 
@@ -267,7 +269,7 @@ module.exports.getData = (request, response) => {
 
                     if (aux.length == 0) {
                         console.log("no se ha encontrado ningún dato");
-                        response.sendStatus(404);
+                        response.send([]);
                     }
                     else {
                         response.send(aux);
@@ -279,11 +281,7 @@ module.exports.getData = (request, response) => {
             });
 
         }
-
-
     }
-
-
 };
 
 /***********************POST***************************/
@@ -557,7 +555,7 @@ var recorreDatos = function(response, desde, hasta, pais, fromIncidence, toIncid
         else {
 
             if (checkdb(data) == false)
-                response.sendStatus(404);
+                response.send([]);
 
             else {
 
@@ -589,7 +587,7 @@ var recorreDatosLimitOffset = function(response, limit, offset, desde, hasta,
     pais, fromIncidence, toIncidence, fromRate, toRate, fromTotal, toTotal) {
     console.log("Hemos entrado con limit y offset");
     if (limit < 0 || offset < 0)
-        response.sendStatus(404);
+        response.send([]);
     else {
         db.find({}).skip(offset).limit(limit).toArray((error, data) => {
             if (error) {
@@ -660,7 +658,7 @@ var busquedaYear = function(response, desde, hasta) {
                 }
                 if (res.length == 0) {
                     console.log("No se ha podido encontrar ningún dato con esos parámetros de búsquedas");
-                    response.sendStatus(404);
+                    response.send([]);
                 }
                 else
                     response.send(res);
@@ -673,7 +671,7 @@ var busquedaPais = function(response, pais) {
     console.log("Hemos entrado en la búsqueda por países");
     if (isNaN(pais) == false) {
         console.log("el país que has puesto no está formado por caracteres");
-        response.sendStatus(404);
+        response.send([]);
     }
     else {
         db.find({ country: pais }).toArray((error, data) => {
@@ -683,7 +681,7 @@ var busquedaPais = function(response, pais) {
             }
             else {
                 if (data.length == 0)
-                    response.sendStatus(404);
+                    response.send([]);
                 else
                     response.send(data);
             }
@@ -698,7 +696,7 @@ var busquedaIncidencia = function(response, desdeIncidencia, hastaIncidencia) {
     console.log("hemos entrado en la busqueda de incidencias");
     if (isNaN(desdeIncidencia) == true || isNaN(hastaIncidencia) == true) {
         console.log("el número de violaciones indicado tiene que ser numérico");
-        response.sendStatus(404);
+        response.send([]);
     }
     else {
         db.find({}).toArray((error, data) => {
@@ -719,7 +717,7 @@ var busquedaIncidencia = function(response, desdeIncidencia, hastaIncidencia) {
                     });
 
                     if (res.length == 0)
-                        response.sendStatus(404);
+                        response.send([]);
                     else
                         response.send(res);
                 }
@@ -733,7 +731,7 @@ var busquedaPorcentaje = function(response, fromRate, toRate) {
     console.log("hemos entrado en la busqueda de porcentajes");
     if (isNaN(fromRate) == true || isNaN(toRate) == true) {
         console.log("el porcentaje buscado tiene que ser numérico");
-        response.sendStatus(404);
+        response.send([]);
     }
     else {
         db.find({}).toArray((error, data) => {
@@ -752,7 +750,7 @@ var busquedaPorcentaje = function(response, fromRate, toRate) {
                         return res.push(x);
                     });
                     if (res.length == 0)
-                        response.sendStatus(404);
+                        response.send([]); 
                     else
                         response.send(res);
                 }
@@ -766,7 +764,7 @@ var buscarTotal = (response, desdeTotal, hastaTotal) => {
     console.log("hemos entrado en el busqueda de totales");
     if (isNaN(desdeTotal) == true || isNaN(hastaTotal) == true) {
         console.log("el porcentaje buscado tiene que ser numérico");
-        response.sendStatus(404);
+        response.send([]);
     }
     else {
 
@@ -788,7 +786,7 @@ var buscarTotal = (response, desdeTotal, hastaTotal) => {
                     });
 
                     if (res.length == 0)
-                        response.sendStatus(404);
+                        response.send([]);
 
                     else
                         response.send(res);
