@@ -33,6 +33,23 @@ angular.module("managerApp",["ngRoute"]).config(function($routeProvider){
             templateUrl: "/rape-manager/front-end/secure/rapeSecureEdit.html",
             controller: "rapeSecureEditCtrl"
             
+        }).when("/analytics/rape-stats/geo",{
+            
+        templateUrl: "/rape-manager/analytics/rapeGeo.html",
+        controller: "rapeGeoCtrl"
+        
+            
+        }).when("/analytics/rape-stats/high", {
+                      
+           templateUrl: "/rape-manager/analytics/rapeHigh.html",
+           controller: "rapeHighCtrl"
+           
+            
+        }).when("/analytics/rape-stats/rgraph",{
+            
+            templateUrl: "/rape-manager/analytics/rapeRGraph.html",
+            controller: "rapeRGraphCtrl"
+            
         }).when("/api/v1/taxes-stats",{
             
             templateUrl: "/taxes-manager/front-end/normal/list.html",
