@@ -7,7 +7,7 @@ var path = ("path");
 describe('Data is load',function(){
     it('should show some taxes',function(){
         browser
-        .get('https://sos2018jllopis-jllopis1.c9users.io')
+        .get('https://sos2018jllopis-jllopis1.c9users.io/#!/api/v1/taxes-stats')
         .then(function(){
             
            element
