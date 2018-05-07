@@ -42,7 +42,10 @@ angular.module("managerApp",["ngRoute"]).config(function($routeProvider){
             templateUrl: "/taxes-manager/front-end/normal/taxEdit.html",
             controller: "editarCtrl"
             
-        });
+        }).when("/api/v1/taxes-stats/analytics/data"),{
+            templateUrl: "/taxes-manager/front-end/normal/Grafica.html",
+            controller: "analitycs"
+        };
         
         
     console.log("App initialized and configured");    
