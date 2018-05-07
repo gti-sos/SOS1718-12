@@ -60,7 +60,7 @@ angular.module("managerApp",["ngRoute"]).config(function($routeProvider){
             templateUrl: "/taxes-manager/front-end/normal/taxEdit.html",
             controller: "editarCtrl"
             
-        }).when("/data",{
+        }).when("/analytics/taxes-stats/data",{
             templateUrl: "/taxes-manager/front-end/normal/Grafica.html",
             controller: "analitycs-jll"
         });
