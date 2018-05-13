@@ -1,3 +1,5 @@
+var request = require("request");
+
 //Url Base 
 var BASE_API_PATH_TAXES_STATS = "/api/v1/taxes-stats";
 
@@ -7,7 +9,21 @@ module.exports = taxesApi;
 
 taxesApi.register = function(app, db) {
 console.log("Registering routes for taxes API...");
+/*****CORS*******/
+var cors = require("cors");
+app.use(cors());
+/**************INTEGRACIONES**************/
 
+ var basket = "https://sos1718-11.herokuapp.com/api/v2/basketball-stats";
+ var pollution = "https://sos1718-03.herokuapp.com/api/v1/pollution-cities";
+   
+    app.use(BASE_API_PATH_TAXES_STATS + "/integracionProxy", function(req, res) {
+        req.pipe(request(basket)).pipe(res);
+    });
+    
+    app.use(BASE_API_PATH_TAXES_STATS + "/cors", function(req, res) {
+        req.pipe(request(pollution)).pipe(res);
+    });
 /*****************************ENLACE-POSTMAN****************************/
 
 
