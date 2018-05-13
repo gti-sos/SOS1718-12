@@ -3,6 +3,12 @@ var path = require("path");
 var bodyParser = require("body-parser");
 var app = express();
 app.use(bodyParser.json());
+var cors = require("cors");
+var request= require("request");
+
+
+app.use(cors());
+
 
 app.get("/hello", (req, res) => {
     res.send("Hello World");
@@ -142,6 +148,21 @@ app.put(url + "/:name/:year", rapekey22.putSingleData);
 
 app.delete(url, rapekey22.deleteAll);
 app.delete(url + "/:name/:year", rapekey22.deleteData);
+
+
+/******PROXY Manuel*******/
+
+var apiServerHostDivorce = "https://sos1718-08.herokuapp.com/api/v1/divorces-an";
+
+app.use("/proxyDivorce", (req, res) =>{
+    
+    var url = apiServerHostDivorce + req.url ; 
+    
+    req.pipe(request(url)).pipe(res);
+});
+
+
+
 
 /*********API VERONICA*********/
 var h = "/api/v1/hospital-stats";
