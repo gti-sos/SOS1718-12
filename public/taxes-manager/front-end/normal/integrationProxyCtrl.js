@@ -62,7 +62,7 @@ Highcharts.chart('container', {
     },
 
     title: {
-        text: 'Taxes-Stats Ft BasketBall Stats'
+        text: 'Relation between Year(Taxes-stats) & First(Basketball-stats)'
     },
 
     subtitle: {
