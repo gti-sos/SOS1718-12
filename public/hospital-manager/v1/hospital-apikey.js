@@ -35,6 +35,8 @@ var buscador = function(a, b, param_country, param_year, param_expense, param_be
 			var expense = parseInt(a[j].expense);
 			var bed = parseInt(a[j].bed);
 			var attack = parseInt(a[j].attack);
+			
+			
 			console.log("no se mete");
 			if (param_country != undefined && param_year == undefined && param_expense == undefined && param_bed == undefined && param_attack == undefined){
 				console.log("Vamos alla!");
