@@ -1,0 +1,546 @@
+{
+	"variables": [],
+	"info": {
+		"name": "SOS1718-12-rape-stats",
+		"_postman_id": "8d59452a-6e2f-e532-7ec4-13689b2974ab",
+		"description": "TEST para sos 2017/18",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Borrar todos los datos",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"los datos se han borrado correctamente\"] = responseCode.code === 204;",
+							""
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "https://sos1718-12.herokuapp.com/api/v2/rape-stats",
+				"method": "DELETE",
+				"header": [],
+				"body": {},
+				"description": null
+			},
+			"response": []
+		},
+		{
+			"name": "Load correcto",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"los datos han sido creados correctamente \"] = responseCode.code === 201 ;",
+							""
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "https://sos1718-12.herokuapp.com/api/v2/rape-stats/loadInitialData",
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"name\":\"zzzzz\"}"
+				},
+				"description": null
+			},
+			"response": []
+		},
+		{
+			"name": "Load con conflicto",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Los datos iniciales ya estaban creados correctamente\"] = responseCode.code === 409;",
+							"",
+							""
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "https://sos1718-12.herokuapp.com/api/v2/rape-stats/loadInitialData",
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": null
+			},
+			"response": []
+		},
+		{
+			"name": "GET conjunto Datos",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Obteniendo todos los datos\"] = responseCode.code === 200;",
+							"",
+							"var jsonData = JSON.parse(responseBody);",
+							"tests[\"Hay quince datos en total\"] = jsonData.length === 15;"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "https://sos1718-12.herokuapp.com/api/v2/rape-stats",
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": null
+			},
+			"response": []
+		},
+		{
+			"name": "GET por pais",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Obteniendo las datos de portugal \"] = responseCode.code === 200;",
+							"",
+							"var jsonData = JSON.parse(responseBody);",
+							"tests[\"Hay dos portugal en total\"] = jsonData.length === 2;"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "https://sos1718-12.herokuapp.com/api/v2/rape-stats/portugal",
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": null
+			},
+			"response": []
+		},
+		{
+			"name": "GET por año",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Obteniendo las datos de paises con año 2003\"] = responseCode.code === 200;",
+							"",
+							"var jsonData = JSON.parse(responseBody);",
+							"tests[\"Hay solo dos 2003 en total\"] = jsonData.length === 2;"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "https://sos1718-12.herokuapp.com/api/v2/rape-stats/2003",
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": null
+			},
+			"response": []
+		},
+		{
+			"name": "GET por nombre y año",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Obteniendo las datos de portugal con año en concreto \"] = responseCode.code === 200;",
+							"",
+							"var jsonData = JSON.parse(responseBody);",
+							"tests[\"Hay un portugal con ese año\"] = jsonData.length === 1;"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "https://sos1718-12.herokuapp.com/api/v2/rape-stats/portugal/2010",
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": null
+			},
+			"response": []
+		},
+		{
+			"name": "GET dato no existe",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Dato no encontrado \"] = responseCode.code === 200;",
+							""
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "https://sos1718-12.herokuapp.com/api/v2/rape-stats/abcd",
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": null
+			},
+			"response": []
+		},
+		{
+			"name": "faltan campos por rellenar",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Faltan campos del dato por rellenar\"] = responseCode.code === 400;",
+							""
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "https://sos1718-12.herokuapp.com/api/v2/rape-stats",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"name\":\"zzzzz\"}"
+				},
+				"description": null
+			},
+			"response": []
+		},
+		{
+			"name": "json enviado esta vacio",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"ERROR al enviar el json,está vacío\"] = responseCode.code === 400;",
+							""
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "https://sos1718-12.herokuapp.com/api/v2/rape-stats",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"description": null
+			},
+			"response": []
+		},
+		{
+			"name": "Dato creado correctamente",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Datos creados correctamente\"] = responseCode.code === 201;",
+							""
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "https://sos1718-12.herokuapp.com/api/v2/rape-stats",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": " {\"country\" : \"xxxx\" ,   \"year\" : 2022  ,\"number-of-rape\" : 23945 ,  \"rate\" : 70 , \"total-since-two-thousand\": 12312 }\n"
+				},
+				"description": null
+			},
+			"response": []
+		},
+		{
+			"name": "Conflicto,el data ya estaba creado",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Conflicto,el dato ya estaba creado anteriormente\"] = responseCode.code === 409;",
+							""
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "https://sos1718-12.herokuapp.com/api/v2/rape-stats",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": " {\"country\" : \"xxxx\" ,   \"year\" : 2022  ,\"number-of-rape\" : 23945 ,  \"rate\" : 70 , \"total-since-two-thousand\": 12312 }\n"
+				},
+				"description": null
+			},
+			"response": []
+		},
+		{
+			"name": "Metodo no permitido",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Metodo no permitido \"] = responseCode.code === 405;",
+							""
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "https://sos1718-12.herokuapp.com/api/v2/rape-stats/portugal",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": " {\"country\" : \"zzzz\" ,   \"year\" : 2022  ,\"incidence\" : 2345 ,  \"total\" : 266850  , \"percentage\" : 10.0}\n"
+				},
+				"description": null
+			},
+			"response": []
+		},
+		{
+			"name": "tamaño del conjunto aumentado",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Obteniendo todo el conjunto de datos\"] = responseCode.code === 200;",
+							"",
+							"var jsonData = JSON.parse(responseBody);",
+							"tests[\"El get total debe de tener 9 elementos ahora \"] = jsonData.length === 16;"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "https://sos1718-12.herokuapp.com/api/v2/rape-stats",
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": null
+			},
+			"response": []
+		},
+		{
+			"name": "borrado un recurso en concreto",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Borrando francia\"] = responseCode.code === 204;",
+							""
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "https://sos1718-12.herokuapp.com/api/v2/rape-stats/france/2004",
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {},
+				"description": null
+			},
+			"response": []
+		},
+		{
+			"name": "Metodo no permitido",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Método no permitido,no se puede actualizar un conjunto  \"] = responseCode.code === 405;",
+							""
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "https://sos1718-12.herokuapp.com/api/v2/rape-stats",
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": " {\"country\" : \"xxxx\" ,   \"year\" : 2022  ,\"number-of-rape\" : 99999 ,  \"rate\" : 70 , \"total-since-two-thousand\": 12312 }\n"
+				},
+				"description": null
+			},
+			"response": []
+		},
+		{
+			"name": "Metodo no permitido falta el año",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Metodo no permitido,falta especificar el año\"] = responseCode.code === 405;",
+							""
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "https://sos1718-12.herokuapp.com/api/v2/rape-stats/portugal",
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": " {\"country\" : \"xxxx\" ,   \"year\" : 2022  ,\"number-of-rape\" : 999999 ,  \"rate\" : 70 , \"total-since-two-thousand\": 12312 }\n"
+				},
+				"description": null
+			},
+			"response": []
+		},
+		{
+			"name": "Actualizo dato",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Dato actualizado correctamente\"] = responseCode.code === 200;",
+							""
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "https://sos1718-12.herokuapp.com/api/v2/rape-stats/xxxx/2022",
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": " {\"country\" : \"xxxx\" ,   \"year\" : 2022  ,\"number-of-rape\" : 999999 ,  \"rate\" : 99 , \"total-since-two-thousand\": 9999 }\n"
+				},
+				"description": null
+			},
+			"response": []
+		},
+		{
+			"name": "De nuevo get al conjunto",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Obteniendo todos los datos\"] = responseCode.code === 200;",
+							""
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "https://sos1718-12.herokuapp.com/api/v2/rape-stats",
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": null
+			},
+			"response": []
+		}
+	]
+}
