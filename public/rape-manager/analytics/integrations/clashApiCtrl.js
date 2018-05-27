@@ -1,5 +1,4 @@
 /*global angular*/
-/*global Highcharts*/
 
 angular
     .module("managerApp")
