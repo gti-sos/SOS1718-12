@@ -13,7 +13,7 @@ mongoClient.connect(mongoURL, { native_parser: true }, (error, dataa) => {
 
 	db = dataa.db("sos1718-vvp-sandbox").collection("hospitals");
 
-	console.log("la a de datos ha sido conectada con éxito");
+	//console.log("la a de datos ha sido conectada con éxito");
 
 });
 
