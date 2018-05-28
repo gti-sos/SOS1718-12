@@ -93,7 +93,6 @@ angular.module("managerApp", ["ngRoute"]).config(function($routeProvider) {
         }).when("/analytics/taxes-stats/data", {
             templateUrl: "/taxes-manager/front-end/normal/Grafica.html",
             controller: "analitycs-jll"
-<<<<<<< HEAD
         }).when("/integrationProxy",{
             templateUrl:"/taxes-manager/front-end/normal/integrationProxy.html",
             controller:"integrationProxyCtrl"
@@ -107,11 +106,3 @@ angular.module("managerApp", ["ngRoute"]).config(function($routeProvider) {
     console.log("App initialized and configured");    
     
 }) ;
-=======
-        });
-
-
-    console.log("App initialized and configured");
-
-});
->>>>>>> f680f9f46f0392ccbc049986ec8e89665308784a

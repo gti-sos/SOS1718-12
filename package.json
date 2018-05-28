@@ -15,8 +15,11 @@
   },
   "devDependencies": {},
   "scripts": {
+    "pretest" : "test/runPhantomjs.sh",
+    "test": "protractor test/config.js",
+    "posttest": "killall phantomjs",
     "start": "node index.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    
   },
   "repository": {
     "type": "git",
