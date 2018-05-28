@@ -6,11 +6,13 @@ exports.config = {
     
     capabilities: {
         'browserName':'phantomjs'
-    }, params: {
+    },
+    params: {
         host: 'sos1718-12.herokuapp.com',
         port: '80'
     }
-
+    
+    
 };
 exports.getTaxesUrl = function() {
     console.log("https://" + browser.params.host  + "/#!/api/v1/taxes-stats" );

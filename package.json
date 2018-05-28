@@ -16,18 +16,11 @@
   },
   "devDependencies": {},
   "scripts": {
-    "test": "protractor test/config.js",
-<<<<<<< HEAD
-    "posttest": "killall phantomjs",
-    "start": "node index.js",
-<<<<<<< HEAD
+    "pretest":"test2/runPhantomjs.sh",
+    "test": "protractor test2/config.js",
+    "posttest":"killall phantomjs",
     
-    "test": "protractor test/config.js"
-=======
->>>>>>> 66607059c81b69f3c821e085e55b7c8828849416
-=======
-    "start": "node index.js"
->>>>>>> 2fea74fd200278f1b3bdf2c3d5a6716d13786703
+   "start": "node index.js"
   },
   "repository": {
     "type": "git",
