@@ -106,7 +106,7 @@ angular
 
                 RGraph.SVG.GLOBALS.colors = colors;
 
-                var hbar1 = new RGraph.SVG.HBar({
+                 new RGraph.SVG.HBar({
                     id: 'cc2',
                     data: rateCountry,
                     options: {
