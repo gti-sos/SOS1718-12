@@ -9,7 +9,7 @@ angular
 
         var conjunto1 = [];
         var conjunto2 = [];
-        var urlExt = "http://www.clashapi.xyz/api/arenas";
+        var urlExt = "https://www.clashapi.xyz/api/arenas";
 
         $http
             .get(urlExt)
