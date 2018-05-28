@@ -75,10 +75,10 @@ angular.module("managerApp", ["ngRoute"]).config(function($routeProvider) {
             templateUrl: "/rape-manager/analytics/integrations/ProgWeb1.html",
             controller: "ProgWeb1Ctrl"
 
-        }).when("/analytics/progweb2", {
+        }).when("/analytics/clash", {
 
-            templateUrl: "/rape-manager/analytics/integrations/ProgWeb2.html",
-            controller: "ProgWeb2Ctrl"
+            templateUrl: "/rape-manager/analytics/integrations/clashApi.html",
+            controller: "clashApiCtrl"
 
         }).when("/api/v1/taxes-stats", {
 
@@ -102,7 +102,13 @@ angular.module("managerApp", ["ngRoute"]).config(function($routeProvider) {
             controller:"integrationCorsCtrl"
             });
         
+<<<<<<< HEAD
         
     console.log("App initialized and configured");    
     
 }) ;
+=======
+    console.log("App initialized and configured ss");
+
+});
+>>>>>>> c4b9fc10c4c667f3de1b1cac656e842a61fdb9f7

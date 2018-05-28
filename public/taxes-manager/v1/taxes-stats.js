@@ -8,7 +8,7 @@ module.exports = taxesApi;
 
 
 taxesApi.register = function(app, db) {
-console.log("Registering routes for taxes API...");
+//console.log("Registering routes for taxes API...");
 /*****CORS*******/
 var cors = require("cors");
 app.use(cors());
@@ -320,7 +320,7 @@ app.get(BASE_API_PATH_TAXES_STATS + "/docs", (req, res) => {
 
     });
 // GET a recurso concreto 1 parámetro
-console.log("A");
+//console.log("A");
     app.get(BASE_API_PATH_TAXES_STATS + "/:parametro", (req, res) => {
 
         //if (!checkApiKey(req, res)) return;
@@ -401,7 +401,7 @@ console.log("D");
         }
 console.log("E");      
     });
-console.log("F");
+//console.log("F");
   // GET a recurso concreto 2 parámetros
 
     app.get(BASE_API_PATH_TAXES_STATS + "/:country/:year", (req, res) => {

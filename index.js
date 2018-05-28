@@ -191,8 +191,8 @@ var hospital1 = require("./public/hospital-manager/v1/hospital-apikey.js");
 
 app.get(h1 + "/loadInitialData", hospital1.getInitialData);
 app.get(h1, hospital1.getCollection);
-app.get(h1 + "/:country", hospital1.getRecursoSusMuertos);
-app.get(h1 + "/:country/:year", hospital1.getRecursoConcreto);
+//app.get(h1 + "/:country", hospital1.getRecursoSusMuertos);
+app.get(h1 + "/:country/:year", hospital1.getRecurso);
 
 app.post(h1, hospital1.postCollection);
 app.post(h1 + "/:country", hospital1.postRecurso);
@@ -253,13 +253,13 @@ var intialCountries = [{ "country" : "spain",
 /********************************MONGODB**********************************************/
 
 MongoClient.connect(mdbURL,{native_parser:true},(err,mlabs)=>{
-    console.log("G");
+    //console.log("G");
     if(err) {
         
         console.log("Error accesing DB :"+ err);
         process.exit(1);
     }
-        console.log("Conectado");
+        //console.log("Conectado");
         var database = mlabs.db("sos1718-jllopis-sandbox");
         var db = database.collection("taxes-stats");    
         db.find({}).toArray((err, countries) => {
@@ -268,10 +268,10 @@ MongoClient.connect(mdbURL,{native_parser:true},(err,mlabs)=>{
              db.insert(intialCountries);
     }
     else {
-        console.log("DB has  " + countries.length + " countries");
+        //console.log("DB has  " + countries.length + " countries");
     }
 
 });
 taxesApi.register(app,db);
-console.log("H");
+//console.log("H");
 });
