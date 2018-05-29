@@ -238,9 +238,9 @@ module.exports.getSingleDataNameYear = (request, response) => {
 };
 
 //GET a un recurso por nombre o año 
-
+console.log("a");
 module.exports.getData = (request, response) => {
-
+console.log("b");
     var parametro = request.params.name;
     var aux = [];
     var year = null;
@@ -257,9 +257,9 @@ module.exports.getData = (request, response) => {
             process.exit();
         }
         else {
-
+console.log("C");
             db.find({}).toArray(function(error, datos) {
-
+console.log("D");
                 if (checkdb(datos) == false) {
                     response.sendStatus(500);
                 }
@@ -277,12 +277,15 @@ module.exports.getData = (request, response) => {
                     }
 
                 }
-
+console.log("E");
             });
-
+console.log("F");
         }
+console.log("G");
     }
+console.log("H");
 };
+console.log("I");
 
 /***********************POST***************************/
 
