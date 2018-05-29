@@ -102,8 +102,7 @@ angular.module("managerApp", ["ngRoute"]).config(function($routeProvider) {
             controller:"integrationCorsCtrl"
             });
         
-
+        
     console.log("App initialized and configured");    
     
 }) ;
- 
