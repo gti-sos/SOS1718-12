@@ -153,6 +153,7 @@ app.delete(url + "/:name/:year", rapekey22.deleteData);
 /******PROXY Manuel*******/
 
 var apiServerHostDivorce = "https://sos1718-08.herokuapp.com/api/v1/divorces-an";
+var hostClash = "http://www.clashapi.xyz/api/arenas";
 
 app.use("/proxyDivorce", (req, res) =>{
     
@@ -161,6 +162,12 @@ app.use("/proxyDivorce", (req, res) =>{
     req.pipe(request(url)).pipe(res);
 });
 
+app.use("/proxyClash", (req, res) =>{
+    
+    var url = hostClash + req.url ; 
+    
+    req.pipe(request(url)).pipe(res);
+});
 
 
 

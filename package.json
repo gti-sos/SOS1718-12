@@ -16,11 +16,10 @@
   },
   "devDependencies": {},
   "scripts": {
-    "pretest":"test/runPhantomjs.sh",
+    "pretest": "test/runPhantomjs.sh",
     "test": "protractor test/config.js",
-    "posttest":"killall phantomjs",
-   "start": "node index.js"
-  
+    "posttest": "killall phantomjs",
+    "start": "node index.js"
   },
   "repository": {
     "type": "git",

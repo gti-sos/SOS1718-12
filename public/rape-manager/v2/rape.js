@@ -16,7 +16,7 @@ mongoClient.connect(mongoURL, { native_parser: true }, (error, database) => {
 
     db = database.db("rape1718").collection("rape-stats");
 
-   // console.log("la base de datos ha sido conectada con éxito");
+    // console.log("la base de datos ha sido conectada con éxito");
 
 });
 
@@ -185,8 +185,8 @@ module.exports.getAllData = (request, response) => {
         response.sendStatus(500);
 
     else {
-        
-   
+
+
 
         if (!limit || !offset || limit == null || offset == null)
             recorreDatos(response, from, to, pais, fromIncidence, toIncidence, fromRate, toRate, fromTotal, toTotal);
@@ -194,8 +194,8 @@ module.exports.getAllData = (request, response) => {
         else
             recorreDatosLimitOffset(response, parseInt(limit), parseInt(offset), from, to,
                 pais, fromIncidence, toIncidence, fromRate, toRate, fromTotal, toTotal);
-    
-}
+
+    }
 };
 
 //Get a un recurso en concreto por nombre y año
@@ -240,7 +240,7 @@ module.exports.getSingleDataNameYear = (request, response) => {
 //GET a un recurso por nombre o año 
 console.log("a");
 module.exports.getData = (request, response) => {
-console.log("b");
+    console.log("b");
     var parametro = request.params.name;
     var aux = [];
     var year = null;
@@ -257,9 +257,9 @@ console.log("b");
             process.exit();
         }
         else {
-console.log("C");
+            console.log("C");
             db.find({}).toArray(function(error, datos) {
-console.log("D");
+                console.log("D");
                 if (checkdb(datos) == false) {
                     response.sendStatus(500);
                 }
@@ -277,13 +277,13 @@ console.log("D");
                     }
 
                 }
-console.log("E");
+                console.log("E");
             });
-console.log("F");
+            console.log("F");
         }
-console.log("G");
+        console.log("G");
     }
-console.log("H");
+    console.log("H");
 };
 console.log("I");
 
@@ -303,7 +303,7 @@ module.exports.postDataGroup = (request, response) => {
     var parametros = request.body;
     var conflicto = [];
 
-    if (!parametros || parametros == null) 
+    if (!parametros || parametros == null)
         response.sendStatus(400);
 
     else {
@@ -324,7 +324,7 @@ module.exports.postDataGroup = (request, response) => {
                         return conflicto.push(x);
                     });
 
-                    if (conflicto.length != 0) 
+                    if (conflicto.length != 0)
                         response.sendStatus(409);
 
                     else {
@@ -753,7 +753,7 @@ var busquedaPorcentaje = function(response, fromRate, toRate) {
                         return res.push(x);
                     });
                     if (res.length == 0)
-                        response.send([]); 
+                        response.send([]);
                     else
                         response.send(res);
                 }

@@ -80,6 +80,21 @@ angular.module("managerApp", ["ngRoute"]).config(function($routeProvider) {
             templateUrl: "/rape-manager/analytics/integrations/clashApi.html",
             controller: "clashApiCtrl"
 
+        }).when("/analytics/ghibli", {
+
+            templateUrl: "/rape-manager/analytics/integrations/ghibli.html",
+            controller: "ghibliCtrl"
+
+
+
+
+
+
+
+
+
+
+
         }).when("/api/v1/taxes-stats", {
 
             templateUrl: "/taxes-manager/front-end/normal/list.html",
@@ -93,16 +108,16 @@ angular.module("managerApp", ["ngRoute"]).config(function($routeProvider) {
         }).when("/analytics/taxes-stats/data", {
             templateUrl: "/taxes-manager/front-end/normal/Grafica.html",
             controller: "analitycs-jll"
-        }).when("/integrationProxy",{
-            templateUrl:"/taxes-manager/front-end/normal/integrationProxy.html",
-            controller:"integrationProxyCtrl"
-            
-        }).when("/integrationCors",{
-            templateUrl:"/taxes-manager/front-end/normal/integrationCors.html",
-            controller:"integrationCorsCtrl"
-            });
-        
-        
-    console.log("App initialized and configured");    
+        }).when("/integrationProxy", {
+            templateUrl: "/taxes-manager/front-end/normal/integrationProxy.html",
+            controller: "integrationProxyCtrl"
+
+        }).when("/integrationCors", {
+            templateUrl: "/taxes-manager/front-end/normal/integrationCors.html",
+            controller: "integrationCorsCtrl"
+        });
+
     
-}) ;
+    console.log("App initialized and configured");
+
+});
