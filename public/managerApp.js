@@ -85,6 +85,11 @@ angular.module("managerApp", ["ngRoute"]).config(function($routeProvider) {
             templateUrl: "/rape-manager/analytics/integrations/ghibli.html",
             controller: "ghibliCtrl"
 
+        }).when("/analytics/beers", {
+            
+            templateUrl: "/rape-manager/analytics/integrations/beers.html",
+            controller: "beersCtrl"
+
 
 
 
