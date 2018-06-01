@@ -113,15 +113,78 @@ angular.module("managerApp", ["ngRoute"]).config(function($routeProvider) {
         }).when("/analytics/taxes-stats/data", {
             templateUrl: "/taxes-manager/front-end/normal/Grafica.html",
             controller: "analitycs-jll"
-        }).when("/integrationProxy", {
-            templateUrl: "/taxes-manager/front-end/normal/integrationProxy.html",
-            controller: "integrationProxyCtrl"
-
-        }).when("/integrationCors", {
-            templateUrl: "/taxes-manager/front-end/normal/integrationCors.html",
-            controller: "integrationCorsCtrl"
-        });
-
+        }).when("/integrationProxy",{
+            templateUrl:"/taxes-manager/front-end/normal/integrationProxy.html",
+            controller:"integrationProxyCtrl"
+            
+        }).when("/integrationCors",{
+            templateUrl:"/taxes-manager/front-end/normal/integrationCors.html",
+            controller:"integrationCorsCtrl"
+            }).when("/integrationPhone",{
+            templateUrl:"/taxes-manager/front-end/normal/integrationPhone.html",
+            controller:"integrationPhones"
+            }).when("/integrationMashape3",{
+            templateUrl:"/taxes-manager/front-end/normal/integrationMashape3.html",
+            controller:"integrationMashape3"
+                
+            }).when("/integrationChuck",{
+            templateUrl:"/taxes-manager/front-end/normal/integrationChuck.html",
+            controller:"integrationChuck"
+                
+            }).when("/integrationRandom",{
+            templateUrl:"/taxes-manager/front-end/normal/integrationRandom.html",
+            controller:"integrationRandom"
+                
+            }).when("/integrationWow",{
+            templateUrl:"/taxes-manager/front-end/normal/integrationWow.html",
+            controller:"integrationWow"
+                
+            }).when("/integrationIndian",{
+            templateUrl:"/taxes-manager/front-end/normal/integrationIndian.html",
+            controller:"integrationIndian"
+                
+            }).when("/integrationCountries",{
+            templateUrl:"/taxes-manager/front-end/normal/integrationCountries.html",
+            controller:"integrationCountries"
+                
+            }).when("/integrationMusix",{
+            templateUrl:"/taxes-manager/front-end/normal/integrationMusix.html",
+            controller:"integrationMusix"
+                
+            }).when("/integrationRobo",{
+            templateUrl:"/taxes-manager/front-end/normal/integrationRobo.html",
+            controller:"integrationRobo"
+                
+            }).when("/integrationBook",{
+            templateUrl:"/taxes-manager/front-end/normal/integrationBook.html",
+            controller:"integrationBook"
+                
+            }).when("/integrationMess",{
+            templateUrl:"/taxes-manager/front-end/normal/integrationMess.html",
+            controller:"integrationMess"
+                
+            }).when("/integrationInsults",{
+            templateUrl:"/taxes-manager/front-end/normal/integrationInsults.html",
+            controller:"integrationInsults"
+                
+            }).when("/integrationFamous",{
+            templateUrl:"/taxes-manager/front-end/normal/integrationFamous.html",
+            controller:"integrationFamous"
+                
+            }).when("/integrationHack",{
+            templateUrl:"/taxes-manager/front-end/normal/integrationHack.html",
+            controller:"integrationHack"
+                
+            }).when("/integrationWeather",{
+            templateUrl:"/taxes-manager/front-end/normal/integrationWeather.html",
+            controller:"integrationWeather"
+                
+            }).when("/integracionRapeTax",{
+            templateUrl:"/taxes-manager/front-end/normal/integracionRapeTax.html",
+            controller:"integracionRapeTax"
+                
+            });
+        
     
     console.log("App initialized and configured");
 

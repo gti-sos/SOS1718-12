@@ -4,6 +4,7 @@
   "main": "index.js",
   "dependencies": {
     "body-parser": "^1.18.2",
+    "chart.js": "^2.7.2",
     "cors": "^2.8.4",
     "exports": "0.0.1",
     "express": "^4.16.3",

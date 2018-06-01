@@ -1,7 +1,6 @@
 /*global angular*/
 /*global Plotly*/
 
-//var plotly = require('plotly')("mjtr", "lr1c37zw81");
 
 angular
     .module("managerApp")

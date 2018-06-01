@@ -22,10 +22,11 @@ function refresh() {
             updatedTaxAux.income_group = $scope.updatedTax.income_group;
             updatedTaxAux.country_code = $scope.updatedTax.country_code;
             console.log($scope.updatedTax);
-
+             
             $http.put(api + "/" + updatedTaxAux.country + "/" + updatedTaxAux.year, updatedTaxAux).then(function(response) {
                 $scope.status = "Status: " + response.status;
                 $location.path("/api/v1/taxes-stats");
+                //Materialize.toast('<i class="material-icons">error_outline</i> Stat updated!', 2500);
             }, function(response) {
                 switch (response.status) {
                     case 400:
@@ -39,6 +40,6 @@ function refresh() {
         };
         
        refresh();
-    
+       
 }]);
 
