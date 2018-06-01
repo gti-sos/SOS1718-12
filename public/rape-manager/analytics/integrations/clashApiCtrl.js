@@ -6,7 +6,6 @@ angular
     .module("managerApp")
     .controller("clashApiCtrl", ["$http", "$scope", function($http, $scope) {
 
-        //Url de la api del clash: http://www.clashapi.xyz/api/arenas
         var conjunto1 = [];
         var conjunto2 = [];
 
