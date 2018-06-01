@@ -1,0 +1,34 @@
+<h1>Integration With RestCountries</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                       Countries Mashape List
+                    </th>
+        
+      </tr>
+    </thead>
+    <tbody>
+        <thead class="thead-dark">
+               <tr>
+       <th>Name</th>
+       <th>topLevelDomain</th>
+       <th>capital</th>
+       <th>alpha2Code</th>
+       
+ 
+                </tr>
+            </thead>
+        <tr ng-repeat="mash in mashapeC">
+            <td>{{mash.name}}</td>
+            <td>{{mash.topLevelDomain}}</td>
+            <td>{{mash.capital}}</td>
+            <td>{{mash.alpha2Code}}</td>
+            
+        </tr>
+     </tbody>
+     <tbody>
+      
+     </tbody>
+</table>

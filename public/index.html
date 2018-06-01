@@ -22,6 +22,8 @@
  <script src="/bower_components/RGraph/libraries/RGraph.bar.js"></script>
  <script src="/bower_components/RGraph/libraries/RGraph.common.core.js"></script>
  <script src="/bower_components/RGraph/libraries/RGraph.common.key.js"></script>
+ 
+
 
  <!-- Scripts para usar highcharts-->
 
@@ -31,9 +33,11 @@
 
  <!-- Scripts para usar googleGeo-->
  <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-
-
-
+<!--
+<script type="text/javascript">
+ google.charts.load('current', {'packages':['imagesparkline']});
+</script>
+-->
  <script type="text/javascript" src="/rape-manager/front-end/normal/rapeListCtrl.js"></script>
  <script type="text/javascript" src="/rape-manager/front-end/normal/rapeEditCtrl.js"></script>
  <script type="text/javascript" src="/rape-manager/front-end/secure/rapeSecureListCtrl.js"></script>
@@ -56,9 +60,25 @@
  <script type="text/javascript" src="/taxes-manager/front-end/normal/editarCtrl.js"></script>
  <script type="text/javascript" src="/taxes-manager/front-end/normal/integrationProxyCtrl.js"></script>
  <script type="text/javascript" src="/taxes-manager/front-end/normal/integrationCorsCtrl.js"></script>
+ <script type="text/javascript" src="/taxes-manager/front-end/normal/integrationPhones.js"></script>
+ <script type="text/javascript" src="/taxes-manager/front-end/normal/integrationMashape3.js"></script>
+ <script type="text/javascript" src="/taxes-manager/front-end/normal/integrationChuck.js"></script>
+ <script type="text/javascript" src="/taxes-manager/front-end/normal/integrationRandom.js"></script>
+ <script type="text/javascript" src="/taxes-manager/front-end/normal/integrationWow.js"></script>
+ <script type="text/javascript" src="/taxes-manager/front-end/normal/integrationCountries.js"></script>
+ <script type="text/javascript" src="/taxes-manager/front-end/normal/integrationFamous.js"></script>
+ <script type="text/javascript" src="/taxes-manager/front-end/normal/integrationHack.js"></script>
+ <script type="text/javascript" src="/taxes-manager/front-end/normal/integrationIndian.js"></script>
+ <script type="text/javascript" src="/taxes-manager/front-end/normal/integrationInsults.js"></script>
+ <script type="text/javascript" src="/taxes-manager/front-end/normal/integrationMusix.js"></script>
+ <script type="text/javascript" src="/taxes-manager/front-end/normal/integrationRobo.js"></script>
+ <script type="text/javascript" src="/taxes-manager/front-end/normal/integrationWeather.js"></script>
+ <script type="text/javascript" src="/taxes-manager/front-end/normal/integrationMess.js"></script>
+ <script type="text/javascript" src="/taxes-manager/front-end/normal/integrationBook.js"></script>
+ <script type="text/javascript" src="/taxes-manager/front-end/normal/integracionRapeTax.js"></script>
  <!--HighCharts-->
  <!--<script src="https://code.highcharts.com/highcharts.js"></script>-->
-
+<script src="https://code.highcharts.com/modules/histogram-bellcurve.js"></script>
 
  <script src="https://code.highcharts.com/modules/series-label.js"></script>
  <script src="https://code.highcharts.com/modules/exporting.js"></script>
@@ -73,10 +93,22 @@
  <script src="/taxes-manager/front-end/normal/analitycs-jll.js"></script>
 
 
-
+<head>
+<!-- Plotly.js -->
+        <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+        </head>
+         <head>
+  <!-- Plotly.js Pie Chart -->
+  <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+  <!-- Numeric JS Pie Chart -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/numeric/1.2.6/numeric.min.js"></script>
+</head>
 
 </head>
 
+
+	
+	
 <body>
 
  <div ng-view>

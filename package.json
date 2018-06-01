@@ -4,6 +4,7 @@
   "main": "index.js",
   "dependencies": {
     "body-parser": "^1.18.2",
+    "chart.js": "^2.7.2",
     "cors": "^2.8.4",
     "exports": "0.0.1",
     "express": "^4.16.3",
@@ -16,18 +17,10 @@
   },
   "devDependencies": {},
   "scripts": {
-<<<<<<< HEAD
-    "pretest":"test/runPhantomjs.sh",
-    "test": "protractor test/config.js",
-    "posttest":"killall phantomjs",
-    
-   "start": "node index.js"
-=======
-   "pretest" : "test/runPhantomjs.sh",
+    "pretest": "test/runPhantomjs.sh",
     "test": "protractor test/config.js",
     "posttest": "killall phantomjs",
     "start": "node index.js"
->>>>>>> 9ac154c59fb906532d70bc86cd6e8df03cf04c51
   },
   "repository": {
     "type": "git",
