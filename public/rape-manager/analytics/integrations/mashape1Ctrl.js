@@ -7,7 +7,7 @@ angular
 
         //Variables de mi API
         var totalRape = 0;
-
+        var country = [];
         //Variables de la API a integrar zipf
         var perMillion1;
         var perMillion2;
@@ -53,9 +53,13 @@ angular
 
                 for (var i = 0; i < response.data.length; i++) {
                     var x = response.data[i];
-                    res.push([x.country, 'Europe', parseFloat(x["number-of-rape"] / 100), parseFloat(x["number-of-rape"] / 1000)]);
+                    if(!country.include(x.country)){
+                      res.push([x.country, 'Europe', parseFloat(x["number-of-rape"] / 100), parseFloat(x["number-of-rape"] / 1000)]);
                     totalRape = totalRape + Number(x["number-of-rape"] / 100);
-                    datosNum.push([x['number-of-rape'], x.country, x.rate, x.rate]);
+                    datosNum.push([x['number-of-rape'], x.country, x.rate, x.rate]);  
+                    country.push(x.country);
+                    }
+                    
                 }
                 console.log(datosNum);
             });
