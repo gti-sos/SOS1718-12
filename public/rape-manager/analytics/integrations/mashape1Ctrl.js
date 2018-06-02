@@ -6,13 +6,19 @@ angular
     .controller("mashape1Ctrl", ["$http", "$scope", function($http, $scope) {
 
         //Variables de mi API
-        var totalRape = 0;
         var country = [];
+        var rapes = [];
+        var rates = [];
+        var total = [];
+        var year = [];
+
+
         //Variables de la API a integrar zipf
         var perMillion1;
         var perMillion2;
-        var res = [];
-        var datosNum = [];
+        var zipf1;
+        var zipf2;
+   
 
         var url = 'https://wordsapiv1.p.mashape.com/words/ok/frequency';
         var url2 = 'https://wordsapiv1.p.mashape.com/words/death/frequency';
@@ -43,8 +49,7 @@ angular
                 var y = response.data;
                 console.log(y);
                 perMillion1 = y.frequency.perMillion;
-                console.log("el response es");
-                console.log(response);
+                zipf1 = y.frequency.zipf;
             });
 
         $http
@@ -53,56 +58,65 @@ angular
 
                 for (var i = 0; i < response.data.length; i++) {
                     var x = response.data[i];
-                    if(!country.include(x.country)){
-                      res.push([x.country, 'Europe', parseFloat(x["number-of-rape"] / 100), parseFloat(x["number-of-rape"] / 1000)]);
-                    totalRape = totalRape + Number(x["number-of-rape"] / 100);
-                    datosNum.push([x['number-of-rape'], x.country, x.rate, x.rate]);  
                     country.push(x.country);
-                    }
-                    
-                }
-                console.log(datosNum);
-            });
+                    rates.push(x.rate);
+                    rapes.push(parseFloat(x["number-of-rape"] / 10));
+                    total.push(parseFloat(x["total-since-two-thousand"] / 100));
+                    year.push(x.year);
 
+                }
+
+            });
+        
+        
+        
         $http(mashape2)
             .then(function(response) {
                 console.log(response.data);
                 var k = response.data;
 
                 perMillion2 = k.frequency.perMillion;
+                zipf2 = k.frequency.zipf;
 
-                console.log(perMillion2);
 
-                google.charts.load('current', { 'packages': ['treemap'] });
+
+
+                google.charts.load('current', { 'packages': ['corechart'] });
                 google.charts.setOnLoadCallback(drawChart);
 
                 function drawChart() {
                     var data = google.visualization.arrayToDataTable([
-                        ['Location', 'Parent', 'Market trade volume (size)', 'Market increase/decrease (color)'],
-                        ['Global', null, 0, 0],
-                        [perMillion2, 'Death', perMillion2, perMillion2],
-                        ['Death', 'Global', perMillion2, perMillion2],
-                        ['OK', 'Global', perMillion1, perMillion1],
-                        [perMillion1, 'OK', perMillion1, perMillion1],
-                        ['Europe', 'Global', totalRape, 0],
-                        res[0], res[2], res[4], res[6], res[7], res[9], res[11],
-                        datosNum[0], datosNum[2], datosNum[4], datosNum[5], datosNum[7], datosNum[9], datosNum[11]
+                        [country[0], rapes[0], rapes[0], rates[0], rates[0]],
+                        [country[4], total[4], total[4], rapes[4], rapes[4]],
+                        [country[2], rapes[1], rapes[1], total[1], total[1]],
+                        [country[6], rapes[6], rapes[6], total[6], total[6]],
+                        [country[8], total[8], total[8], rapes[8], rapes[8]],
+                        [country[10], total[10], total[10], rapes[10], rapes[10]],
+                        ["ok" , perMillion1 , perMillion1 , zipf1 , zipf1],
+                        ["death" , zipf2 , zipf2 , perMillion2, perMillion2 ]
 
-                    ]);
 
-                    var tree = new google.visualization.TreeMap(document.getElementById('mashapes'));
+                        // Treat the first row as data.
+                    ], true);
 
-                    tree.draw(data, {
-                        minColor: '#f00',
-                        midColor: '#ddd',
-                        maxColor: '#0d0',
-                        headerHeight: 20,
-                        fontColor: 'black',
-                        showScale: true
-                    });
+                    var options = {
+                        legend: 'none',
+                        bar: { groupWidth: '100%' }, // Remove space between bars.
+                        candlestick: {
+                            fallingColor: { strokeWidth: 0, fill: '#a52714' }, // red
+                            risingColor: { strokeWidth: 0, fill: '#0f9d58' } // green
+                        }
+                    };
 
+                    var chart = new google.visualization.CandlestickChart(document.getElementById('chart_div'));
+                    chart.draw(data, options);
                 }
 
-                
+
+
+
+
+
+
             });
     }]);
