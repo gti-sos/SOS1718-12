@@ -7,9 +7,9 @@ describe('Add stats', function() {
 
             element(by.model('newData.country')).sendKeys('ffffas');
             element(by.model('newData.year')).sendKeys(9999);
-            element(by.model("newData['number-of-rape']")).sendKeys(123312);
+            element(by.model("newData['number-of-rape']")).sendKeys(123);
             element(by.model('newData.rate')).sendKeys(12);
-            element(by.model("newData['total-since-two-thousand']")).sendKeys(678789);
+            element(by.model("newData['total-since-two-thousand']")).sendKeys(678);
 
             element(by.buttonText('Add')).click().then(function() {
 
