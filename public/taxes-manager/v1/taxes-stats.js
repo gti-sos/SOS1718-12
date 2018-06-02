@@ -35,6 +35,7 @@ app.use(cors());
         req.pipe(request(rape)).pipe(res);
         
     });
+  
    //Integración Candlestick con Mashape POEMS
    
    var mashapePafmon = {

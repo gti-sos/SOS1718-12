@@ -126,66 +126,66 @@ angular.module("managerApp", ["ngRoute"]).config(function($routeProvider) {
         }).when("/integrationCors",{
             templateUrl:"/taxes-manager/front-end/normal/integrationCors.html",
             controller:"integrationCorsCtrl"
-            }).when("/integrationPhone",{
+            }).when("/analytics/integrationPhone",{
             templateUrl:"/taxes-manager/front-end/normal/integrationPhone.html",
             controller:"integrationPhones"
-            }).when("/integrationMashape3",{
+            }).when("/analytics/integrationMashape3",{
             templateUrl:"/taxes-manager/front-end/normal/integrationMashape3.html",
             controller:"integrationMashape3"
                 
-            }).when("/integrationChuck",{
+            }).when("/analytics/integrationChuck",{
             templateUrl:"/taxes-manager/front-end/normal/integrationChuck.html",
             controller:"integrationChuck"
                 
-            }).when("/integrationRandom",{
+            }).when("/analytics/integrationRandom",{
             templateUrl:"/taxes-manager/front-end/normal/integrationRandom.html",
             controller:"integrationRandom"
                 
-            }).when("/integrationWow",{
+            }).when("/analytics/integrationWow",{
             templateUrl:"/taxes-manager/front-end/normal/integrationWow.html",
             controller:"integrationWow"
                 
-            }).when("/integrationIndian",{
+            }).when("/analytics/integrationIndian",{
             templateUrl:"/taxes-manager/front-end/normal/integrationIndian.html",
             controller:"integrationIndian"
                 
-            }).when("/integrationCountries",{
+            }).when("/analytics/integrationCountries",{
             templateUrl:"/taxes-manager/front-end/normal/integrationCountries.html",
             controller:"integrationCountries"
                 
-            }).when("/integrationMusix",{
+            }).when("/analytics/integrationMusix",{
             templateUrl:"/taxes-manager/front-end/normal/integrationMusix.html",
             controller:"integrationMusix"
                 
-            }).when("/integrationRobo",{
+            }).when("/analytics/integrationRobo",{
             templateUrl:"/taxes-manager/front-end/normal/integrationRobo.html",
             controller:"integrationRobo"
                 
-            }).when("/integrationBook",{
+            }).when("/analytics/integrationBook",{
             templateUrl:"/taxes-manager/front-end/normal/integrationBook.html",
-            controller:"integrationBook"
+            controller:"/analytics/integrationBook"
                 
-            }).when("/integrationMess",{
+            }).when("/analytics/integrationMess",{
             templateUrl:"/taxes-manager/front-end/normal/integrationMess.html",
             controller:"integrationMess"
                 
-            }).when("/integrationInsults",{
+            }).when("/analytics/integrationInsults",{
             templateUrl:"/taxes-manager/front-end/normal/integrationInsults.html",
             controller:"integrationInsults"
                 
-            }).when("/integrationFamous",{
+            }).when("/analytics/integrationFamous",{
             templateUrl:"/taxes-manager/front-end/normal/integrationFamous.html",
             controller:"integrationFamous"
                 
-            }).when("/integrationHack",{
+            }).when("/analytics/integrationHack",{
             templateUrl:"/taxes-manager/front-end/normal/integrationHack.html",
             controller:"integrationHack"
                 
-            }).when("/integrationWeather",{
+            }).when("/analytics/integrationWeather",{
             templateUrl:"/taxes-manager/front-end/normal/integrationWeather.html",
             controller:"integrationWeather"
                 
-            }).when("/integracionRapeTax",{
+            }).when("/analytics/integracionRapeTax",{
             templateUrl:"/taxes-manager/front-end/normal/integracionRapeTax.html",
             controller:"integracionRapeTax"
                 

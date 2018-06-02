@@ -4,15 +4,12 @@ angular
     .module("managerApp")
     .controller("grupalWidgetCtrl", ["$http", "$scope", function($http, $scope) {
 
-        /*$http
-            .get('https://sos2018jllopis-jllopis1.c9users.io/api/v1/taxes-stats/integracionProxy')
-            .then(function(response) {
 
-*/
         var api1 = "/api/v1/taxes-stats";
         var api = "/api/v2/rape-stats";
         var hospital = "/api/v1/hospital-stats"
         var hospdata = [];
+        var hospdata2=[];
         /****************************/
 
         $http
@@ -30,6 +27,7 @@ angular
                         var data2 = [];
                         var data3 = [];
                         var data4 = [];
+                        var data5=[];
                         taxData.map(function(d) {
                             data1.push(d['country']);
                         });
@@ -39,55 +37,66 @@ angular
                         });
 
                         rapeData.map(function(d) {
-                            data2.push(d['country']);
-
-                        });
-                        rapeData.map(function(d) {
                             data4.push(Number(d['year']));
 
                         });
                         rapeData.map(function(d) {
-                            data4.push(Number(d['number-of-rape']));
+                            data5.push(Number(d['number-of-rape']));
 
                         });
 
 
                         $http.get(hospital).then(function(response) {
 
+                    var hospitald= response.data;
+                    
+                hospitald.map(function(d) {
+                            hospdata.push(d['country']);
 
+                        });
+                hospitald.map(function(d) {
+                            hospdata2.push(Number(d['year']));
 
+                        });
                             var trace1 = {
                                 x: data3,
-                                y: data3,
+                                y: data4,
                                 mode: 'markers',
                                 type: 'scatter',
-                                name: 'Team A',
+                                name: 'Taxes-Stats(year,country)',
                                 text: data1,
                                 marker: { size: 12 }
                             };
 
                             var trace2 = {
                                 x: data4,
-                                y: [1, 2, 3, 4, 5, 6],
+                                y: data4,
                                 mode: 'markers',
                                 type: 'scatter',
-                                name: 'Team B',
-                                text: data2,
+                                name: 'Rape-Stats (year,Number of rape)',
+                                text: data5,
                                 marker: { size: 12 }
                             };
-                            
+                            var trace3 = {
+                                x: hospdata2,
+                                y: data4,
+                                mode: 'markers',
+                                type: 'scatter',
+                                name: 'Hospital-Stats(year,country)',
+                                text: hospdata,
+                                marker: { size: 12 }
+                            };
                            
-
-                            var data = [trace1, trace2];
+                         var data = [ trace1, trace2,trace3];
 
                             var layout = {
                                 xaxis: {
-                                    range: data3
+                                    range: data2
                                 },
                                 yaxis: {
-                                    range: data4
+                                    range: data3
                                 },
-                                title: 'Data Labels Hover'
+                                title: 'Integracion Grupal'
                             };
 
                             Plotly.newPlot('grupal', data, layout);
