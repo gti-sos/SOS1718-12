@@ -5,7 +5,6 @@ angular
     .module("managerApp")
     .controller("normalRWCtrl", ["$http", "$scope", function($http, $scope) {
 
-
         var conjunto1 = [];
         var conjunto2 = [];
         var datas = [];
