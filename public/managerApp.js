@@ -125,11 +125,11 @@ angular.module("managerApp", ["ngRoute"]).config(function($routeProvider) {
         }).when("/analytics/taxes-stats/data", {
             templateUrl: "/taxes-manager/front-end/normal/Grafica.html",
             controller: "analitycs-jll"
-        }).when("/integrationProxy", {
+        }).when("/analytics/integrationProxy", {
             templateUrl: "/taxes-manager/front-end/normal/integrationProxy.html",
             controller: "integrationProxyCtrl"
 
-        }).when("/integrationCors", {
+        }).when("/analytics/integrationCors", {
             templateUrl: "/taxes-manager/front-end/normal/integrationCors.html",
             controller: "integrationCorsCtrl"
 
@@ -171,7 +171,7 @@ angular.module("managerApp", ["ngRoute"]).config(function($routeProvider) {
 
         }).when("/analytics/integrationBook", {
             templateUrl: "/taxes-manager/front-end/normal/integrationBook.html",
-            controller: "/analytics/integrationBook"
+            controller: "integrationBook"
 
         }).when("/analytics/integrationMess", {
             templateUrl: "/taxes-manager/front-end/normal/integrationMess.html",
