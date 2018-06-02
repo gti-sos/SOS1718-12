@@ -7,9 +7,15 @@ angular.module("managerApp", ["ngRoute"]).config(function($routeProvider) {
 
             templateUrl: "/home.html"
 
-        }).when("/analytics", {
+        }).when("/integrations", {
 
             templateUrl: "/graphics.html"
+
+
+        }).when("/analytics", {
+
+            templateUrl: "/grupalWidget.html",
+            controller: "grupalWidgetCtrl"
 
 
         }).when("/api/v2/rape-stats", {
@@ -79,6 +85,26 @@ angular.module("managerApp", ["ngRoute"]).config(function($routeProvider) {
 
             templateUrl: "/rape-manager/analytics/integrations/clashApi.html",
             controller: "clashApiCtrl"
+
+        }).when("/analytics/ghibli", {
+
+            templateUrl: "/rape-manager/analytics/integrations/ghibli.html",
+            controller: "ghibliCtrl"
+
+        }).when("/analytics/beers", {
+            
+            templateUrl: "/rape-manager/analytics/integrations/beers.html",
+            controller: "beersCtrl"
+
+
+
+
+
+
+
+
+
+
 
         }).when("/api/v1/taxes-stats", {
 
@@ -165,7 +191,7 @@ angular.module("managerApp", ["ngRoute"]).config(function($routeProvider) {
                 
             });
         
-        
-    console.log("App initialized and configured");    
     
-}) ;
+    console.log("App initialized and configured");
+
+});

@@ -22,7 +22,9 @@
  <script src="/bower_components/RGraph/libraries/RGraph.bar.js"></script>
  <script src="/bower_components/RGraph/libraries/RGraph.common.core.js"></script>
  <script src="/bower_components/RGraph/libraries/RGraph.common.key.js"></script>
- 
+ <script src="/bower_components/RGraph/libraries/RGraph.gantt.js"></script>
+ <script src="/bower_components/RGraph/libraries/RGraph.svg.pie.js"></script>
+ <script src="/bower_components/RGraph/libraries/RGraph.svg.common.tooltips.js"></script>
 
 
  <!-- Scripts para usar highcharts-->
@@ -33,11 +35,30 @@
 
  <!-- Scripts para usar googleGeo-->
  <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-<!--
+ <!--
 <script type="text/javascript">
  google.charts.load('current', {'packages':['imagesparkline']});
 </script>
 -->
+
+ <!-- Scripts para usar plotty js -->
+
+ <!--<!-- Latest compiled and minified plotly.js JavaScript  Latest compiled and minified plotly.j -->
+ <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+
+ <!-- Scripts para usar amcharts -->
+
+ <script src="https://www.amcharts.com/lib/3/amcharts.js"></script>
+ <script src="https://www.amcharts.com/lib/3/xy.js"></script>
+ <script src="https://www.amcharts.com/lib/3/plugins/export/export.min.js"></script>
+ <link rel="stylesheet" href="https://www.amcharts.com/lib/3/plugins/export/export.css" type="text/css" media="all" />
+ <script src="https://www.amcharts.com/lib/3/themes/light.js"></script>
+ <script src="https://www.amcharts.com/lib/3/funnel.js"></script>
+ <script src="https://www.amcharts.com/lib/3/serial.js"></script>
+ <script src="https://www.amcharts.com/lib/3/pie.js"></script>
+
+ <!-- RAPE STATS-->
+
  <script type="text/javascript" src="/rape-manager/front-end/normal/rapeListCtrl.js"></script>
  <script type="text/javascript" src="/rape-manager/front-end/normal/rapeEditCtrl.js"></script>
  <script type="text/javascript" src="/rape-manager/front-end/secure/rapeSecureListCtrl.js"></script>
@@ -52,6 +73,8 @@
  <script type="text/javascript" src="/rape-manager/analytics/integrations/mashape2Ctrl.js"></script>
  <script type="text/javascript" src="/rape-manager/analytics/integrations/ProgWeb1Ctrl.js"></script>
  <script type="text/javascript" src="/rape-manager/analytics/integrations/clashApiCtrl.js"></script>
+ <script type="text/javascript" src="/rape-manager/analytics/integrations/ghibliCtrl.js"></script>
+ <script type="text/javascript" src="/rape-manager/analytics/integrations/beersCtrl.js"></script>
 
 
 
@@ -78,7 +101,7 @@
  <script type="text/javascript" src="/taxes-manager/front-end/normal/integracionRapeTax.js"></script>
  <!--HighCharts-->
  <!--<script src="https://code.highcharts.com/highcharts.js"></script>-->
-<script src="https://code.highcharts.com/modules/histogram-bellcurve.js"></script>
+ <script src="https://code.highcharts.com/modules/histogram-bellcurve.js"></script>
 
  <script src="https://code.highcharts.com/modules/series-label.js"></script>
  <script src="https://code.highcharts.com/modules/exporting.js"></script>
@@ -93,22 +116,17 @@
  <script src="/taxes-manager/front-end/normal/analitycs-jll.js"></script>
 
 
-<head>
-<!-- Plotly.js -->
-        <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
-        </head>
-         <head>
-  <!-- Plotly.js Pie Chart -->
-  <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
-  <!-- Numeric JS Pie Chart -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/numeric/1.2.6/numeric.min.js"></script>
-</head>
 
+ <!-- Plotly.js -->
+ <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+
+ <!-- Plotly.js Pie Chart -->
+ <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+ <!-- Numeric JS Pie Chart -->
+ <script src="https://cdnjs.cloudflare.com/ajax/libs/numeric/1.2.6/numeric.min.js"></script>
 </head>
 
 
-	
-	
 <body>
 
  <div ng-view>
