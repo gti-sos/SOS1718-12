@@ -90,7 +90,7 @@ angular
                                 title: 'Data Labels Hover'
                             };
 
-                            Plotly.newPlot('myDiv', data, layout);
+                            Plotly.newPlot('grupal', data, layout);
 
                         });
 
