@@ -95,11 +95,16 @@ angular
                 }
 
 
+        console.log("score 1 : " + score1);
+        console.log("score 2 : " + score2);
+        console.log("score 3 : " + score3);
+
+
 
                 new RGraph.SVG.Line({
                     id: 'mashape2',
                     data: [
-                        [score2 * 10, score1 * 10, score3 * 10],
+                        [score2 * 100, score1 * 35, score3 * 150],
                         totalRate
                     ],
                     options: {
@@ -111,7 +116,7 @@ angular
                         gutterLeft: 75,
                         gutterRight: 25,
                         gutterBottom: 35,
-                        yaxisUnitsPre: '$',
+                        yaxisUnitsPre: '',
                         spline: true,
                         filled: true,
                         filledAccumulative: true,
@@ -120,7 +125,7 @@ angular
                         title: 'Tweet Sentiment API vs rape rate stats ',
                         titleFont: 'Arial black',
                         titleItalic: true,
-                        titleColor: 'gray'
+                        titleColor: 'blue'
                     }
                 }).trace();
 
