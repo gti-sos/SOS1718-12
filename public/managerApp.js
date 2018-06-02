@@ -7,9 +7,15 @@ angular.module("managerApp", ["ngRoute"]).config(function($routeProvider) {
 
             templateUrl: "/home.html"
 
-        }).when("/analytics", {
+        }).when("/integrations", {
 
             templateUrl: "/graphics.html"
+
+
+        }).when("/analytics", {
+
+            templateUrl: "/grupalWidget.html",
+            controller: "grupalWidgetCtrl"
 
 
         }).when("/api/v2/rape-stats", {
@@ -75,10 +81,30 @@ angular.module("managerApp", ["ngRoute"]).config(function($routeProvider) {
             templateUrl: "/rape-manager/analytics/integrations/ProgWeb1.html",
             controller: "ProgWeb1Ctrl"
 
-        }).when("/analytics/progweb2", {
+        }).when("/analytics/clash", {
 
-            templateUrl: "/rape-manager/analytics/integrations/ProgWeb2.html",
-            controller: "ProgWeb2Ctrl"
+            templateUrl: "/rape-manager/analytics/integrations/clashApi.html",
+            controller: "clashApiCtrl"
+
+        }).when("/analytics/ghibli", {
+
+            templateUrl: "/rape-manager/analytics/integrations/ghibli.html",
+            controller: "ghibliCtrl"
+
+        }).when("/analytics/beers", {
+
+            templateUrl: "/rape-manager/analytics/integrations/beers.html",
+            controller: "beersCtrl"
+
+
+
+
+
+
+
+
+
+
 
         }).when("/api/v1/taxes-stats", {
 
@@ -93,14 +119,78 @@ angular.module("managerApp", ["ngRoute"]).config(function($routeProvider) {
         }).when("/analytics/taxes-stats/data", {
             templateUrl: "/taxes-manager/front-end/normal/Grafica.html",
             controller: "analitycs-jll"
-        }).when("/integrationProxy",{
-            templateUrl:"/taxes-manager/front-end/normal/integrationProxy.html",
-            controller:"integrationProxyCtrl"
-            
-        }).when("/integrationCors",{
-            templateUrl:"/taxes-manager/front-end/normal/integrationCors.html",
-            controller:"integrationCorsCtrl"
-            
+        }).when("/integrationProxy", {
+            templateUrl: "/taxes-manager/front-end/normal/integrationProxy.html",
+            controller: "integrationProxyCtrl"
+
+        }).when("/integrationCors", {
+            templateUrl: "/taxes-manager/front-end/normal/integrationCors.html",
+            controller: "integrationCorsCtrl"
+
+
+        }).when("/analytics/integrationPhone", {
+            templateUrl: "/taxes-manager/front-end/normal/integrationPhone.html",
+            controller: "integrationPhones"
+        }).when("/analytics/integrationMashape3", {
+            templateUrl: "/taxes-manager/front-end/normal/integrationMashape3.html",
+            controller: "integrationMashape3"
+
+        }).when("/analytics/integrationChuck", {
+            templateUrl: "/taxes-manager/front-end/normal/integrationChuck.html",
+            controller: "integrationChuck"
+
+        }).when("/analytics/integrationRandom", {
+            templateUrl: "/taxes-manager/front-end/normal/integrationRandom.html",
+            controller: "integrationRandom"
+
+        }).when("/analytics/integrationWow", {
+            templateUrl: "/taxes-manager/front-end/normal/integrationWow.html",
+            controller: "integrationWow"
+
+        }).when("/analytics/integrationIndian", {
+            templateUrl: "/taxes-manager/front-end/normal/integrationIndian.html",
+            controller: "integrationIndian"
+
+        }).when("/analytics/integrationCountries", {
+            templateUrl: "/taxes-manager/front-end/normal/integrationCountries.html",
+            controller: "integrationCountries"
+
+        }).when("/analytics/integrationMusix", {
+            templateUrl: "/taxes-manager/front-end/normal/integrationMusix.html",
+            controller: "integrationMusix"
+
+        }).when("/analytics/integrationRobo", {
+            templateUrl: "/taxes-manager/front-end/normal/integrationRobo.html",
+            controller: "integrationRobo"
+
+        }).when("/analytics/integrationBook", {
+            templateUrl: "/taxes-manager/front-end/normal/integrationBook.html",
+            controller: "/analytics/integrationBook"
+
+        }).when("/analytics/integrationMess", {
+            templateUrl: "/taxes-manager/front-end/normal/integrationMess.html",
+            controller: "integrationMess"
+
+        }).when("/analytics/integrationInsults", {
+            templateUrl: "/taxes-manager/front-end/normal/integrationInsults.html",
+            controller: "integrationInsults"
+
+        }).when("/analytics/integrationFamous", {
+            templateUrl: "/taxes-manager/front-end/normal/integrationFamous.html",
+            controller: "integrationFamous"
+
+        }).when("/analytics/integrationHack", {
+            templateUrl: "/taxes-manager/front-end/normal/integrationHack.html",
+            controller: "integrationHack"
+
+        }).when("/analytics/integrationWeather", {
+            templateUrl: "/taxes-manager/front-end/normal/integrationWeather.html",
+            controller: "integrationWeather"
+
+        }).when("/analytics/integracionRapeTax", {
+            templateUrl: "/taxes-manager/front-end/normal/integracionRapeTax.html",
+            controller: "integracionRapeTax"
+        
         }).when("/hospitals",{
         templateUrl : "/hospital-manager/front-end/hospitalList.html",
         controller : "hospitalListCntrl"
@@ -109,7 +199,8 @@ angular.module("managerApp", ["ngRoute"]).config(function($routeProvider) {
         templateUrl : "/hospital-manager/front-end/hospitalEdit.html",
         controller : "hospitalEditCtrl"
         });
-        
-    console.log("App initialized and configured ss");
+
+
+    console.log("App initialized and configured");
 
 });

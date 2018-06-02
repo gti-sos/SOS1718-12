@@ -153,6 +153,7 @@ app.delete(url + "/:name/:year", rapekey22.deleteData);
 /******PROXY Manuel*******/
 
 var apiServerHostDivorce = "https://sos1718-08.herokuapp.com/api/v1/divorces-an";
+var hostClash = "http://www.clashapi.xyz/api/arenas";
 
 app.use("/proxyDivorce", (req, res) =>{
     
@@ -161,6 +162,12 @@ app.use("/proxyDivorce", (req, res) =>{
     req.pipe(request(url)).pipe(res);
 });
 
+app.use("/proxyClash", (req, res) =>{
+    
+    var url = hostClash + req.url ; 
+    
+    req.pipe(request(url)).pipe(res);
+});
 
 
 
@@ -210,7 +217,11 @@ var hospital1 = require("./public/hospital-manager/v1/hospital-apikey.js");
 
 app.get(h1 + "/loadInitialData", hospital1.getInitialData);
 app.get(h1, hospital1.getCollection);
+<<<<<<< HEAD
 app.get(h1 + "/:country", hospital1.getRecurso);
+=======
+//app.get(h1 + "/:country", hospital1.getRecursoSusMuertos);
+>>>>>>> 1d58ea5d5846a2f3fe5e17c519181cc3a98d0391
 app.get(h1 + "/:country/:year", hospital1.getRecurso);
 
 app.post(h1, hospital1.postCollection);
@@ -272,13 +283,13 @@ var intialCountries = [{ "country" : "spain",
 /********************************MONGODB**********************************************/
 
 MongoClient.connect(mdbURL,{native_parser:true},(err,mlabs)=>{
-    console.log("G");
+    //console.log("G");
     if(err) {
         
         console.log("Error accesing DB :"+ err);
         process.exit(1);
     }
-        console.log("Conectado");
+        //console.log("Conectado");
         var database = mlabs.db("sos1718-jllopis-sandbox");
         var db = database.collection("taxes-stats");    
         db.find({}).toArray((err, countries) => {
@@ -287,10 +298,10 @@ MongoClient.connect(mdbURL,{native_parser:true},(err,mlabs)=>{
              db.insert(intialCountries);
     }
     else {
-        console.log("DB has  " + countries.length + " countries");
+        //console.log("DB has  " + countries.length + " countries");
     }
 
 });
 taxesApi.register(app,db);
-console.log("H");
+//console.log("H");
 });

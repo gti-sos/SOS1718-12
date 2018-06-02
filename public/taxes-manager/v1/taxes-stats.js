@@ -8,7 +8,7 @@ module.exports = taxesApi;
 
 
 taxesApi.register = function(app, db) {
-console.log("Registering routes for taxes API...");
+//console.log("Registering routes for taxes API...");
 /*****CORS*******/
 var cors = require("cors");
 app.use(cors());
@@ -17,12 +17,241 @@ app.use(cors());
  var basket = "https://sos1718-11.herokuapp.com/api/v2/basketball-stats";
  var pollution = "https://sos1718-03.herokuapp.com/api/v1/pollution-cities";
    
+    //BasketBall-Stats
+    
     app.use(BASE_API_PATH_TAXES_STATS + "/integracionProxy", function(req, res) {
         req.pipe(request(basket)).pipe(res);
     });
+    //Pollutions-stats
     
     app.use(BASE_API_PATH_TAXES_STATS + "/cors", function(req, res) {
         req.pipe(request(pollution)).pipe(res);
+    });
+    //Rape-Stats
+    
+    var rape = "https://sos1718-12.herokuapp.com/api/v2/rape-stats";
+    
+    app.use(BASE_API_PATH_TAXES_STATS + "/integracionRapeTax", function(req, res) {
+        req.pipe(request(rape)).pipe(res);
+        
+    });
+  
+   //Integración Candlestick con Mashape POEMS
+   
+   var mashapePafmon = {
+            method: 'GET',
+            url: "https://pafmon-walt-whitman-poems.p.mashape.com/poems/o-me-o-life",
+            headers: {
+                "X-Mashape-Key": "ydbYFXozzWmshYW0ogiIH3b0RTd5p1zHerUjsnRnQ52luyL5Js", 
+                "Accept": "application/json"
+            }};
+   
+  
+   
+   app.use(BASE_API_PATH_TAXES_STATS + "/phoneProxy", function(req, res) {
+        req.pipe(request(mashapePafmon)).pipe(res);
+         console.log(mashapePafmon);
+    });
+   
+   //Integracion Mashape
+   
+   var mashapeTree = {
+            method: 'GET',
+            url: "https://simple-weather.p.mashape.com/weatherdata?lat=1.0&lng=1.0",
+            headers: {
+                "X-Mashape-Key": "ydbYFXozzWmshYW0ogiIH3b0RTd5p1zHerUjsnRnQ52luyL5Js", 
+                "Accept": "application/json"
+            }};
+   app.use(BASE_API_PATH_TAXES_STATS + "/integrationMashape2", function(req, res) {
+        req.pipe(request(mashapeTree)).pipe(res);
+         console.log(mashapeTree);
+    });
+    //Integracion con Mashape FIFA WORLD CUP
+   var mashape3 = {
+            method: 'GET',
+            url: "https://montanaflynn-fifa-world-cup.p.mashape.com/games",
+            headers: {
+                "X-Mashape-Key": "ydbYFXozzWmshYW0ogiIH3b0RTd5p1zHerUjsnRnQ52luyL5Js", 
+                "Accept": "application/json"
+            }};
+   app.use(BASE_API_PATH_TAXES_STATS + "/integrationMashape3", function(req, res) {
+        req.pipe(request(mashape3)).pipe(res);
+         console.log(mashape3);
+    });
+    
+    //Integracion Mashape con Chuck Norris
+    var mashapeChuck = {
+            method: 'GET',
+            url: "https://matchilling-chuck-norris-jokes-v1.p.mashape.com/jokes/categories",
+            headers: {
+                "X-Mashape-Key": "ydbYFXozzWmshYW0ogiIH3b0RTd5p1zHerUjsnRnQ52luyL5Js", 
+                "Accept": "application/json"
+            }};
+      app.use(BASE_API_PATH_TAXES_STATS + "/integrationChuck", function(req, res) {
+        req.pipe(request(mashapeChuck)).pipe(res);
+         console.log(mashapeChuck);
+    });
+    //Integracion Mashape con RandomQuotes
+    
+    var mashapeRandom = {
+            method: 'GET',
+            url: "https://quotes.p.mashape.com/",
+            headers: {
+                "X-Mashape-Key": "ydbYFXozzWmshYW0ogiIH3b0RTd5p1zHerUjsnRnQ52luyL5Js", 
+                "Accept": "application/json"
+            }};
+    app.use(BASE_API_PATH_TAXES_STATS + "/integrationRandom", function(req, res) {
+        req.pipe(request(mashapeRandom)).pipe(res);
+         console.log(mashapeRandom);
+    });
+//Integracion WOW
+var mashapeWow = {
+            method: 'GET',
+            url: "https://omgvamp-hearthstone-v1.p.mashape.com/info",
+            headers: {
+                "X-Mashape-Key": "ydbYFXozzWmshYW0ogiIH3b0RTd5p1zHerUjsnRnQ52luyL5Js", 
+                "Accept": "application/json"
+            }};
+app.use(BASE_API_PATH_TAXES_STATS + "/integrationWow", function(req, res) {
+        req.pipe(request(mashapeWow)).pipe(res);
+         console.log(mashapeWow);
+    });
+    
+    //Integracion Mashape Rest Countries
+    
+    var mashapeCountries = {
+            method: 'GET',
+            url: "https://restcountries-v1.p.mashape.com/all",
+            headers: {
+                "X-Mashape-Key": "ydbYFXozzWmshYW0ogiIH3b0RTd5p1zHerUjsnRnQ52luyL5Js", 
+                "Accept": "application/json"
+            }};
+   app.use(BASE_API_PATH_TAXES_STATS + "/integrationCountries", function(req, res) {
+        req.pipe(request(mashapeCountries)).pipe(res);
+         console.log(mashapeCountries);
+    }); 
+    
+    //integracion Mashape MusiXMatch
+    
+    var mashapeMusix = {
+            method: 'GET',
+            url: "https://musixmatchcom-musixmatch.p.mashape.com/wsr/1.1/artist.get?artist_id=1039",
+            headers: {
+                "X-Mashape-Key": "ydbYFXozzWmshYW0ogiIH3b0RTd5p1zHerUjsnRnQ52luyL5Js", 
+                "Accept": "application/json"
+            }};
+    app.use(BASE_API_PATH_TAXES_STATS + "/integrationMusix", function(req, res) {
+        req.pipe(request(mashapeMusix)).pipe(res);
+         console.log(mashapeMusix);
+    });
+    //integracion Mashape Robohash Image Generator
+    var mashapeRobo = {
+            method: 'GET',
+            url: "https://robohash.p.mashape.com/index.php",
+            headers: {
+                "X-Mashape-Key": "ydbYFXozzWmshYW0ogiIH3b0RTd5p1zHerUjsnRnQ52luyL5Js", 
+                "Accept": "application/json"
+            }};
+    app.use(BASE_API_PATH_TAXES_STATS + "/integrationRobo", function(req, res) {
+        req.pipe(request(mashapeRobo)).pipe(res);
+         console.log(mashapeRobo);
+    });
+    
+    //integracion Mashape Bookmarks
+    
+    var mashapeBook = {
+            method: 'GET',
+            url: "https://bettingodds-bettingoddsapi-v1.p.mashape.com/bookmakers",
+            headers: {
+                "X-Mashape-Key": "ydbYFXozzWmshYW0ogiIH3b0RTd5p1zHerUjsnRnQ52luyL5Js", 
+                "Accept": "application/json"
+            }};
+    app.use(BASE_API_PATH_TAXES_STATS + "/integrationBook", function(req, res) {
+        req.pipe(request(mashapeBook)).pipe(res);
+         console.log(mashapeBook);
+    });
+    
+    //integracion Mashape Messages
+    var mashapeMess = {
+            method: 'GET',
+            url: "https://quotes.p.mashape.com/",
+            headers: {
+                "X-Mashape-Key": "ydbYFXozzWmshYW0ogiIH3b0RTd5p1zHerUjsnRnQ52luyL5Js", 
+                "Accept": "application/json"
+            }};
+    app.use(BASE_API_PATH_TAXES_STATS + "/integrationMessages", function(req, res) {
+        req.pipe(request(mashapeMess)).pipe(res);
+         console.log(mashapeMess);
+    });
+    
+    //Integracion Mashape Random Insults
+    
+    var mashapeInsults = {
+            method: 'GET',
+            url: "https://community-dweetio.p.mashape.com/dweet/for/test",
+            headers: {
+                "X-Mashape-Key": "ydbYFXozzWmshYW0ogiIH3b0RTd5p1zHerUjsnRnQ52luyL5Js", 
+                "Accept": "application/json"
+            }};
+    app.use(BASE_API_PATH_TAXES_STATS + "/integrationInsults", function(req, res) {
+        req.pipe(request(mashapeInsults)).pipe(res);
+         console.log(mashapeInsults);
+    });
+    
+   //Integracion Mashape Random Famous Quotes
+   
+   var mashapeFamous = {
+            method: 'GET',
+            url: "https://andruxnet-random-famous-quotes.p.mashape.com/",
+            headers: {
+                "X-Mashape-Key": "ydbYFXozzWmshYW0ogiIH3b0RTd5p1zHerUjsnRnQ52luyL5Js", 
+                "Accept": "application/json"
+            }};
+            app.use(BASE_API_PATH_TAXES_STATS + "/integrationFamous", function(req, res) {
+        req.pipe(request(mashapeFamous)).pipe(res);
+         console.log(mashapeFamous);
+    });
+   //Integracion Mashape HackerNews
+   
+   var mashapeHack = {
+            method: 'GET',
+            url: "https://community-hacker-news-v1.p.mashape.com/updates.json?print=pretty",
+            headers: {
+                "X-Mashape-Key": "ydbYFXozzWmshYW0ogiIH3b0RTd5p1zHerUjsnRnQ52luyL5Js", 
+                "Accept": "application/json"
+            }};
+  app.use(BASE_API_PATH_TAXES_STATS + "/integrationHack", function(req, res) {
+        req.pipe(request(mashapeHack)).pipe(res);
+         console.log(mashapeHack);
+    });
+    //Integracion Mashape Weather
+    
+    var mashapeWeather = {
+            method: 'GET',
+            url: "https://simple-weather.p.mashape.com/weatherdata?lat=40.0000000.0&lng=-4.0000000",
+            headers: {
+                "X-Mashape-Key": "ydbYFXozzWmshYW0ogiIH3b0RTd5p1zHerUjsnRnQ52luyL5Js", 
+                "Accept": "application/json"
+            }};
+    app.use(BASE_API_PATH_TAXES_STATS + "/integrationWeather", function(req, res) {
+        req.pipe(request(mashapeWeather)).pipe(res);
+         console.log(mashapeWeather);
+    });
+    //integracion Mashape Indian Stock
+    
+    //https://indianstockexchange.p.mashape.com/index.php?id=1
+    
+    var mashapeIndian = {
+            method: 'GET',
+            url: "https://indianstockexchange.p.mashape.com/index.php?id=1",
+            headers: {
+                "X-Mashape-Key": "ydbYFXozzWmshYW0ogiIH3b0RTd5p1zHerUjsnRnQ52luyL5Js", 
+                "Accept": "application/json"
+            }};
+    
+    app.use(BASE_API_PATH_TAXES_STATS + "/integrationIndian", function(req, res) {
+        req.pipe(request(mashapeIndian)).pipe(res);
+         console.log(mashapeIndian);
     });
 /*****************************ENLACE-POSTMAN****************************/
 
@@ -320,7 +549,7 @@ app.get(BASE_API_PATH_TAXES_STATS + "/docs", (req, res) => {
 
     });
 // GET a recurso concreto 1 parámetro
-console.log("A");
+//console.log("A");
     app.get(BASE_API_PATH_TAXES_STATS + "/:parametro", (req, res) => {
 
         //if (!checkApiKey(req, res)) return;
@@ -401,7 +630,7 @@ console.log("D");
         }
 console.log("E");      
     });
-console.log("F");
+//console.log("F");
   // GET a recurso concreto 2 parámetros
 
     app.get(BASE_API_PATH_TAXES_STATS + "/:country/:year", (req, res) => {

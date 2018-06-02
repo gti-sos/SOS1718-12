@@ -59,32 +59,19 @@ angular
                 console.log(y);
                 score1 = Number(y.score);
                 console.log("score1: " + score1);
-            });
+        
 
 
 
-        $http
-            .get("/api/v2/rape-stats")
-            .then(function(response) {
-
-                for (var i = 0; i < response.data.length; i++) {
-                    var x = response.data[i];
-                    year.push(Number(x.year));
-                    totalRate.push(Number(x.rate ));
-                }
-
-            });
 
         $http(mashape2)
             .then(function(response) {
                 console.log(response.data);
                 var k = response.data;
 
-                score2 =Number(k.score);
+                score2 = Number(k.score);
                 console.log("score2: " + score2);
 
-
-            });
 
 
         $http(mashape3)
@@ -94,10 +81,25 @@ angular
                 score3 = Number(response.data.score);
                 console.log("score3: " + score3);
 
+        
+
+
+        $http
+            .get("/api/v2/rape-stats")
+            .then(function(response) {
+
+                for (var i = 0; i < response.data.length; i++) {
+                    var x = response.data[i];
+                    year.push(Number(x.year));
+                    totalRate.push(Number(x.rate));
+                }
+
+
+
                 new RGraph.SVG.Line({
                     id: 'mashape2',
                     data: [
-                        [score2 *10, score1*10, score3*10],
+                        [score2 * 10, score1 * 10, score3 * 10],
                         totalRate
                     ],
                     options: {
@@ -122,7 +124,10 @@ angular
                     }
                 }).trace();
 
-
-               
             });
+    });
+    
+            });
+            });
+
     }]);

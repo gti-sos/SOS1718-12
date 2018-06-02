@@ -1,5 +1,5 @@
 /*global angular*/
-/*global RGraph*/
+/*global google*/
 
 angular
     .module("managerApp")
@@ -11,6 +11,8 @@ angular
         //Variables de la API a integrar zipf
         var perMillion1;
         var perMillion2;
+        var res = [];
+        var datosNum = [];
 
         var url = 'https://wordsapiv1.p.mashape.com/words/ok/frequency';
         var url2 = 'https://wordsapiv1.p.mashape.com/words/death/frequency';
@@ -41,7 +43,8 @@ angular
                 var y = response.data;
                 console.log(y);
                 perMillion1 = y.frequency.perMillion;
-
+                console.log("el response es");
+                console.log(response);
             });
 
         $http
@@ -50,9 +53,11 @@ angular
 
                 for (var i = 0; i < response.data.length; i++) {
                     var x = response.data[i];
+                    res.push([x.country, 'Europe', parseFloat(x["number-of-rape"] / 100), parseFloat(x["number-of-rape"] / 1000)]);
                     totalRape = totalRape + Number(x["number-of-rape"] / 100);
+                    datosNum.push([x['number-of-rape'], x.country, x.rate, x.rate]);
                 }
-
+                console.log(datosNum);
             });
 
         $http(mashape2)
@@ -62,38 +67,38 @@ angular
 
                 perMillion2 = k.frequency.perMillion;
 
-                console.log(perMillion1);
+                console.log(perMillion2);
 
-                new RGraph.Bar({
-                    id: 'mashape1',
-                    data: [
-                        [perMillion1, perMillion2, totalRape]
-                    ],
-                    options: {
-                        textAccessible: true,
-                        variant: '3d',
-                        variantThreedAngle: 0.3,
-                        strokestyle: 'rgba(0,0,0,0)',
-                        colors: ['Gradient(#fbb:red)', 'Gradient(#bfb:green)', 'Gradient(#bbf:blue)'],
-                        gutterTop: 5,
-                        gutterLeft: 5,
-                        gutterRight: 15,
-                        gutterBottom: 50,
-                        labels: ['Numbers of use words and number of rapes'],
-                        shadowColor: '#ccc',
-                        shadowOffsetx: 3,
-                        backgroundGridColor: '#eee',
-                        scaleZerostart: true,
-                        axisColor: '#ddd',
-                        unitsPost: '',
-                        title: 'Numbers of authors and rapes % compare',
-                        key: ['OK word usage per million ', 'death word usage per million', 'total rapes *100 '],
-                        keyShadow: true,
-                        keyShadowColor: '#ccc',
-                        keyShadowOffsety: 0,
-                        keyShadowOffsetx: 3,
-                        keyShadowBlur: 15
-                    }
-                }).draw();
+                google.charts.load('current', { 'packages': ['treemap'] });
+                google.charts.setOnLoadCallback(drawChart);
+
+                function drawChart() {
+                    var data = google.visualization.arrayToDataTable([
+                        ['Location', 'Parent', 'Market trade volume (size)', 'Market increase/decrease (color)'],
+                        ['Global', null, 0, 0],
+                        [perMillion2, 'Death', perMillion2, perMillion2],
+                        ['Death', 'Global', perMillion2, perMillion2],
+                        ['OK', 'Global', perMillion1, perMillion1],
+                        [perMillion1, 'OK', perMillion1, perMillion1],
+                        ['Europe', 'Global', totalRape, 0],
+                        res[0], res[2], res[4], res[5], res[7], res[9], res[11],
+                        datosNum[0], datosNum[2], datosNum[4], datosNum[5], datosNum[7], datosNum[9], datosNum[11]
+
+                    ]);
+
+                    var tree = new google.visualization.TreeMap(document.getElementById('mashapes'));
+
+                    tree.draw(data, {
+                        minColor: '#f00',
+                        midColor: '#ddd',
+                        maxColor: '#0d0',
+                        headerHeight: 20,
+                        fontColor: 'black',
+                        showScale: true
+                    });
+
+                }
+
+                
             });
     }]);
