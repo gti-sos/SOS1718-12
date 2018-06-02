@@ -1,0 +1,24 @@
+<h2>Edit Hospitals</h2> 
+              <table class="table">
+                  <thead>
+                  <tr>
+                      <th>Country</th>
+                      <th>Year</th>
+                      <th>Expense</th>
+                      <th>Bed</th>
+                      <th>Attack</th>
+                     
+                  </tr>
+                  </thead>
+                  <tbody>
+                      <tr>
+                          <td>{{updateStat.country}}</td>
+                          <td><input class ="form-control" ng-model="updateStat.year"/></td>
+                          <td><input class ="form-control" ng-model="updateStat.expense"/></td>
+                          <td><input class ="form-control" ng-model="updateStat.bed"/></td>
+                          <td><input class ="form-control" ng-model="updateStat.attack"/></td>
+                          <td><button class="btn btn-primary"ng-click= "update(updateStat)">Update</button></td>
+
+                      </tr>
+                </tbody>
+            </table

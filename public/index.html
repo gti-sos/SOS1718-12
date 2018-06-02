@@ -4,137 +4,167 @@
 <head>
 
 
- <link rel="stylesheet" href="/bower_components/bootstrap/dist/css/bootstrap.min.css" type="text/css" />
- <script type="text/javascript" src="/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
- <script type="text/javascript" src="/bower_components/angular/angular.min.js"></script>
- <script type="text/javascript" src="/bower_components/angular-route/angular-route.min.js"></script>
- <script type="text/javascript" src="/managerApp.js"></script>
+    <link rel="stylesheet" href="/bower_components/bootstrap/dist/css/bootstrap.min.css" type="text/css" />
+    <script type="text/javascript" src="/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="/bower_components/angular/angular.min.js"></script>
+    <script type="text/javascript" src="/bower_components/angular-route/angular-route.min.js"></script>
+    <script type="text/javascript" src="/managerApp.js"></script>
 
 
- <!-- Scripts para usar RGraph -->
+    <!-- Scripts para usar RGraph -->
 
- <script src="/bower_components/RGraph/libraries/RGraph.svg.common.core.js"></script>
- <script src="/bower_components/RGraph/libraries/RGraph.svg.line.js"></script>
- <script src="/bower_components/RGraph/libraries/RGraph.svg.bar.js"></script>
- <script src="/bower_components/RGraph/libraries/RGraph.svg.hbar.js"></script>
- <script src="/bower_components/RGraph/libraries/RGraph.svg.common.key.js"></script>
- <script src="/bower_components/RGraph/libraries/RGraph.svg.line.js"></script>
- <script src="/bower_components/RGraph/libraries/RGraph.bar.js"></script>
- <script src="/bower_components/RGraph/libraries/RGraph.common.core.js"></script>
- <script src="/bower_components/RGraph/libraries/RGraph.common.key.js"></script>
- <script src="/bower_components/RGraph/libraries/RGraph.gantt.js"></script>
- <script src="/bower_components/RGraph/libraries/RGraph.svg.pie.js"></script>
- <script src="/bower_components/RGraph/libraries/RGraph.svg.common.tooltips.js"></script>
+    <script src="/bower_components/RGraph/libraries/RGraph.svg.common.core.js"></script>
+    <script src="/bower_components/RGraph/libraries/RGraph.svg.line.js"></script>
+    <script src="/bower_components/RGraph/libraries/RGraph.svg.bar.js"></script>
+    <script src="/bower_components/RGraph/libraries/RGraph.svg.hbar.js"></script>
+    <script src="/bower_components/RGraph/libraries/RGraph.svg.common.key.js"></script>
+    <script src="/bower_components/RGraph/libraries/RGraph.svg.line.js"></script>
+    <script src="/bower_components/RGraph/libraries/RGraph.bar.js"></script>
+    <script src="/bower_components/RGraph/libraries/RGraph.common.core.js"></script>
+    <script src="/bower_components/RGraph/libraries/RGraph.common.key.js"></script>
+    <script src="/bower_components/RGraph/libraries/RGraph.gantt.js"></script>
+    <script src="/bower_components/RGraph/libraries/RGraph.svg.pie.js"></script>
+    <script src="/bower_components/RGraph/libraries/RGraph.svg.common.tooltips.js"></script>
 
 
- <!-- Scripts para usar highcharts-->
+    <!-- Scripts para usar highcharts-->
 
- <script src="https://code.highcharts.com/highcharts.js"></script>
- <script src="https://code.highcharts.com/modules/heatmap.js"></script>
- <script src="https://code.highcharts.com/modules/treemap.js"></script>
+    <script src="https://code.highcharts.com/highcharts.js"></script>
+    <script src="https://code.highcharts.com/modules/heatmap.js"></script>
+    <script src="https://code.highcharts.com/modules/treemap.js"></script>
 
- <!-- Scripts para usar googleGeo-->
- <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
- <!--
+    <!-- Scripts para usar googleGeo-->
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <!--
 <script type="text/javascript">
  google.charts.load('current', {'packages':['imagesparkline']});
 </script>
 -->
 
- <!-- Scripts para usar plotty js -->
+    <!-- Scripts para usar plotty js -->
 
- <!--<!-- Latest compiled and minified plotly.js JavaScript  Latest compiled and minified plotly.j -->
- <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    <!--<!-- Latest compiled and minified plotly.js JavaScript  Latest compiled and minified plotly.j -->
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
 
- <!-- Scripts para usar amcharts -->
+    <!-- Scripts para usar amcharts -->
 
- <script src="https://www.amcharts.com/lib/3/amcharts.js"></script>
- <script src="https://www.amcharts.com/lib/3/xy.js"></script>
- <script src="https://www.amcharts.com/lib/3/plugins/export/export.min.js"></script>
- <link rel="stylesheet" href="https://www.amcharts.com/lib/3/plugins/export/export.css" type="text/css" media="all" />
- <script src="https://www.amcharts.com/lib/3/themes/light.js"></script>
- <script src="https://www.amcharts.com/lib/3/funnel.js"></script>
- <script src="https://www.amcharts.com/lib/3/serial.js"></script>
- <script src="https://www.amcharts.com/lib/3/pie.js"></script>
+    <script src="https://www.amcharts.com/lib/3/amcharts.js"></script>
+    <script src="https://www.amcharts.com/lib/3/xy.js"></script>
+    <script src="https://www.amcharts.com/lib/3/plugins/export/export.min.js"></script>
+    <link rel="stylesheet" href="https://www.amcharts.com/lib/3/plugins/export/export.css" type="text/css" media="all" />
+    <script src="https://www.amcharts.com/lib/3/themes/light.js"></script>
+    <script src="https://www.amcharts.com/lib/3/funnel.js"></script>
+    <script src="https://www.amcharts.com/lib/3/serial.js"></script>
+    <script src="https://www.amcharts.com/lib/3/pie.js"></script>
 
- <!-- RAPE STATS-->
+    <!-- RAPE STATS-->
 
- <script type="text/javascript" src="/rape-manager/front-end/normal/rapeListCtrl.js"></script>
- <script type="text/javascript" src="/rape-manager/front-end/normal/rapeEditCtrl.js"></script>
- <script type="text/javascript" src="/rape-manager/front-end/secure/rapeSecureListCtrl.js"></script>
- <script type="text/javascript" src="/rape-manager/front-end/secure/rapeSecureEditCtrl.js"></script>
- <script type="text/javascript" src="/rape-manager/analytics/rapeGeoCtrl.js"></script>
- <script type="text/javascript" src="/rape-manager/analytics/rapeHighCtrl.js"></script>
- <script type="text/javascript" src="/rape-manager/analytics/rapeRGraphCtrl.js"></script>
- <script type="text/javascript" src="/rape-manager/analytics/integrations/normalRWCtrl.js"></script>
- <script type="text/javascript" src="/rape-manager/analytics/integrations/proxyRDCtrl.js"></script>
+    <script type="text/javascript" src="/rape-manager/front-end/normal/rapeListCtrl.js"></script>
+    <script type="text/javascript" src="/rape-manager/front-end/normal/rapeEditCtrl.js"></script>
+    <script type="text/javascript" src="/rape-manager/front-end/secure/rapeSecureListCtrl.js"></script>
+    <script type="text/javascript" src="/rape-manager/front-end/secure/rapeSecureEditCtrl.js"></script>
+    <script type="text/javascript" src="/rape-manager/analytics/rapeGeoCtrl.js"></script>
+    <script type="text/javascript" src="/rape-manager/analytics/rapeHighCtrl.js"></script>
+    <script type="text/javascript" src="/rape-manager/analytics/rapeRGraphCtrl.js"></script>
+    <script type="text/javascript" src="/rape-manager/analytics/integrations/normalRWCtrl.js"></script>
+    <script type="text/javascript" src="/rape-manager/analytics/integrations/proxyRDCtrl.js"></script>
 
- <script type="text/javascript" src="/rape-manager/analytics/integrations/mashape1Ctrl.js"></script>
- <script type="text/javascript" src="/rape-manager/analytics/integrations/mashape2Ctrl.js"></script>
- <script type="text/javascript" src="/rape-manager/analytics/integrations/ProgWeb1Ctrl.js"></script>
- <script type="text/javascript" src="/rape-manager/analytics/integrations/clashApiCtrl.js"></script>
- <script type="text/javascript" src="/rape-manager/analytics/integrations/ghibliCtrl.js"></script>
- <script type="text/javascript" src="/rape-manager/analytics/integrations/beersCtrl.js"></script>
-
-
-
- <!--TAXES-STATS-->
- <script type="text/javascript" src="/taxes-manager/front-end/normal/listadoCtrl.js"></script>
- <script type="text/javascript" src="/taxes-manager/front-end/normal/editarCtrl.js"></script>
- <script type="text/javascript" src="/taxes-manager/front-end/normal/integrationProxyCtrl.js"></script>
- <script type="text/javascript" src="/taxes-manager/front-end/normal/integrationCorsCtrl.js"></script>
- <script type="text/javascript" src="/taxes-manager/front-end/normal/integrationPhones.js"></script>
- <script type="text/javascript" src="/taxes-manager/front-end/normal/integrationMashape3.js"></script>
- <script type="text/javascript" src="/taxes-manager/front-end/normal/integrationChuck.js"></script>
- <script type="text/javascript" src="/taxes-manager/front-end/normal/integrationRandom.js"></script>
- <script type="text/javascript" src="/taxes-manager/front-end/normal/integrationWow.js"></script>
- <script type="text/javascript" src="/taxes-manager/front-end/normal/integrationCountries.js"></script>
- <script type="text/javascript" src="/taxes-manager/front-end/normal/integrationFamous.js"></script>
- <script type="text/javascript" src="/taxes-manager/front-end/normal/integrationHack.js"></script>
- <script type="text/javascript" src="/taxes-manager/front-end/normal/integrationIndian.js"></script>
- <script type="text/javascript" src="/taxes-manager/front-end/normal/integrationInsults.js"></script>
- <script type="text/javascript" src="/taxes-manager/front-end/normal/integrationMusix.js"></script>
- <script type="text/javascript" src="/taxes-manager/front-end/normal/integrationRobo.js"></script>
- <script type="text/javascript" src="/taxes-manager/front-end/normal/integrationWeather.js"></script>
- <script type="text/javascript" src="/taxes-manager/front-end/normal/integrationMess.js"></script>
- <script type="text/javascript" src="/taxes-manager/front-end/normal/integrationBook.js"></script>
- <script type="text/javascript" src="/taxes-manager/front-end/normal/integracionRapeTax.js"></script>
- <script type="text/javascript" src="/grupalWidgetCtrl.js"></script>
- 
- <!--HighCharts-->
- <!--<script src="https://code.highcharts.com/highcharts.js"></script>-->
- <script src="https://code.highcharts.com/modules/histogram-bellcurve.js"></script>
-
- <script src="https://code.highcharts.com/modules/series-label.js"></script>
- <script src="https://code.highcharts.com/modules/exporting.js"></script>
- <script src="https://code.highcharts.com/modules/export-data.js"></script>
- <script src="https://code.highcharts.com/highcharts-more.js"></script>
-
- <!-- Load c3.css -->
- <!-- Load c3.css <link href="/bower_components/c3/c3.css" rel="stylesheet"> -->
- <!-- Load d3.js and c3.js -->
- <script src="/bower_components/d3/d3.min.js" charset="utf-8"></script>
- <script src="/bower_components/c3/c3.min.js"></script>
- <script src="/taxes-manager/front-end/normal/analitycs-jll.js"></script>
+    <script type="text/javascript" src="/rape-manager/analytics/integrations/mashape1Ctrl.js"></script>
+    <script type="text/javascript" src="/rape-manager/analytics/integrations/mashape2Ctrl.js"></script>
+    <script type="text/javascript" src="/rape-manager/analytics/integrations/ProgWeb1Ctrl.js"></script>
+    <script type="text/javascript" src="/rape-manager/analytics/integrations/clashApiCtrl.js"></script>
+    <script type="text/javascript" src="/rape-manager/analytics/integrations/ghibliCtrl.js"></script>
+    <script type="text/javascript" src="/rape-manager/analytics/integrations/beersCtrl.js"></script>
 
 
 
- <!-- Plotly.js -->
- <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    <!--TAXES-STATS-->
+    <script type="text/javascript" src="/taxes-manager/front-end/normal/listadoCtrl.js"></script>
+    <script type="text/javascript" src="/taxes-manager/front-end/normal/editarCtrl.js"></script>
+    <script type="text/javascript" src="/taxes-manager/front-end/normal/integrationProxyCtrl.js"></script>
+    <script type="text/javascript" src="/taxes-manager/front-end/normal/integrationCorsCtrl.js"></script>
+    <script type="text/javascript" src="/taxes-manager/front-end/normal/integrationPhones.js"></script>
+    <script type="text/javascript" src="/taxes-manager/front-end/normal/integrationMashape3.js"></script>
+    <script type="text/javascript" src="/taxes-manager/front-end/normal/integrationChuck.js"></script>
+    <script type="text/javascript" src="/taxes-manager/front-end/normal/integrationRandom.js"></script>
+    <script type="text/javascript" src="/taxes-manager/front-end/normal/integrationWow.js"></script>
+    <script type="text/javascript" src="/taxes-manager/front-end/normal/integrationCountries.js"></script>
+    <script type="text/javascript" src="/taxes-manager/front-end/normal/integrationFamous.js"></script>
+    <script type="text/javascript" src="/taxes-manager/front-end/normal/integrationHack.js"></script>
+    <script type="text/javascript" src="/taxes-manager/front-end/normal/integrationIndian.js"></script>
+    <script type="text/javascript" src="/taxes-manager/front-end/normal/integrationInsults.js"></script>
+    <script type="text/javascript" src="/taxes-manager/front-end/normal/integrationMusix.js"></script>
+    <script type="text/javascript" src="/taxes-manager/front-end/normal/integrationRobo.js"></script>
+    <script type="text/javascript" src="/taxes-manager/front-end/normal/integrationWeather.js"></script>
+    <script type="text/javascript" src="/taxes-manager/front-end/normal/integrationMess.js"></script>
+    <script type="text/javascript" src="/taxes-manager/front-end/normal/integrationBook.js"></script>
+    <script type="text/javascript" src="/taxes-manager/front-end/normal/integracionRapeTax.js"></script>
+    <script type="text/javascript" src="/grupalWidgetCtrl.js"></script>
 
- <!-- Plotly.js Pie Chart -->
- <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
- <!-- Numeric JS Pie Chart -->
- <script src="https://cdnjs.cloudflare.com/ajax/libs/numeric/1.2.6/numeric.min.js"></script>
+    <!--HighCharts-->
+    <!--<script src="https://code.highcharts.com/highcharts.js"></script>-->
+    <script src="https://code.highcharts.com/modules/histogram-bellcurve.js"></script>
+
+    <script src="https://code.highcharts.com/modules/series-label.js"></script>
+    <script src="https://code.highcharts.com/modules/exporting.js"></script>
+    <script src="https://code.highcharts.com/modules/export-data.js"></script>
+    <script src="https://code.highcharts.com/highcharts-more.js"></script>
+
+    <!-- Load c3.css -->
+    <!-- Load c3.css <link href="/bower_components/c3/c3.css" rel="stylesheet"> -->
+    <!-- Load d3.js and c3.js -->
+    <script src="/bower_components/d3/d3.min.js" charset="utf-8"></script>
+    <script src="/bower_components/c3/c3.min.js"></script>
+    <script src="/taxes-manager/front-end/normal/analitycs-jll.js"></script>
+
+
+
+
+    <!--Hospital Stats-->
+    <script type="text/javascript" src="/hospital-manager/front-end/hospitalEditCtrl.js"></script>
+    <script type="text/javascript" src="/hospital-manager/front-end/hospitalListCntrl.js"></script>
+
+    <!--TAXES-STATS-->
+    <script type="text/javascript" src="/taxes-manager/front-end/normal/listadoCtrl.js"></script>
+    <script type="text/javascript" src="/taxes-manager/front-end/normal/editarCtrl.js"></script>
+    <script type="text/javascript" src="/taxes-manager/front-end/normal/integrationProxyCtrl.js"></script>
+    <script type="text/javascript" src="/taxes-manager/front-end/normal/integrationCorsCtrl.js"></script>
+    <!--HighCharts-->
+    <!--<script src="https://code.highcharts.com/highcharts.js"></script>-->
+    <script src="https://code.highcharts.com/modules/series-label.js"></script>
+    <script src="https://code.highcharts.com/modules/exporting.js"></script>
+    <script src="https://code.highcharts.com/modules/export-data.js"></script>
+    <script src="https://code.highcharts.com/highcharts-more.js"></script>
+
+    <!-- Load c3.css -->
+    <link href="/bower_components/c3/c3.css" rel="stylesheet">
+
+    <!-- Load d3.js and c3.js -->
+    <script src="/bower_components/d3/d3.min.js" charset="utf-8"></script>
+    <script src="/bower_components/c3/c3.min.js"></script>
+    <script src="/taxes-manager/front-end/normal/analitycs-jll.js"></script>
+
+
+
+
+
+    <!-- Plotly.js -->
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+
+    <!-- Plotly.js Pie Chart -->
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    <!-- Numeric JS Pie Chart -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/numeric/1.2.6/numeric.min.js"></script>
+
 </head>
 
 
 <body>
 
- <div ng-view>
+    <div ng-view>
 
 
- </div>
+    </div>
 
 </body>
 

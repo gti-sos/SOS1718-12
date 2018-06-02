@@ -191,6 +191,25 @@ app.delete(h,hospital.deleteCollection);
 app.delete(h+"/:country",hospital.deleteRecurso);
 app.delete(h+"/:country/:year",hospital.deleteRecursoConcreto);
 
+var v = "/api/v2/hospital-stats";
+var variable = require("./public/hospital-manager/v2/hospital.js");
+
+app.get(v + "/loadInitialData", variable.getInitialData);
+app.get(v, variable.getCollection);
+app.get(v + "/:country", variable.getRecurso);
+app.get(v + "/:country/:year", variable.getRecursoConcreto);
+
+app.post(v, variable.postCollection);
+app.post(v + "/:country", variable.postRecurso);
+
+app.put(v, variable.putCollection);
+app.put(v + "/:country", variable.putRecurso);
+app.put(v + "/:country/:year", variable.putRecursoConcreto);
+
+app.delete(v,variable.deleteCollection);
+app.delete(v+"/:country",variable.deleteRecurso);
+app.delete(v+"/:country/:year",variable.deleteRecursoConcreto);
+
 /*********API VERONICA MONGO*********/
 
 var h1 = "/api/v1/secure/hospital-stats";
@@ -198,8 +217,8 @@ var hospital1 = require("./public/hospital-manager/v1/hospital-apikey.js");
 
 app.get(h1 + "/loadInitialData", hospital1.getInitialData);
 app.get(h1, hospital1.getCollection);
-//app.get(h1 + "/:country", hospital1.getRecursoSusMuertos);
-app.get(h1 + "/:country/:year", hospital1.getRecurso);
+app.get(h1 + "/:country", hospital1.getRecurso);
+app.get(h1 + "/:country/:year", hospital1.getRecursoConcreto);
 
 app.post(h1, hospital1.postCollection);
 app.post(h1 + "/:country", hospital1.postRecurso);
