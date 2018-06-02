@@ -12,7 +12,8 @@
 
 
 var api1="/api/v1/taxes-stats";
-    var api = "https://sos1718-12.herokuapp.com/api/v2/rape-stats";
+var api = "https://sos1718-12.herokuapp.com/api/v2/rape-stats";
+
 /****************************/
 $http
                 .get(api1)
