@@ -153,7 +153,6 @@ angular
                                         pointStart: 2003
                                     }
                                 },
-
                                 series: [{
                                     name: 'Rate Rape Data ',
                                     data: rate
