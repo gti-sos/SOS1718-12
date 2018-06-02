@@ -503,7 +503,8 @@ app.get(BASE_API_PATH_TAXES_STATS + "/docs", (req, res) => {
 
                         }
                         else {
-                            res.sendStatus(404); // No content 
+                            res.sendStatus(404); // No content
+                            //res.send([]);
                         }
                     }
                     else {
@@ -537,6 +538,7 @@ app.get(BASE_API_PATH_TAXES_STATS + "/docs", (req, res) => {
                         }
                         else {
                             res.sendStatus(404); //No content //poner array vacio
+                            //res.send([]);
                         }
                     }
                     else {
@@ -580,6 +582,7 @@ console.log("c");
                 else {
                     if (countries.length === 0) {
                         res.sendStatus(404);
+                        //res.send([]);
                     }
                     else if (from || to || year || region || inc || coun ) {
 
@@ -591,6 +594,7 @@ console.log("c");
                         }
                         else {
                             res.sendStatus(404); // No content 
+                            //res.send([]);
                         }
                     }
                     else {
@@ -611,6 +615,7 @@ console.log("D");
                 else {
                     if (countries.length == 0) {
                         res.sendStatus(404);
+                        //res.send([]);
                         return;
                     }
                     else if (from || to || year || region || inc || coun) {
@@ -620,6 +625,7 @@ console.log("D");
                         }
                         else {
                             res.sendStatus(404); //No content
+                           // res.send([]);
                         }
                     }
                     else {
@@ -645,6 +651,7 @@ console.log("E");
             }
             else if (countries.length == 0) {
                 res.sendStatus(404);
+                //res.send([]);
                 return;
             }
             else {
@@ -693,6 +700,7 @@ app.delete(BASE_API_PATH_TAXES_STATS + "/:country", (req, res) => {
             }
             else if (numRemoved.result.n == 0 ) {
                 res.sendStatus(404);
+                //res.send([]);
                 return;
             }
             else {
@@ -722,6 +730,7 @@ app.delete(BASE_API_PATH_TAXES_STATS + "/:country", (req, res) => {
             }
             else if (numRemoved.result.n == 0) {
                 res.sendStatus(404);
+                //res.send([]);
                 return;
             }
             else {
@@ -823,6 +832,7 @@ app.put(BASE_API_PATH_TAXES_STATS,(req,res)=>{
                 }
                 else if (numUpdated.result.n == 0) {
                     res.sendStatus(404);
+                    //res.send([]);
                     return;
                 }
                 else {

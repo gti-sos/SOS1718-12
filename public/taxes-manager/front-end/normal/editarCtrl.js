@@ -9,6 +9,7 @@ function refresh() {
             $http.get(api + "/" + $routeParams.country + "/" + $routeParams.year).then(function(response) {
                 console.log(response);
                 $scope.updatedTax = response.data;
+                alert('editado correctamente');
             });
         }
 
@@ -30,10 +31,12 @@ function refresh() {
             }, function(response) {
                 switch (response.status) {
                     case 400:
-                        Materialize.toast('<i class="material-icons">error_outline</i> Make sure to set all atributes!', 2500);
+                        //Materialize.toast('<i class="material-icons">error_outline</i> Make sure to set all atributes!', 2500);
+                        alert('Make sure to set all atributes!');
                         break;
                     default:
-                        Materialize.toast('<i class="material-icons">error_outline</i> Error getting data!', 2500);
+                        //Materialize.toast('<i class="material-icons">error_outline</i> Error getting data!', 2500);
+                        alert('Error getting data');
                         break;
                 }
             });
