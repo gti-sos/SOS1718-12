@@ -7,7 +7,7 @@ angular.module("managerApp", ["ngRoute"]).config(function($routeProvider) {
 
             templateUrl: "/home.html"
 
-        }).when("/analytics", {
+        }).when("/integrations", {
 
             templateUrl: "/graphics.html"
 
