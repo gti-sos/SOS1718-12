@@ -100,7 +100,15 @@ angular.module("managerApp", ["ngRoute"]).config(function($routeProvider) {
         }).when("/integrationCors",{
             templateUrl:"/taxes-manager/front-end/normal/integrationCors.html",
             controller:"integrationCorsCtrl"
-            });
+            
+        }).when("/hospitals",{
+        templateUrl : "/hospital-manager/front-end/hospitalList.html",
+        controller : "hospitalListCntrl"
+        
+        }).when("/hospitals/edit/:country",{
+        templateUrl : "/hospital-manager/front-end/hospitalEdit.html",
+        controller : "hospitalEditCtrl"
+        });
         
     console.log("App initialized and configured ss");
 
