@@ -9,7 +9,7 @@ function refresh() {
             $http.get(api + "/" + $routeParams.country + "/" + $routeParams.year).then(function(response) {
                 console.log(response);
                 $scope.updatedTax = response.data;
-                alert('editado correctamente');
+               
             });
         }
 
@@ -27,6 +27,7 @@ function refresh() {
             $http.put(api + "/" + updatedTaxAux.country + "/" + updatedTaxAux.year, updatedTaxAux).then(function(response) {
                 $scope.status = "Status: " + response.status;
                 $location.path("/api/v1/taxes-stats");
+                 alert('editado correctamente');
                 //Materialize.toast('<i class="material-icons">error_outline</i> Stat updated!', 2500);
             }, function(response) {
                 switch (response.status) {
