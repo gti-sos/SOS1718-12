@@ -18,6 +18,12 @@ angular.module("managerApp", ["ngRoute"]).config(function($routeProvider) {
             controller: "grupalWidgetCtrl"
 
 
+        }).when("/about", {
+
+            templateUrl: "/about.html"
+           
+
+
         }).when("/api/v2/rape-stats", {
 
             templateUrl: "/rape-manager/front-end/normal/rapeList.html",
