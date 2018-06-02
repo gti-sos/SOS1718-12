@@ -1,0 +1,1099 @@
+{
+	"variables": [],
+	"info": {
+		"name": "Prueba BackEnd Newman",
+		"_postman_id": "ae3330a0-76de-cb05-2003-f64d6201a322",
+		"description": "",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Delete Recurso",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 200\"] = responseCode.code === 200;"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "https://sos2018jllopis-jllopis1.c9users.io/api/v1/taxes-stats",
+				"method": "DELETE",
+				"header": [],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "LoadInitialData",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 201\"] = responseCode.code === 201;"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "https://sos2018jllopis-jllopis1.c9users.io/api/v1/taxes-stats/loadInitialData",
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Get Recurso Y comprobación del Load",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"var jsonData = JSON.parse(responseBody);",
+							"tests[\"Should have more than 4 contacts\"] = (jsonData.length >=4);"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "https://sos2018jllopis-jllopis1.c9users.io/api/v1/taxes-stats",
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "GET RECURSO NO ENCONTRADO",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 404\"] = responseCode.code === 404;"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "https://sos2018jllopis-jllopis1.c9users.io/api/v1/taxes-stats/pepito",
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Get por Pais",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 200\"] = responseCode.code === 200;"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "https://sos2018jllopis-jllopis1.c9users.io/api/v1/taxes-stats/spain",
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Get Por Pais y Año",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 200\"] = responseCode.code === 200;"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "https://sos2018jllopis-jllopis1.c9users.io/api/v1/taxes-stats/spain/2012",
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "POST CORRECTO",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 201\"] = responseCode.code === 201;"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "https://sos2018jllopis-jllopis1.c9users.io/api/v1/taxes-stats",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \n    \"country\": \"Singapur\",\n    \"year\": \"2017\",\n    \"region\": \"asia\",\n    \"income_group\": \"high\",\n    \"country_code\": \"sin\"\n}"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "POST CONFLICTO 409",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 409\"] = responseCode.code === 409;"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "https://sos2018jllopis-jllopis1.c9users.io/api/v1/taxes-stats",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n        \"_id\": \"5ac90d88bfee4143c98d0e94\",\n        \"country\": \"germany\",\n        \"year\": \"2013\",\n        \"region\": \"europe\",\n        \"income_group\": \"high\",\n        \"country_code\": \"ale\"\n    }"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "JSON erroneo POST 400",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 400\"] = responseCode.code === 400;"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "https://sos2018jllopis-jllopis1.c9users.io/api/v1/taxes-stats",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n        \n        \"country\": \"england\",\n        \"year\": \"2014\",\n        \"felipe\": \"europe\",\n        \"income_group\": \"high\",\n        \"country_code\": \"ing\"\n    }"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "GET Comprobación de POST correcto",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 200\"] = responseCode.code === 200;"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "https://sos2018jllopis-jllopis1.c9users.io/api/v1/taxes-stats",
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "POST 405",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 405\"] = responseCode.code === 405;"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "https://sos2018jllopis-jllopis1.c9users.io/api/v1/taxes-stats/japan",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n        \n        \"country\": \"japan\",\n        \"year\": \"2018\",\n        \"region\": \"asia\",\n        \"income_group\": \"high\",\n        \"country_code\": \"jap\"\n    }"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "PUT no permitido 405",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 405\"] = responseCode.code === 405;"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "https://sos2018jllopis-jllopis1.c9users.io/api/v1/taxes-stats",
+				"method": "PUT",
+				"header": [],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "PUT BAD REQUEST 400",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 400\"] = responseCode.code === 400;"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "https://sos2018jllopis-jllopis1.c9users.io/api/v1/taxes-stats/spain/2012",
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"country\" : \"surinam\",\n      \"year\": \"2012\",\n      \"region\" : \"europe\",\n      \"income_group\": \"high\",\n      \"country_code\" : \"esp\"\n    }"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "PUT CORRECTO 200",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 200\"] = responseCode.code === 200;"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "https://sos2018jllopis-jllopis1.c9users.io/api/v1/taxes-stats/spain/2012",
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n        \n        \"country\": \"spain\",\n        \"year\": \"2012\",\n        \"region\": \"europe\",\n        \"income_group\": \"low\",\n        \"country_code\": \"esp\"\n    }"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "GET Comprobacion del PUT",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 200\"] = responseCode.code === 200;"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "https://sos2018jllopis-jllopis1.c9users.io/api/v1/taxes-stats/spain/2012",
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Busqueda Por Pais",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 200\"] = responseCode.code === 200;"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": {
+					"raw": "https://sos2018jllopis-jllopis1.c9users.io/api/v1/taxes-stats?country=spain",
+					"protocol": "https",
+					"host": [
+						"sos2018jllopis-jllopis1",
+						"c9users",
+						"io"
+					],
+					"path": [
+						"api",
+						"v1",
+						"taxes-stats"
+					],
+					"query": [
+						{
+							"key": "country",
+							"value": "spain",
+							"equals": true,
+							"description": ""
+						}
+					],
+					"variable": []
+				},
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Busqueda Por pais y año",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 200\"] = responseCode.code === 200;"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": {
+					"raw": "https://sos2018jllopis-jllopis1.c9users.io/api/v1/taxes-stats?country=spain&fromYear=2012",
+					"protocol": "https",
+					"host": [
+						"sos2018jllopis-jllopis1",
+						"c9users",
+						"io"
+					],
+					"path": [
+						"api",
+						"v1",
+						"taxes-stats"
+					],
+					"query": [
+						{
+							"key": "country",
+							"value": "spain",
+							"equals": true,
+							"description": ""
+						},
+						{
+							"key": "fromYear",
+							"value": "2012",
+							"equals": true,
+							"description": ""
+						}
+					],
+					"variable": []
+				},
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Busqueda Por año",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 200\"] = responseCode.code === 200;"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": {
+					"raw": "https://sos2018jllopis-jllopis1.c9users.io/api/v1/taxes-stats?year=2012",
+					"protocol": "https",
+					"host": [
+						"sos2018jllopis-jllopis1",
+						"c9users",
+						"io"
+					],
+					"path": [
+						"api",
+						"v1",
+						"taxes-stats"
+					],
+					"query": [
+						{
+							"key": "year",
+							"value": "2012",
+							"equals": true,
+							"description": ""
+						}
+					],
+					"variable": []
+				},
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Busqueda por año (Desde)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 200\"] = responseCode.code === 200;"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": {
+					"raw": "https://sos2018jllopis-jllopis1.c9users.io/api/v1/taxes-stats?fromYear=2012",
+					"protocol": "https",
+					"host": [
+						"sos2018jllopis-jllopis1",
+						"c9users",
+						"io"
+					],
+					"path": [
+						"api",
+						"v1",
+						"taxes-stats"
+					],
+					"query": [
+						{
+							"key": "fromYear",
+							"value": "2012",
+							"equals": true,
+							"description": ""
+						}
+					],
+					"variable": []
+				},
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Busqueda por año(hasta)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 200\"] = responseCode.code === 200;"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": {
+					"raw": "https://sos2018jllopis-jllopis1.c9users.io/api/v1/taxes-stats?toYear=2015",
+					"protocol": "https",
+					"host": [
+						"sos2018jllopis-jllopis1",
+						"c9users",
+						"io"
+					],
+					"path": [
+						"api",
+						"v1",
+						"taxes-stats"
+					],
+					"query": [
+						{
+							"key": "toYear",
+							"value": "2015",
+							"equals": true,
+							"description": ""
+						}
+					],
+					"variable": []
+				},
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Busqueda por pais (desde y hasta)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 200\"] = responseCode.code === 200;"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": {
+					"raw": "https://sos2018jllopis-jllopis1.c9users.io/api/v1/taxes-stats?fromYear=2012&toYear=2013",
+					"protocol": "https",
+					"host": [
+						"sos2018jllopis-jllopis1",
+						"c9users",
+						"io"
+					],
+					"path": [
+						"api",
+						"v1",
+						"taxes-stats"
+					],
+					"query": [
+						{
+							"key": "fromYear",
+							"value": "2012",
+							"equals": true,
+							"description": ""
+						},
+						{
+							"key": "toYear",
+							"value": "2013",
+							"equals": true,
+							"description": ""
+						}
+					],
+					"variable": []
+				},
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "GET a recurso (offset = 3)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 200\"] = responseCode.code === 200;"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": {
+					"raw": "https://sos2018jllopis-jllopis1.c9users.io/api/v1/taxes-stats?offset=3",
+					"protocol": "https",
+					"host": [
+						"sos2018jllopis-jllopis1",
+						"c9users",
+						"io"
+					],
+					"path": [
+						"api",
+						"v1",
+						"taxes-stats"
+					],
+					"query": [
+						{
+							"key": "offset",
+							"value": "3",
+							"equals": true,
+							"description": ""
+						}
+					],
+					"variable": []
+				},
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Get a recurso(limite = 3)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 200\"] = responseCode.code === 200;"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": {
+					"raw": "https://sos2018jllopis-jllopis1.c9users.io/api/v1/taxes-stats?limit=3",
+					"protocol": "https",
+					"host": [
+						"sos2018jllopis-jllopis1",
+						"c9users",
+						"io"
+					],
+					"path": [
+						"api",
+						"v1",
+						"taxes-stats"
+					],
+					"query": [
+						{
+							"key": "limit",
+							"value": "3",
+							"equals": true,
+							"description": ""
+						}
+					],
+					"variable": []
+				},
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Get recurso(limit=3 y offset =3)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 200\"] = responseCode.code === 200;"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": {
+					"raw": "https://sos2018jllopis-jllopis1.c9users.io/api/v1/taxes-stats?limit=3&offset=3",
+					"protocol": "https",
+					"host": [
+						"sos2018jllopis-jllopis1",
+						"c9users",
+						"io"
+					],
+					"path": [
+						"api",
+						"v1",
+						"taxes-stats"
+					],
+					"query": [
+						{
+							"key": "limit",
+							"value": "3",
+							"equals": true,
+							"description": ""
+						},
+						{
+							"key": "offset",
+							"value": "3",
+							"equals": true,
+							"description": ""
+						}
+					],
+					"variable": []
+				},
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Busqueda por Region",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 200\"] = responseCode.code === 200;"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": {
+					"raw": "https://sos2018jllopis-jllopis1.c9users.io/api/v1/taxes-stats?region=asia",
+					"protocol": "https",
+					"host": [
+						"sos2018jllopis-jllopis1",
+						"c9users",
+						"io"
+					],
+					"path": [
+						"api",
+						"v1",
+						"taxes-stats"
+					],
+					"query": [
+						{
+							"key": "region",
+							"value": "asia",
+							"equals": true,
+							"description": ""
+						}
+					],
+					"variable": []
+				},
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Busqueda por Pais,Año y Region",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 200\"] = responseCode.code === 200;"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": {
+					"raw": "https://sos2018jllopis-jllopis1.c9users.io/api/v1/taxes-stats?country=Singapur&year=2017&region=asia",
+					"protocol": "https",
+					"host": [
+						"sos2018jllopis-jllopis1",
+						"c9users",
+						"io"
+					],
+					"path": [
+						"api",
+						"v1",
+						"taxes-stats"
+					],
+					"query": [
+						{
+							"key": "country",
+							"value": "Singapur",
+							"equals": true,
+							"description": ""
+						},
+						{
+							"key": "year",
+							"value": "2017",
+							"equals": true,
+							"description": ""
+						},
+						{
+							"key": "region",
+							"value": "asia",
+							"equals": true,
+							"description": ""
+						}
+					],
+					"variable": []
+				},
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Busqueda por todos los campos",
+			"request": {
+				"url": {
+					"raw": "https://sos2018jllopis-jllopis1.c9users.io/api/v1/taxes-stats?country=germany&year=2013&region=europe&inc=high&coun=ale",
+					"protocol": "https",
+					"host": [
+						"sos2018jllopis-jllopis1",
+						"c9users",
+						"io"
+					],
+					"path": [
+						"api",
+						"v1",
+						"taxes-stats"
+					],
+					"query": [
+						{
+							"key": "country",
+							"value": "germany",
+							"equals": true,
+							"description": ""
+						},
+						{
+							"key": "year",
+							"value": "2013",
+							"equals": true,
+							"description": ""
+						},
+						{
+							"key": "region",
+							"value": "europe",
+							"equals": true,
+							"description": ""
+						},
+						{
+							"key": "inc",
+							"value": "high",
+							"equals": true,
+							"description": ""
+						},
+						{
+							"key": "coun",
+							"value": "ale",
+							"equals": true,
+							"description": ""
+						}
+					],
+					"variable": []
+				},
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Busqueda por Income_group",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 200\"] = responseCode.code === 200;"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": {
+					"raw": "https://sos2018jllopis-jllopis1.c9users.io/api/v1/taxes-stats?inc=high",
+					"protocol": "https",
+					"host": [
+						"sos2018jllopis-jllopis1",
+						"c9users",
+						"io"
+					],
+					"path": [
+						"api",
+						"v1",
+						"taxes-stats"
+					],
+					"query": [
+						{
+							"key": "inc",
+							"value": "high",
+							"equals": true,
+							"description": ""
+						}
+					],
+					"variable": []
+				},
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Busqueda por COuntry_Code",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 200\"] = responseCode.code === 200;"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": {
+					"raw": "https://sos2018jllopis-jllopis1.c9users.io/api/v1/taxes-stats?coun=ale",
+					"protocol": "https",
+					"host": [
+						"sos2018jllopis-jllopis1",
+						"c9users",
+						"io"
+					],
+					"path": [
+						"api",
+						"v1",
+						"taxes-stats"
+					],
+					"query": [
+						{
+							"key": "coun",
+							"value": "ale",
+							"equals": true,
+							"description": ""
+						}
+					],
+					"variable": []
+				},
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Delete a un recurso en concreto",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 200\"] = responseCode.code === 200;"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "https://sos2018jllopis-jllopis1.c9users.io/api/v1/taxes-stats/spain",
+				"method": "DELETE",
+				"header": [],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Delete recurso inexistente",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 404\"] = responseCode.code === 404;"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "https://sos2018jllopis-jllopis1.c9users.io/api/v1/taxes-stats/pepito",
+				"method": "DELETE",
+				"header": [],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		}
+	]
+}
