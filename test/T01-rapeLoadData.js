@@ -1,4 +1,5 @@
 describe('Data is loaded', function () {
+	console.log("dentro del load rape data");
 	it('should show 15 data', function (){
 		browser.get('https://sos1718-12.herokuapp.com/#!/api/v2/rape-stats')
 		.then(function (){
