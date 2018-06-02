@@ -1,7 +1,6 @@
 /*global angular*/
 /*global Plotly*/
 
-
 angular
     .module("managerApp")
     .controller("clashApiCtrl", ["$http", "$scope", function($http, $scope) {
