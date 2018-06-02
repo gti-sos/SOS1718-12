@@ -85,7 +85,7 @@ angular
                         ['OK', 'Global', perMillion1, perMillion1],
                         [perMillion1, 'OK', perMillion1, perMillion1],
                         ['Europe', 'Global', totalRape, 0],
-                        res[0], res[2], res[4], res[5], res[7], res[9], res[11],
+                        res[0], res[2], res[4], res[6], res[7], res[9], res[11],
                         datosNum[0], datosNum[2], datosNum[4], datosNum[5], datosNum[7], datosNum[9], datosNum[11]
 
                     ]);
