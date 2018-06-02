@@ -217,12 +217,8 @@ var hospital1 = require("./public/hospital-manager/v1/hospital-apikey.js");
 
 app.get(h1 + "/loadInitialData", hospital1.getInitialData);
 app.get(h1, hospital1.getCollection);
-<<<<<<< HEAD
 app.get(h1 + "/:country", hospital1.getRecurso);
-=======
-//app.get(h1 + "/:country", hospital1.getRecursoSusMuertos);
->>>>>>> 1d58ea5d5846a2f3fe5e17c519181cc3a98d0391
-app.get(h1 + "/:country/:year", hospital1.getRecurso);
+app.get(h1 + "/:country/:year", hospital1.getRecursoConcreto);
 
 app.post(h1, hospital1.postCollection);
 app.post(h1 + "/:country", hospital1.postRecurso);
