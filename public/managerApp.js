@@ -12,7 +12,7 @@ angular.module("managerApp", ["ngRoute"]).config(function($routeProvider) {
             templateUrl: "/graphics.html"
 
 
-        }) }).when("/analytics", {
+        }).when("/analytics", {
 
             templateUrl: "/grupalWidget.html",
             controller: "grupalWidgetCtrl"
