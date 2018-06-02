@@ -45,59 +45,59 @@ angular.module("managerApp", ["ngRoute"]).config(function($routeProvider) {
             templateUrl: "/rape-manager/front-end/secure/rapeSecureEdit.html",
             controller: "rapeSecureEditCtrl"
 
-        }).when("/analytics/rape-stats/geo", {
+        }).when("/integrations/rape-stats/geo", {
 
             templateUrl: "/rape-manager/analytics/rapeGeo.html",
             controller: "rapeGeoCtrl"
 
 
-        }).when("/analytics/rape-stats/high", {
+        }).when("/integrations/rape-stats/high", {
 
             templateUrl: "/rape-manager/analytics/rapeHigh.html",
             controller: "rapeHighCtrl"
 
 
-        }).when("/analytics/rape-stats/rgraph", {
+        }).when("/integrations/rape-stats/rgraph", {
 
             templateUrl: "/rape-manager/analytics/rapeRGraph.html",
             controller: "rapeRGraphCtrl"
 
-        }).when("/analytics/proxyRD", {
+        }).when("/integrations/proxyRD", {
 
             templateUrl: "/rape-manager/analytics/integrations/proxyRD.html",
             controller: "proxyRDCtrl"
 
-        }).when("/analytics/normalRW", {
+        }).when("/integrations/normalRW", {
 
             templateUrl: "/rape-manager/analytics/integrations/normalRW.html",
             controller: "normalRWCtrl"
 
-        }).when("/analytics/mashape1", {
+        }).when("/integrations/mashape1", {
 
             templateUrl: "/rape-manager/analytics/integrations/mashape1.html",
             controller: "mashape1Ctrl"
 
-        }).when("/analytics/mashape2", {
+        }).when("/integrations/mashape2", {
 
             templateUrl: "/rape-manager/analytics/integrations/mashape2.html",
             controller: "mashape2Ctrl"
 
-        }).when("/analytics/progweb1", {
+        }).when("/integrations/progweb1", {
 
             templateUrl: "/rape-manager/analytics/integrations/ProgWeb1.html",
             controller: "ProgWeb1Ctrl"
 
-        }).when("/analytics/clash", {
+        }).when("/integrations/clash", {
 
             templateUrl: "/rape-manager/analytics/integrations/clashApi.html",
             controller: "clashApiCtrl"
 
-        }).when("/analytics/ghibli", {
+        }).when("/integrations/ghibli", {
 
             templateUrl: "/rape-manager/analytics/integrations/ghibli.html",
             controller: "ghibliCtrl"
 
-        }).when("/analytics/beers", {
+        }).when("/integrations/beers", {
 
             templateUrl: "/rape-manager/analytics/integrations/beers.html",
             controller: "beersCtrl"
