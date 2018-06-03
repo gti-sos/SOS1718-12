@@ -6,7 +6,7 @@ describe('addTax',function () {
     
     it('should add new tax',function(){
         
-        browser.get('https://sos1718-12.herokuapp.com/#!/api/v1/taxes-stats')
+        browser.get('https://sos1718-12.herokuapp.com/#!/api/v2/taxes-stats')
         .then(function(){
             
             element.all(by.repeater('tax in taxesstats')).then(function(initialTaxes){

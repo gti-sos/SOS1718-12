@@ -21,7 +21,7 @@
 				}
 			],
 			"request": {
-				"url": "https://sos2018jllopis-jllopis1.c9users.io/api/v1/taxes-stats",
+				"url": "https://sos2018jllopis-jllopis1.c9users.io/api/v2/taxes-stats",
 				"method": "DELETE",
 				"header": [],
 				"body": {},
@@ -43,7 +43,7 @@
 				}
 			],
 			"request": {
-				"url": "https://sos2018jllopis-jllopis1.c9users.io/api/v1/taxes-stats/loadInitialData",
+				"url": "https://sos2018jllopis-jllopis1.c9users.io/api/v2/taxes-stats/loadInitialData",
 				"method": "GET",
 				"header": [],
 				"body": {},
@@ -66,7 +66,7 @@
 				}
 			],
 			"request": {
-				"url": "https://sos2018jllopis-jllopis1.c9users.io/api/v1/taxes-stats",
+				"url": "https://sos2018jllopis-jllopis1.c9users.io/api/v2/taxes-stats",
 				"method": "GET",
 				"header": [],
 				"body": {},
@@ -82,13 +82,13 @@
 					"script": {
 						"type": "text/javascript",
 						"exec": [
-							"tests[\"Status code is 404\"] = responseCode.code === 404;"
+							"tests[\"Status code is 200\"] = responseCode.code === 200;"
 						]
 					}
 				}
 			],
 			"request": {
-				"url": "https://sos2018jllopis-jllopis1.c9users.io/api/v1/taxes-stats/pepito",
+				"url": "https://sos2018jllopis-jllopis1.c9users.io/api/v2/taxes-stats/pepito",
 				"method": "GET",
 				"header": [],
 				"body": {},
@@ -110,7 +110,7 @@
 				}
 			],
 			"request": {
-				"url": "https://sos2018jllopis-jllopis1.c9users.io/api/v1/taxes-stats/spain",
+				"url": "https://sos2018jllopis-jllopis1.c9users.io/api/v2/taxes-stats/spain",
 				"method": "GET",
 				"header": [],
 				"body": {},
@@ -132,7 +132,7 @@
 				}
 			],
 			"request": {
-				"url": "https://sos2018jllopis-jllopis1.c9users.io/api/v1/taxes-stats/spain/2012",
+				"url": "https://sos2018jllopis-jllopis1.c9users.io/api/v2/taxes-stats/spain/2012",
 				"method": "GET",
 				"header": [],
 				"body": {},
@@ -154,7 +154,7 @@
 				}
 			],
 			"request": {
-				"url": "https://sos2018jllopis-jllopis1.c9users.io/api/v1/taxes-stats",
+				"url": "https://sos2018jllopis-jllopis1.c9users.io/api/v2/taxes-stats",
 				"method": "POST",
 				"header": [
 					{
@@ -185,7 +185,7 @@
 				}
 			],
 			"request": {
-				"url": "https://sos2018jllopis-jllopis1.c9users.io/api/v1/taxes-stats",
+				"url": "https://sos2018jllopis-jllopis1.c9users.io/api/v2/taxes-stats",
 				"method": "POST",
 				"header": [
 					{
@@ -216,7 +216,7 @@
 				}
 			],
 			"request": {
-				"url": "https://sos2018jllopis-jllopis1.c9users.io/api/v1/taxes-stats",
+				"url": "https://sos2018jllopis-jllopis1.c9users.io/api/v2/taxes-stats",
 				"method": "POST",
 				"header": [
 					{
@@ -247,7 +247,7 @@
 				}
 			],
 			"request": {
-				"url": "https://sos2018jllopis-jllopis1.c9users.io/api/v1/taxes-stats",
+				"url": "https://sos2018jllopis-jllopis1.c9users.io/api/v2/taxes-stats",
 				"method": "GET",
 				"header": [],
 				"body": {},
@@ -269,7 +269,7 @@
 				}
 			],
 			"request": {
-				"url": "https://sos2018jllopis-jllopis1.c9users.io/api/v1/taxes-stats/japan",
+				"url": "https://sos2018jllopis-jllopis1.c9users.io/api/v2/taxes-stats/japan",
 				"method": "POST",
 				"header": [
 					{
@@ -300,7 +300,7 @@
 				}
 			],
 			"request": {
-				"url": "https://sos2018jllopis-jllopis1.c9users.io/api/v1/taxes-stats",
+				"url": "https://sos2018jllopis-jllopis1.c9users.io/api/v2/taxes-stats",
 				"method": "PUT",
 				"header": [],
 				"body": {},
@@ -322,7 +322,7 @@
 				}
 			],
 			"request": {
-				"url": "https://sos2018jllopis-jllopis1.c9users.io/api/v1/taxes-stats/spain/2012",
+				"url": "https://sos2018jllopis-jllopis1.c9users.io/api/v2/taxes-stats/spain/2012",
 				"method": "PUT",
 				"header": [
 					{
@@ -353,7 +353,7 @@
 				}
 			],
 			"request": {
-				"url": "https://sos2018jllopis-jllopis1.c9users.io/api/v1/taxes-stats/spain/2012",
+				"url": "https://sos2018jllopis-jllopis1.c9users.io/api/v2/taxes-stats/spain/2012",
 				"method": "PUT",
 				"header": [
 					{
@@ -384,7 +384,7 @@
 				}
 			],
 			"request": {
-				"url": "https://sos2018jllopis-jllopis1.c9users.io/api/v1/taxes-stats/spain/2012",
+				"url": "https://sos2018jllopis-jllopis1.c9users.io/api/v2/taxes-stats/spain/2012",
 				"method": "GET",
 				"header": [],
 				"body": {},
@@ -407,7 +407,7 @@
 			],
 			"request": {
 				"url": {
-					"raw": "https://sos2018jllopis-jllopis1.c9users.io/api/v1/taxes-stats?country=spain",
+					"raw": "https://sos2018jllopis-jllopis1.c9users.io/api/v2/taxes-stats?country=spain",
 					"protocol": "https",
 					"host": [
 						"sos2018jllopis-jllopis1",
@@ -416,7 +416,7 @@
 					],
 					"path": [
 						"api",
-						"v1",
+						"v2",
 						"taxes-stats"
 					],
 					"query": [
@@ -451,7 +451,7 @@
 			],
 			"request": {
 				"url": {
-					"raw": "https://sos2018jllopis-jllopis1.c9users.io/api/v1/taxes-stats?country=spain&fromYear=2012",
+					"raw": "https://sos2018jllopis-jllopis1.c9users.io/api/v2/taxes-stats?country=spain&fromYear=2012",
 					"protocol": "https",
 					"host": [
 						"sos2018jllopis-jllopis1",
@@ -460,7 +460,7 @@
 					],
 					"path": [
 						"api",
-						"v1",
+						"v2",
 						"taxes-stats"
 					],
 					"query": [
@@ -501,7 +501,7 @@
 			],
 			"request": {
 				"url": {
-					"raw": "https://sos2018jllopis-jllopis1.c9users.io/api/v1/taxes-stats?year=2012",
+					"raw": "https://sos2018jllopis-jllopis1.c9users.io/api/v2/taxes-stats?year=2012",
 					"protocol": "https",
 					"host": [
 						"sos2018jllopis-jllopis1",
@@ -510,7 +510,7 @@
 					],
 					"path": [
 						"api",
-						"v1",
+						"v2",
 						"taxes-stats"
 					],
 					"query": [
@@ -545,7 +545,7 @@
 			],
 			"request": {
 				"url": {
-					"raw": "https://sos2018jllopis-jllopis1.c9users.io/api/v1/taxes-stats?fromYear=2012",
+					"raw": "https://sos2018jllopis-jllopis1.c9users.io/api/v2/taxes-stats?fromYear=2012",
 					"protocol": "https",
 					"host": [
 						"sos2018jllopis-jllopis1",
@@ -554,7 +554,7 @@
 					],
 					"path": [
 						"api",
-						"v1",
+						"v2",
 						"taxes-stats"
 					],
 					"query": [
@@ -589,7 +589,7 @@
 			],
 			"request": {
 				"url": {
-					"raw": "https://sos2018jllopis-jllopis1.c9users.io/api/v1/taxes-stats?toYear=2015",
+					"raw": "https://sos2018jllopis-jllopis1.c9users.io/api/v2/taxes-stats?toYear=2015",
 					"protocol": "https",
 					"host": [
 						"sos2018jllopis-jllopis1",
@@ -598,7 +598,7 @@
 					],
 					"path": [
 						"api",
-						"v1",
+						"v2",
 						"taxes-stats"
 					],
 					"query": [
@@ -633,7 +633,7 @@
 			],
 			"request": {
 				"url": {
-					"raw": "https://sos2018jllopis-jllopis1.c9users.io/api/v1/taxes-stats?fromYear=2012&toYear=2013",
+					"raw": "https://sos2018jllopis-jllopis1.c9users.io/api/v2/taxes-stats?fromYear=2012&toYear=2013",
 					"protocol": "https",
 					"host": [
 						"sos2018jllopis-jllopis1",
@@ -642,7 +642,7 @@
 					],
 					"path": [
 						"api",
-						"v1",
+						"v2",
 						"taxes-stats"
 					],
 					"query": [
@@ -683,7 +683,7 @@
 			],
 			"request": {
 				"url": {
-					"raw": "https://sos2018jllopis-jllopis1.c9users.io/api/v1/taxes-stats?offset=3",
+					"raw": "https://sos2018jllopis-jllopis1.c9users.io/api/v2/taxes-stats?offset=3",
 					"protocol": "https",
 					"host": [
 						"sos2018jllopis-jllopis1",
@@ -692,7 +692,7 @@
 					],
 					"path": [
 						"api",
-						"v1",
+						"v2",
 						"taxes-stats"
 					],
 					"query": [
@@ -727,7 +727,7 @@
 			],
 			"request": {
 				"url": {
-					"raw": "https://sos2018jllopis-jllopis1.c9users.io/api/v1/taxes-stats?limit=3",
+					"raw": "https://sos2018jllopis-jllopis1.c9users.io/api/v2/taxes-stats?limit=3",
 					"protocol": "https",
 					"host": [
 						"sos2018jllopis-jllopis1",
@@ -736,7 +736,7 @@
 					],
 					"path": [
 						"api",
-						"v1",
+						"v2",
 						"taxes-stats"
 					],
 					"query": [
@@ -771,7 +771,7 @@
 			],
 			"request": {
 				"url": {
-					"raw": "https://sos2018jllopis-jllopis1.c9users.io/api/v1/taxes-stats?limit=3&offset=3",
+					"raw": "https://sos2018jllopis-jllopis1.c9users.io/api/v2/taxes-stats?limit=3&offset=3",
 					"protocol": "https",
 					"host": [
 						"sos2018jllopis-jllopis1",
@@ -780,7 +780,7 @@
 					],
 					"path": [
 						"api",
-						"v1",
+						"v2",
 						"taxes-stats"
 					],
 					"query": [
@@ -821,7 +821,7 @@
 			],
 			"request": {
 				"url": {
-					"raw": "https://sos2018jllopis-jllopis1.c9users.io/api/v1/taxes-stats?region=asia",
+					"raw": "https://sos2018jllopis-jllopis1.c9users.io/api/v2/taxes-stats?region=asia",
 					"protocol": "https",
 					"host": [
 						"sos2018jllopis-jllopis1",
@@ -830,7 +830,7 @@
 					],
 					"path": [
 						"api",
-						"v1",
+						"v2",
 						"taxes-stats"
 					],
 					"query": [
@@ -865,7 +865,7 @@
 			],
 			"request": {
 				"url": {
-					"raw": "https://sos2018jllopis-jllopis1.c9users.io/api/v1/taxes-stats?country=Singapur&year=2017&region=asia",
+					"raw": "https://sos2018jllopis-jllopis1.c9users.io/api/v2/taxes-stats?country=Singapur&year=2017&region=asia",
 					"protocol": "https",
 					"host": [
 						"sos2018jllopis-jllopis1",
@@ -874,7 +874,7 @@
 					],
 					"path": [
 						"api",
-						"v1",
+						"v2",
 						"taxes-stats"
 					],
 					"query": [
@@ -910,7 +910,7 @@
 			"name": "Busqueda por todos los campos",
 			"request": {
 				"url": {
-					"raw": "https://sos2018jllopis-jllopis1.c9users.io/api/v1/taxes-stats?country=germany&year=2013&region=europe&inc=high&coun=ale",
+					"raw": "https://sos2018jllopis-jllopis1.c9users.io/api/v2/taxes-stats?country=germany&year=2013&region=europe&inc=high&coun=ale",
 					"protocol": "https",
 					"host": [
 						"sos2018jllopis-jllopis1",
@@ -919,7 +919,7 @@
 					],
 					"path": [
 						"api",
-						"v1",
+						"v2",
 						"taxes-stats"
 					],
 					"query": [
@@ -978,7 +978,7 @@
 			],
 			"request": {
 				"url": {
-					"raw": "https://sos2018jllopis-jllopis1.c9users.io/api/v1/taxes-stats?inc=high",
+					"raw": "https://sos2018jllopis-jllopis1.c9users.io/api/v2/taxes-stats?inc=high",
 					"protocol": "https",
 					"host": [
 						"sos2018jllopis-jllopis1",
@@ -987,7 +987,7 @@
 					],
 					"path": [
 						"api",
-						"v1",
+						"v2",
 						"taxes-stats"
 					],
 					"query": [
@@ -1022,7 +1022,7 @@
 			],
 			"request": {
 				"url": {
-					"raw": "https://sos2018jllopis-jllopis1.c9users.io/api/v1/taxes-stats?coun=ale",
+					"raw": "https://sos2018jllopis-jllopis1.c9users.io/api/v2/taxes-stats?coun=ale",
 					"protocol": "https",
 					"host": [
 						"sos2018jllopis-jllopis1",
@@ -1031,7 +1031,7 @@
 					],
 					"path": [
 						"api",
-						"v1",
+						"v2",
 						"taxes-stats"
 					],
 					"query": [
@@ -1065,7 +1065,7 @@
 				}
 			],
 			"request": {
-				"url": "https://sos2018jllopis-jllopis1.c9users.io/api/v1/taxes-stats/spain",
+				"url": "https://sos2018jllopis-jllopis1.c9users.io/api/v2/taxes-stats/spain",
 				"method": "DELETE",
 				"header": [],
 				"body": {},
@@ -1087,7 +1087,7 @@
 				}
 			],
 			"request": {
-				"url": "https://sos2018jllopis-jllopis1.c9users.io/api/v1/taxes-stats/pepito",
+				"url": "https://sos2018jllopis-jllopis1.c9users.io/api/v2/taxes-stats/pepito",
 				"method": "DELETE",
 				"header": [],
 				"body": {},

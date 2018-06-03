@@ -8,7 +8,7 @@ var config = require("./config.js");
 describe('Data is load',function(){
     it('should show some taxes',function(){
         browser
-        .get('https://sos1718-12.herokuapp.com/#!/api/v1/taxes-stats')
+        .get('https://sos1718-12.herokuapp.com/#!/api/v2/taxes-stats')
         .then(function(){
             
            element
