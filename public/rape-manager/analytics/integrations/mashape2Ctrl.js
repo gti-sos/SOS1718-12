@@ -109,8 +109,8 @@ angular
                                             ],
                                             options: {
                                                 yaxis: false,
-                                                backgroundGridVlines: false,
-                                                backgroundGridBorder: false,
+                                                backgroundGridVlines: true,
+                                                backgroundGridBorder: true,
                                                 xaxisLabels: year,
                                                 hmargin: 15,
                                                 gutterLeft: 75,
