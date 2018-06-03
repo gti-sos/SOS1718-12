@@ -62,10 +62,10 @@ angular
                                 "value": ebc
                             }, {
                                 "title": "rapes (*100)",
-                                "value": rapes/100
+                                "value": rapes / 100
                             }, {
                                 "title": "beer fg(*10)",
-                                "value": fg/10
+                                "value": fg / 10
                             }],
                             "balloon": {
                                 "fixedPosition": true
