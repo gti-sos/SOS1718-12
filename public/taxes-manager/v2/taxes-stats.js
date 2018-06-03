@@ -593,8 +593,8 @@ console.log("c");
 
                         }
                         else {
-                            res.sendStatus(404); // No content 
-                            //res.send([]);
+                            //res.sendStatus(404); // No content 
+                            res.send([]);
                         }
                     }
                     else {
@@ -624,8 +624,8 @@ console.log("D");
                             res.send(aux);
                         }
                         else {
-                            res.sendStatus(404); //No content
-                          // res.send([]);
+                            //res.sendStatus(404); //No content
+                          res.send([]);
                         }
                     }
                     else {
