@@ -33,7 +33,6 @@ angular
                                 datas.push([x.country, parseFloat(x["number-of-rape"] / 100)]);
                             }
 
-
                         }
 
                         console.log(datas);

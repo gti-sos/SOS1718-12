@@ -10,15 +10,13 @@ angular
         var rapes = [];
         var rates = [];
         var total = [];
-        var year = [];
-
 
         //Variables de la API a integrar zipf
         var perMillion1;
         var perMillion2;
         var zipf1;
         var zipf2;
-   
+
 
         var url = 'https://wordsapiv1.p.mashape.com/words/ok/frequency';
         var url2 = 'https://wordsapiv1.p.mashape.com/words/death/frequency';
@@ -62,14 +60,13 @@ angular
                     rates.push(x.rate);
                     rapes.push(parseFloat(x["number-of-rape"] / 10));
                     total.push(parseFloat(x["total-since-two-thousand"] / 100));
-                    year.push(x.year);
 
                 }
 
             });
-        
-        
-        
+
+
+
         $http(mashape2)
             .then(function(response) {
                 console.log(response.data);
@@ -77,9 +74,6 @@ angular
 
                 perMillion2 = k.frequency.perMillion;
                 zipf2 = k.frequency.zipf;
-
-
-
 
                 google.charts.load('current', { 'packages': ['corechart'] });
                 google.charts.setOnLoadCallback(drawChart);
@@ -92,8 +86,8 @@ angular
                         [country[6], rapes[6], rapes[6], total[6], total[6]],
                         [country[8], total[8], total[8], rapes[8], rapes[8]],
                         [country[10], total[10], total[10], rapes[10], rapes[10]],
-                        ["ok" , perMillion1 , perMillion1 , zipf1 , zipf1],
-                        ["death" , zipf2 , zipf2 , perMillion2, perMillion2 ]
+                        ["ok", perMillion1, perMillion1, zipf1, zipf1],
+                        ["death", zipf2, zipf2, perMillion2, perMillion2]
 
 
                         // Treat the first row as data.

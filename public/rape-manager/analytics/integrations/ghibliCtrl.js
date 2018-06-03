@@ -28,7 +28,7 @@ angular
 
                         for (var i = 0; i < response.data.length; i++) {
                             var x = response.data[i];
-                            conjunto2.push(x["number-of-rape"]/100);
+                            conjunto2.push(x["number-of-rape"] / 100);
                             aux2.push(x.country);
 
                         }
@@ -41,20 +41,20 @@ angular
                         var data = [{
                                 type: 'scatterpolar',
                                 r: conjunto1,
-                                theta:aux,
+                                theta: aux,
                                 fill: 'toself',
                                 name: 'Ghibli score'
                             },
                             {
                                 type: 'scatterpolar',
                                 r: conjunto2,
-                                theta:aux2,
+                                theta: aux2,
                                 fill: 'toself',
                                 name: 'rape rates'
                             }
                         ]
 
-                      var  layout = {
+                        var layout = {
                             polar: {
                                 radialaxis: {
                                     visible: true,
