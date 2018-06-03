@@ -6,7 +6,7 @@
           
            console.log("listadoCtrl is already initialized!");
            
-           var api= "/api/v1/taxes-stats";
+           var api= "/api/v2/taxes-stats";
            
           getTaxes();
           
@@ -14,7 +14,7 @@
      //LoadInitialData 
      
      $scope.loadInitialData = function() {
-       $http.get("/api/v1/taxes-stats/loadInitialData").then(function(response) {
+       $http.get("/api/v2/taxes-stats/loadInitialData").then(function(response) {
            $scope.status = "Status: " + response.status;
            getTaxes();
            alert('Created');

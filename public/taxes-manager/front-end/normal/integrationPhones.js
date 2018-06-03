@@ -6,7 +6,7 @@
          console.log("integrationPhones is already initialized!");
     function getPoems(){
          $http
-                        .get('https://sos2018jllopis-jllopis1.c9users.io/api/v1/taxes-stats/phoneProxy')
+                        .get('https://sos2018jllopis-jllopis1.c9users.io/api/v2/taxes-stats/phoneProxy')
                         .then(function(response) {
                         
                         $scope.mashapeP=response.data;    

@@ -112,12 +112,12 @@ angular.module("managerApp", ["ngRoute"]).config(function($routeProvider) {
 
 
 
-        }).when("/api/v1/taxes-stats", {
+        }).when("/api/v2/taxes-stats", {
 
             templateUrl: "/taxes-manager/front-end/normal/list.html",
             controller: "listadoCtrl"
 
-        }).when("/api/v1/taxes-stats/:country/:year", {
+        }).when("/api/v2/taxes-stats/:country/:year", {
 
             templateUrl: "/taxes-manager/front-end/normal/taxEdit.html",
             controller: "editarCtrl"
@@ -204,6 +204,9 @@ angular.module("managerApp", ["ngRoute"]).config(function($routeProvider) {
         }).when("/hospitals/edit/:country",{
         templateUrl : "/hospital-manager/front-end/hospitalEdit.html",
         controller : "hospitalEditCtrl"
+        }).when("/analytics/integrationHearth",{
+        templateUrl : "/taxes-manager/front-end/normal/integrationHearth.html",
+        controller : "integrationHearth"
         });
 
 

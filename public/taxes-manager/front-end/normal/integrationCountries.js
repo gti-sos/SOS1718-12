@@ -8,7 +8,7 @@
          getCountries();
            function getCountries(){
          $http
-                        .get('https://sos2018jllopis-jllopis1.c9users.io/api/v1/taxes-stats/integrationCountries')
+                        .get('https://sos2018jllopis-jllopis1.c9users.io/api/v2/taxes-stats/integrationCountries')
                         .then(function(response) {
                         
                         $scope.mashapeC=response.data;    

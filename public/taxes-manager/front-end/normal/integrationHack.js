@@ -8,7 +8,7 @@
          getHack();
            function getHack(){
          $http
-                        .get('https://sos2018jllopis-jllopis1.c9users.io/api/v1/taxes-stats/integrationHack')
+                        .get('https://sos2018jllopis-jllopis1.c9users.io/api/v2/taxes-stats/integrationHack')
                         .then(function(response) {
                         
                         $scope.mashapeH=response.data;    

@@ -8,7 +8,7 @@
          getQuotes();
            function getQuotes(){
          $http
-                        .get('https://sos2018jllopis-jllopis1.c9users.io/api/v1/taxes-stats/integrationMessages')
+                        .get('https://sos2018jllopis-jllopis1.c9users.io/api/v2/taxes-stats/integrationMessages')
                         .then(function(response) {
                         
                         $scope.mashapeMe=response.data;    

@@ -6,11 +6,11 @@
      .controller("integrationProxyCtrl",["$scope","$http","$location",function($scope,$http,$location){
     
          $http
-                        .get('https://sos2018jllopis-jllopis1.c9users.io/api/v1/taxes-stats/integracionProxy')
+                        .get('https://sos2018jllopis-jllopis1.c9users.io/api/v2/taxes-stats/integracionProxy')
                         .then(function(response) {
 
 
-var api1="/api/v1/taxes-stats";
+var api1="/api/v2/taxes-stats";
     var api = "https://sos1718-11.herokuapp.com/api/v2/basketball-stats";
 /****************************/
 $http

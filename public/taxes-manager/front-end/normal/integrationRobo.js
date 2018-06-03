@@ -8,7 +8,7 @@
          getRobo();
            function getRobo(){
          $http
-                        .get('https://sos2018jllopis-jllopis1.c9users.io/api/v1/taxes-stats/integrationRobo')
+                        .get('https://sos2018jllopis-jllopis1.c9users.io/api/v2/taxes-stats/integrationRobo')
                         .then(function(response) {
                         
                         $scope.mashapeRo=response.data;    
