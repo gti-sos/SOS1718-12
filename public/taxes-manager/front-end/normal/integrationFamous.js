@@ -8,7 +8,7 @@
          getFamous();
            function getFamous(){
          $http
-                        .get('https://sos2018jllopis-jllopis1.c9users.io/api/v1/taxes-stats/integrationFamous')
+                        .get('https://sos2018jllopis-jllopis1.c9users.io/api/v2/taxes-stats/integrationFamous')
                         .then(function(response) {
                         
                         $scope.mashapeF=response.data;    

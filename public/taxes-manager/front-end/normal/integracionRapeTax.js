@@ -7,11 +7,11 @@ angular
     .controller("integracionRapeTax", ["$scope", "$http", "$location", function($scope, $http, $location) {
 
                 $http
-                    .get('https://sos2018jllopis-jllopis1.c9users.io/api/v1/taxes-stats/integracionProxy')
+                    .get('https://sos2018jllopis-jllopis1.c9users.io/api/v2/taxes-stats/integracionProxy')
                     .then(function(response) {
 
 
-                        var api1 = "/api/v1/taxes-stats";
+                        var api1 = "/api/v2/taxes-stats";
                         var api = "https://sos1718-12.herokuapp.com/api/v2/rape-stats";
                         var api2 = "https://sos1718-12.herokuapp.com/api/v1/hospital-stats";
                         /****************************/

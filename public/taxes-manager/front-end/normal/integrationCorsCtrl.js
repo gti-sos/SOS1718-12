@@ -3,7 +3,7 @@
      angular
      .module("managerApp")
      .controller("integrationCorsCtrl",["$scope","$http","$location",function($scope,$http,$location){
-    var api1="/api/v1/taxes-stats";
+    var api1="/api/v2/taxes-stats";
     var api = "https://sos1718-03.herokuapp.com/api/v1/pollution-cities";
     
     

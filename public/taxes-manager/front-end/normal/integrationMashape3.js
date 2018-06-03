@@ -1,6 +1,6 @@
 angular.module("managerApp").controller("integrationMashape3", ["$scope", "$http","$location", function($scope, $http, $location) {
     console.log("Graph Controller Initialized!");
-    var api ="api/v1/taxes-stats";
+    var api ="api/v2/taxes-stats";
     var mashape3 = {
             method: 'GET',
             url: "https://montanaflynn-fifa-world-cup.p.mashape.com/games",

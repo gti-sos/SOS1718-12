@@ -234,10 +234,11 @@ app.delete(h1+"/:country/:year",hospital1.deleteRecursoConcreto);
 
 /*********API JOSE*********/
 //Url Base 
-var BASE_API_PATH_TAXES_STATS = "/api/v1/taxes-stats";
+var BASE_API_PATH_TAXES_STATS = "/api/v2/taxes-stats";
 //api importada
 //Importamos nuestras APIs:
-var taxesApi = require("./public/taxes-manager/v1/taxes-stats.js");
+//var taxesApi = require("./public/taxes-manager/v1/taxes-stats.js");
+var taxesApi = require("./public/taxes-manager/v2/taxes-stats.js");
 //MongoClient
 var MongoClient = require("mongodb").MongoClient;
 var mdbURL = "mongodb://dbtest:dbtest0@ds221339.mlab.com:21339/sos1718-jllopis-sandbox";

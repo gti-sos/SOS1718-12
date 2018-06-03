@@ -1,6 +1,6 @@
 angular.module("managerApp").controller("integrationChuck", ["$scope", "$http","$location", function($scope, $http, $location) {
     console.log("Graph Controller Initialized!");
-    var api ="api/v1/taxes-stats";
+    var api ="api/v2/taxes-stats";
     var mashapeChuck = {
             method: 'GET',
             url: "https://matchilling-chuck-norris-jokes-v1.p.mashape.com/jokes/categories",

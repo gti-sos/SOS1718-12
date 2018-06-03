@@ -3,7 +3,7 @@
 angular.module("managerApp")
 .controller("editarCtrl",["$scope","$http","$routeParams","$location",function($scope,$http,$routeParams,$location){
     console.log("Edit controller initialized");
-    var api = "/api/v1/taxes-stats";
+    var api = "/api/v2/taxes-stats";
 
 function refresh() {
             $http.get(api + "/" + $routeParams.country + "/" + $routeParams.year).then(function(response) {
@@ -27,7 +27,7 @@ function refresh() {
             $http.put(api + "/" + updatedTaxAux.country + "/" + updatedTaxAux.year, updatedTaxAux).then(function(response) {
                 $scope.status = "Status: " + response.status;
                  alert('editado correctamente');
-                $location.path("/api/v1/taxes-stats");
+                $location.path("/api/v2/taxes-stats");
                 
                 //Materialize.toast('<i class="material-icons">error_outline</i> Stat updated!', 2500);
             }, function(response) {
