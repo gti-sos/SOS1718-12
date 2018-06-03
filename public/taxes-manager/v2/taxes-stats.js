@@ -503,8 +503,8 @@ app.get(BASE_API_PATH_TAXES_STATS + "/docs", (req, res) => {
 
                         }
                         else {
-                            res.sendStatus(404); // No content
-                            //res.send([]);
+                            //res.sendStatus(404); // No content
+                            res.send([]);
                         }
                     }
                     else {
@@ -537,8 +537,8 @@ app.get(BASE_API_PATH_TAXES_STATS + "/docs", (req, res) => {
                             }
                         }
                         else {
-                            res.sendStatus(404); //No content //poner array vacio
-                            //res.send([]);
+                            //res.sendStatus(404); //No content //poner array vacio
+                            res.send([]);
                         }
                     }
                     else {
