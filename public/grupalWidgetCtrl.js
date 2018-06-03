@@ -6,7 +6,7 @@ angular
     .controller("grupalWidgetCtrl", ["$http", "$scope", function($http, $scope) {
 
 
-        var api1 = "/api/v1/taxes-stats";
+        var api1 = "/api/v2/taxes-stats";
         var api = "/api/v2/rape-stats";
         var hospital = "/api/v1/hospital-stats"
         var hospdata = [];
