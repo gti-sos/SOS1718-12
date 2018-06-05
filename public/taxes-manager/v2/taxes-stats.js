@@ -803,15 +803,16 @@ app.post(BASE_API_PATH_TAXES_STATS + "/:country/:year", (req, res) => {
 /****************************************PUT*****************************************************/
 //PUT LISTA DE RECURSOS
 
-
+console.log("A");
 app.put(BASE_API_PATH_TAXES_STATS,(req,res)=>{
     console.log(Date() + "- PUT /taxes-stats");
     res.sendStatus(405);
     
 });
 // PUT a recurso concreto 2 parámetros
-
+console.log("B");
     app.put(BASE_API_PATH_TAXES_STATS + "/:country/:year", (req, res) => {
+console.log("C");
         //if (!checkApiKey(req, res)) return;
         var country = req.params.country;
         var year = req.params.year;
@@ -823,10 +824,13 @@ app.put(BASE_API_PATH_TAXES_STATS,(req,res)=>{
             return;
         }
         else {
+console.log("D");
             db.update({ "country": country, "year": year }, tax, (err, numUpdated) => {
+console.log("E");
                 if (err) {
                     console.error("Error accesing DB");
                     res.sendStatus(500);
+console.log("F");
                     return;
 
                 }
@@ -836,12 +840,17 @@ app.put(BASE_API_PATH_TAXES_STATS,(req,res)=>{
                     return;
                 }
                 else {
+console.log("G");
                     console.log("UPDATED " + numUpdated.result.n);
                     res.sendStatus(200);
+console.log("H");
                 }
+console.log("I");
             });
+console.log("J");
         }
+console.log("K");
     });
-
+console.log("L");
 
 };

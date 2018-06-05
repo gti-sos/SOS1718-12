@@ -6,11 +6,12 @@ app.use(bodyParser.json());
 var cors = require("cors");
 var request= require("request");
 
-
+console.log("Q1");
 app.use(cors());
 
 
 app.get("/hello", (req, res) => {
+    console.log("Q2");
     res.send("Hello World");
 });
 
@@ -18,7 +19,7 @@ app.get("/hello", (req, res) => {
 app.use("/", express.static(path.join(__dirname, "public")));
 
 app.listen(process.env.PORT);
-
+console.log("Q3");
 
 /*********API MANUEL*********/
 
@@ -278,17 +279,20 @@ var intialCountries = [{ "country" : "spain",
 
 
 /********************************MONGODB**********************************************/
-
+console.log("X");
 MongoClient.connect(mdbURL,{native_parser:true},(err,mlabs)=>{
-    //console.log("G");
+    console.log("G");
+console.log("Y");
     if(err) {
         
         console.log("Error accesing DB :"+ err);
         process.exit(1);
     }
+console.log("Z");
         //console.log("Conectado");
         var database = mlabs.db("sos1718-jllopis-sandbox");
         var db = database.collection("taxes-stats");    
+console.log("W");
         db.find({}).toArray((err, countries) => {
              if (countries.length == 0) {
              console.log("Empty DB");
@@ -300,5 +304,5 @@ MongoClient.connect(mdbURL,{native_parser:true},(err,mlabs)=>{
 
 });
 taxesApi.register(app,db);
-//console.log("H");
+console.log("H");
 });

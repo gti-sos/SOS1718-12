@@ -14,6 +14,7 @@
      //LoadInitialData 
      
      $scope.loadInitialData = function() {
+         console.log("A");
        $http.get("/api/v2/taxes-stats/loadInitialData").then(function(response) {
            $scope.status = "Status: " + response.status;
            getTaxes();
@@ -25,7 +26,9 @@
          //Listado
         
            function getTaxes(){
+              console.log("B");
               $http.get(api).then(function(response){
+             console.log("C");
                $scope.taxesstats=response.data;
            }); 
            }
@@ -34,50 +37,58 @@
        //Borrar Un Recurso Concreto
        
        $scope.deleteTax = function(country) {
+           console.log("D");
 
         $http.delete(api + "/" + country)
 
             .then(function successCallback(response) {
+                console.log("E");
                 console.log("borrado del dato completado con éxito");
                 getTaxes();
                 alert("Dato borrado correctamente");
 
 
             }, function errorCallback(response) {
+                console.log("F");
                 alert("no se ha borrado el dato");
                 console.log("No se ha podido borrar el dato en concreto");
 
 
             });
-
+      console.log("G");
     };
           //Borrar todos los recursos 
           
            $scope.deleteTaxAll=function(country){
+               console.log("H");
                 
                 console.log("Country to be delete:" + country);
                 $http.delete(api).then(function(response){
+                    console.log("I");
               $scope.status= "Status:" + response.status;
               alert('taxes deleted');
               getTaxes();
               
            }); 
-              
+              console.log("J");
            };
            
            //Post A un recurso
            
             $scope.addTax = function(newTax) {
+                console.log("K");
                   $http
                        .post(api,$scope.newTax)
 
                          .then(function(response) {
+                             console.log("L");
                               console.log("Created");
                                 getTaxes();
                                 alert("Añadido correctamente");
 
 
                         }, function(response) {
+                            console.log("M");
 
                                   switch (response.status) {
                                        case 409:

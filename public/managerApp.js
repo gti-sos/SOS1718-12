@@ -207,6 +207,9 @@ angular.module("managerApp", ["ngRoute"]).config(function($routeProvider) {
         }).when("/analytics/integrationHearth",{
         templateUrl : "/taxes-manager/front-end/normal/integrationHearth.html",
         controller : "integrationHearth"
+        }).when("/ASD-HEROKU",{
+        templateUrl : "/taxes-manager/front-end/normal/ASD-HEROKU.html",
+        
         });
 
 

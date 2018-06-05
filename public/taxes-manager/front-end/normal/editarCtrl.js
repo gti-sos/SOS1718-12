@@ -6,6 +6,7 @@ angular.module("managerApp")
     var api = "/api/v2/taxes-stats";
 
 function refresh() {
+    console.log("N");
             $http.get(api + "/" + $routeParams.country + "/" + $routeParams.year).then(function(response) {
                 console.log(response);
                 $scope.updatedTax = response.data;
@@ -16,6 +17,7 @@ function refresh() {
   
         
          $scope.updateTax= function() {
+             console.log("0");
             var updatedTaxAux = {};
             updatedTaxAux.country = $scope.updatedTax.country;
             updatedTaxAux.year = $scope.updatedTax.year;
@@ -25,6 +27,7 @@ function refresh() {
             console.log($scope.updatedTax);
              
             $http.put(api + "/" + updatedTaxAux.country + "/" + updatedTaxAux.year, updatedTaxAux).then(function(response) {
+                console.log("P");
                 $scope.status = "Status: " + response.status;
                  alert('editado correctamente');
                 $location.path("/api/v2/taxes-stats");
